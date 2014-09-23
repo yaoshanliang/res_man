@@ -11,7 +11,11 @@
 	+ 服务器为Apache,后期计划使用Nginx
 
 ***
-
+master分支  产品发布
+组长：carpela 负责：系统架构 数据库设计 前端后台协作 分支：carpela
+组员: hou 负责：后台设计 系统测试 分支：hou
+组员：chengyin 负责：前端设计 系统测试 分支：chengyin
+***
 简洁优雅的界面
 响应式布局
 良好的UX
