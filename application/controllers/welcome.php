@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		echo "basic frameset";
+		$this->load->view("bootstrap-template");
 	}
 }
 
