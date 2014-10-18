@@ -8,6 +8,7 @@ class Welcome extends CI_Controller {
 		$data['pet'] = $this->Data->getData();
 		$this->load->view("bootstrap-template",$data);
 	}
+	
 }
 ?>
 
