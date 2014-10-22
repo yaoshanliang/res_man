@@ -18,7 +18,9 @@
   </head>
   <body>
     <h1>你好，世界！</h1>
-
+    <?php
+    var_dump($project);
+    ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

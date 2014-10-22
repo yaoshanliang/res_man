@@ -4,7 +4,10 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view("bootstrap-template");
+		$this->load->database();
+		$this->load->model("Project");
+		$data['project']=$this->Project->getName();
+		$this->load->view("bootstrap-template",$data);
 	}
 	
 }
