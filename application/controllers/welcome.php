@@ -4,9 +4,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model("Data");
-		$data['pet'] = $this->Data->getData();
-		$this->load->view("bootstrap-template",$data);
+		$this->load->view("bootstrap-template");
 	}
 	
 }
