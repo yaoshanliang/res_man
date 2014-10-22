@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>请登录</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,9 +17,12 @@
     <![endif]-->
   </head>
   <body>
-    <?php
-    var_dump($project);
-    ?>
+    <h1>Please Login</h1>
+    <form action="<?=base_url()?>index.php/welcome/verify" method="post">
+      <p>Name:</p><input type="text" name="user">
+      <p>Password:</p><input type="password" name="password">
+      <input type="submit">
+    </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
