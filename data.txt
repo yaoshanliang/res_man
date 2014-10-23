@@ -1,18 +1,50 @@
-科研项目
+科研项目 project
+	项目编号  projectid(PK)
+	名称  name
+	来源  source  －－对应一个来源表  提供选择 见下
+	项目等级 level －－ 可选
+	负责人  principal (FK)
+	开始时间  start
+	结束时间  end
+	合同额  money
+	货币种类  currency   －－有默认值（RMB）
+	课题合同号  contract
+	经费卡号  credit
+	类型  type
+	
+经费到款  funds
+	项目编号 projectid(FK)
+	已到款 payoff
+	未到款 remain 
+	备注 others  －－  可选
 
-	名称
-	来源
-	负责人
-	开始时间
-	结束时间
-	合同额
-	课题合同号
-	经费卡号
-	类型
+年份到款表 detail
+	项目编号 projectid
+	年份 year
+	货币种类  currency
+	金额 figure
 
-	经费到款 －－某某年到款  未到款  备注
-	鉴定验收 －－鉴定时间  鉴定验收组织单位  备注
-	获奖情况 －－项目等级 获奖时间 获奖人员名单
+鉴定验收 validation
+	项目编号  projectid(FK)
+	鉴定时间  time
+	鉴定验收组织单位  institute
+	备注  others    －－ 可选
+	
+
+获奖情况 award
+		
+	项目编号  projectid
+	人员编号  id(FK)
+	序号  order
+	获奖时间 time
+
+项目来源  source
+	名称 name
+
+人员 person
+	编号 id (PK)
+	姓名 name
+	职务（院长，等） duties
 
 
 软件著作权
@@ -67,7 +99,4 @@
 	新闻报告否
 	照片保存否
 
-人员
-	
-	名称
-	职务
+
