@@ -2,7 +2,7 @@
 
 class Welcome extends CI_Controller {
 
-	//显示Login界面
+	//登录验证
 	public function index()
 	{
 		//生成验证码
@@ -31,7 +31,6 @@ class Welcome extends CI_Controller {
 		//删除过期的验证码
 		$expiration = time()-120; // 2分钟限制
 		$this->db->query("DELETE FROM captcha WHERE captcha_time < ".$expiration); 
-
 		// 再看是否有验证码存在
 		$sql = "SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
 		$binds = array($captcha, $this->input->ip_address(), $expiration);
@@ -42,24 +41,17 @@ class Welcome extends CI_Controller {
 		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row -> count != 0)
 		{
 			/*验证成功*/
-			$this -> show();
+			$this -> home();
 		}else
 		{	
 			/*验证失败*/
 			$data['image'] = $cap['image'];
-			$this->load->view("login",$data);
+			$this->load->view("user/login",$data);
 		}
 		
 	}
 
-	public function show()
-	{
-		$this->load->model("Project");
-		$data['project']=$this->Project->getName();
-		$this->load->view("bootstrap-template",$data);
-	}
-
-
+	// 用户名密码修改
 	public function modify()
 	{
 		$user = $this->input->post("usr");
@@ -69,14 +61,20 @@ class Welcome extends CI_Controller {
 			$this -> load -> model("Admin");
 			if($this -> Admin -> setUser($user))
 				echo "用户名修改成功";
-			if($this -> Admin -> setUser($passwd))
+			if($this -> Admin -> setPasswd($passwd))
 				echo "密码修改成功";
 		}else
 		{
-			$this -> load -> view("modify");
+			$this -> load -> view("user/modify");
 		}
 	}
 	
+	// 主界面
+	public function home()
+	{
+		$this->load->view("home_page");
+	}
+
 }
 ?>
 

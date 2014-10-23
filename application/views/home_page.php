@@ -17,8 +17,7 @@
     <![endif]-->
   </head>
   <body>
-
-
+    <h1>XXX研究中心科研成果管理平台</h1>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
