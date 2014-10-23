@@ -11,6 +11,7 @@
 	课题合同号  contract
 	经费卡号  credit
 	类型  type
+
 	
 经费到款  funds
 	项目编号 projectid(FK)
@@ -18,11 +19,13 @@
 	未到款 remain 
 	备注 others  －－  可选
 
+
 年份到款表 detail
 	项目编号 projectid
 	年份 year
 	货币种类  currency
 	金额 figure
+
 
 鉴定验收 validation
 	项目编号  projectid(FK)
@@ -38,8 +41,10 @@
 	序号  order
 	获奖时间 time
 
+
 项目来源  source
 	名称 name
+
 
 人员 person
 	编号 id (PK)
@@ -47,56 +52,64 @@
 	职务（院长，等） duties
 
 
-软件著作权
+软件著作权 copyright
+	软件著作权名称 name
+	软件著作权登记名 register (PK)
+	著作权人 person(FK)
+	授予单位 institute
+	授予时间 time
+	人员名单 list
 
-	软件著作权名称
-	软件著作权登记名
-	著作权人
-	授予单位
-	授予时间
-	人员名单
 
-专利情况
-	
-	专利名称
-	专利编号
-	专利权人
+专利情况 patent
+	专利名称 name
+	专利编号 serial (PK)
+	专利权人 person(FK)
+	授予单位 institute
+	授予时间 time
+	人员名单 list
 
-出版专著
 
-	专著名称
-	出版社名称
-	出版时间
-	著者名单
+专利著作人员名单 patentlist
+	人员编号  id(FK)
+	专利著作编号 identifier
+	次序 order
 
-学术团体（组织）兼职情况
-	
-	学术团队名称
-	担任职务
-	任职开始时间
-	任职结束时间
-	兼职人员名称
 
-国内外进修及学习情况
+出版专著 work
+	专著名称 name
+	出版社名称 publiser
+	出版时间 publishdate
+	著者名单 list
 
-	进修学习单位
-	进修学习内容
-	开始时间
-	结束时间
-	进修及学习 人员名单
 
-国际合作情况
+学术团体（组织）兼职情况 part
+	学术团队名称 name
+	担任职务 duty
+	任职开始时间 start
+	任职结束时间 end 
+	兼职人员名称 id
 
-	类别
-	出访／来访人员名单
-	人数
-	开始时间
-	结束时间
-	出访地／来访地
-	访问目的
-	报告名称
-	新闻报道链接
-	新闻报告否
-	照片保存否
+
+国内外进修及学习情况 learn
+	进修学习单位 institute
+	进修学习内容 content
+	开始时间 start
+	结束时间 end
+	进修及学习 人员名单 list
+
+
+国际合作情况 cooperation
+	类别 category
+	出访／来访人员名单 list
+	人数 number
+	开始时间 start
+	结束时间 end
+	出访地／来访地 place
+	访问目的 purpose
+	报告名称 report
+	新闻报道链接 url
+	新闻报告否 news
+	照片保存否 picture
 
 
