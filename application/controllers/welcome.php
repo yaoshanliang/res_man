@@ -5,7 +5,18 @@ class Welcome extends CI_Controller {
 	//显示Login界面
 	public function index()
 	{
-		$this->load->view("login");
+		//生成验证码
+		$this->load->helper("captcha");
+		$vals = array(
+		    'word' => rand(1000,9999),
+		    'img_path' => './captcha/',
+		    'img_url' => base_url()."captcha/",
+		    'img_width' => '150',
+		    'img_height' => 30,
+		    'expiration' => 7200
+	    );
+	    $cap = create_captcha($vals);
+		$this->load->view("login",$cap);
 	}
 
 	public function show()
@@ -33,6 +44,11 @@ class Welcome extends CI_Controller {
 		}
 	}
 
+	public function modify()
+	{
+		$this->input->post("user");
+		$this->input->post("passwd");
+	}
 	
 }
 ?>

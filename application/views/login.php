@@ -19,8 +19,9 @@
   <body>
     <h1>Please Login</h1>
     <form action="<?=base_url()?>index.php/welcome/verify" method="post">
-      <p>Name:</p><input type="text" name="user">
-      <p>Password:</p><input type="password" name="password">
+      <p>Name:</p><input type="text" name="user"/>
+      <p>Password:</p><input type="password" name="password"/>
+      <p>Captcha:</p><input type="text" name="cap"/> <?php echo $image ?>
       <input type="submit">
     </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

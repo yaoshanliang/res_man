@@ -18,11 +18,14 @@
 		public function setUser($user)
 		{
 
+			$res = $this->db->update("update Admin set Name=".$user);
+			return $res;
 		}
 
 		public function setPasswd($passwd)
 		{
-
+			$res = $this->db->update("update Admin set Password=".$passwd);
+			return $res;
 		}
 	}
 ?>
