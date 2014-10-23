@@ -18,13 +18,11 @@
   </head>
   <body>
     <h1>Please Login</h1>
-    <form action="<?=base_url()?>index.php/welcome/index" method="post">
-      <p>Name:</p><input type="text" name="user"/>
-      <p>Password:</p><input type="password" name="password"/>
-      <p>Captcha:</p><input type="text" name="captcha"/> <?php echo $image ?>
+    <form action="<?=base_url()?>index.php/welcome/modify" method="post">
+      <p>Name:</p><input type="text" name="usr"/>
+      <p>Password:</p><input type="password" name="passwd"/>
       <input type="submit">
     </form>
-    <a href="<?=site_url('welcome/modify')?>">修改密码</a>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
