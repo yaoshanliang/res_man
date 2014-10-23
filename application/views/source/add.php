@@ -17,10 +17,11 @@
     <![endif]-->
   </head>
   <body>
-    <h1>XXX研究中心科研成果管理平台</h1>
-    <p>科研项目来源管理</p>>
+    <form action="<?=site_url('main/add')?>">
+      <input type="text" name="source">
+      <input type="submit">
+    </form>
 
-    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

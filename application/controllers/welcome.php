@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
 		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row -> count != 0)
 		{
 			/*验证成功*/
-			$this -> home();
+			$this -> show();
 		}else
 		{	
 			/*验证失败*/
