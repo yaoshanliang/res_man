@@ -1,42 +1,42 @@
 <?php
+	// create table project(
+	// `projectid` int primary key not null auto_increment,
+	// name text not null,`source` text not null,
+	// `level` text,
+	// `principal` int not null,
+	// `start` text not null,
+	// `end` text not null,
+	// `money` float not null,
+	// `currency` varchar(10) not null default "RMB",
+	// `contract` text not null,
+	// credit text not null,
+	// `type` text not null,
+	// foreign key(principal) references person(id)
+	// );
 	class Project extends CI_Model
 	{
-		public function getName()
+		public function insertProject($name,$source,$level = null,$principal,$start,$end,$money,$currency,$contarct,$credit,$type)
 		{
-			$result = $this->db->get("project");
-			return $result->result();
+			$data = array('projectid'=>null,
+				'name'=>$name,
+				'source'=>$source,
+				'level'=>$level,
+				'principal'=>$principal,
+				'start'=>$start,
+				'end'=>$end,
+				'money'=>$money,
+				'currency'=>$currency,
+				'contract'=>$contract,
+				'credit'=>$credit,
+				'type'=>$type,)
+			$bool = $this->db->insert('project',$data);
+			return $bool;
 		}
-		public function getResource()
-		{
 
-		}
-		public function getAdministrator()
+		public function getProject()
 		{
-
-		}
-		public function getStartTime()
-		{
-
-		}
-		public function getEndTime()
-		{
-
-		}
-		public function getMoney()
-		{
-
-		}
-		public function getContract()
-		{
-
-		}
-		public function getFunds()
-		{
-
-		}
-		public function getType()
-		{
-
+			$res = $this->db->get('project');
+			return $res->result();
 		}
 	}
 ?>
