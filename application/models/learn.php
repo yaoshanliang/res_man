@@ -25,5 +25,11 @@
 			$res = $this->db->get('learn');
 			return $res->result();
 		}
+
+		public function deleteLearn($institute,$content)
+		{
+			$bool = $this->db->delete('learn',array('institute'=>$institute,'content'=>$content));
+			return $bool;
+		}
 	}
 ?>

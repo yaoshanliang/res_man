@@ -23,5 +23,15 @@
 			$res = $this->db->get('work');
 			return $res->result();
 		}
+
+		public function updateWork($name,$publisher,$publishdate,$personlist)
+		{
+			$data = array(
+				'publisher'=>$publisher,
+				'publishdate'=>$publishdate,
+				'personlist'=>$personlist
+				);
+			return $this->db->update('work',array('name'=>$name));
+		}
 	}
 ?>

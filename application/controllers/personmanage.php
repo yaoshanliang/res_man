@@ -38,7 +38,9 @@
 		}
 		public function delete()
 		{
-
+			parse_str($_SERVER['QUERY_STRING'], $_GET);
+			$id = $_GET['id'];
+			$this->load->model('person');
 		}
 	}
 ?>

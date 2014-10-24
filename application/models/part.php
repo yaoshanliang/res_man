@@ -26,5 +26,11 @@
 			$res = $this->db->get('part');
 			return $res->result();
 		}
+
+		public function deletePart($name,$duty,$id)
+		{
+			$bool = $this->db->delete('part',array('name'=>$name,'duty'=>$duty,'id'=>$id));
+			return $bool;
+		}
 	}
 ?>

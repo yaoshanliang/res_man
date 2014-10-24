@@ -43,7 +43,7 @@
 
     <div>
       <table>
-      <caption><a href="<?site_url('')?>">项目列表</a></caption>
+      <caption><a href="<?=site_url('projectmanage/index')?>">项目列表</a></caption>
         <tr>
           <td>name</td>
           <td>source</td>
@@ -64,7 +64,7 @@
 
     <div>
       <table>
-        <caption><a href="<?site_url('')?>">国际合作</a></caption>
+        <caption><a href="<?=site_url('cooperationmanage/index')?>">国际合作</a></caption>
         <tr>
           <td>category</td>
           <td>list</td>
@@ -87,7 +87,7 @@
 
     <div>
       <table>
-        <caption><a href="<?site_url('')?>">专利权</a></caption>
+        <caption><a href="<?=site_url('patentmanage/index')?>">专利权</a></caption>
         <tr>
           <td>name</td>
           <td>person</td>
@@ -108,7 +108,7 @@
 
     <div>
       <table>
-        <caption><a href="<?site_url('')?>">软件著作权</a></caption>
+        <caption><a href="<?=site_url('copyrightmanage/index')?>">软件著作权</a></caption>
         <tr>
           <td>name</td>
           <td>person</td>
@@ -127,7 +127,7 @@
     <hr>
     <div>
       <table>
-        <caption><a href="<?site_url('')?>">出版专著情况</a></caption>
+        <caption><a href="<?=site_url('workmanage/index')?>">出版专著情况</a></caption>
         <tr>
           <td>name</td>
           <td>publisher</td>
@@ -147,7 +147,7 @@
     <div>
       <table>
         <tr>
-          <caption><a href="<?site_url('')?>">学术组织兼职情况</a></caption>
+          <caption><a href="<?=site_url('partmanage/index')?>">学术组织兼职情况</a></caption>
           <td>name</td>
           <td>duty</td>
           <td>id</td>
@@ -165,7 +165,7 @@
     <hr>
     <div>
       <table>
-        <caption><a href="<?site_url('')?>">成员进修学习情况</a></caption>
+        <caption><a href="<?=site_url('learnmanage/index')?>">成员进修学习情况</a></caption>
         <tr>
           <td>institute</td>
           <td>content</td>

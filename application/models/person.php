@@ -23,5 +23,11 @@
 			$bool = $this->db->update('person',array('name'=>$name,'duties'=>$duties),array('id' => $id));
 			return $bool;
 		}
+
+		public function deletePerson($id)
+		{
+			$bool = $this->db->delete('person',array('id'=>$id));
+			return $bool;
+		}
 	}
 ?>

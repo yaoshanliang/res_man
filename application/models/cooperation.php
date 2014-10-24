@@ -31,5 +31,11 @@
 			$res = $this->db->get('cooperation');
 			return $res->result();
 		}
+
+		public function deleteCooperation($category,$place,$purpose)
+		{
+			$bool= $this->db->delete('cooperation',array('category'=>$category,'place'=>$place));
+			return $bool;
+		}
 	}
 ?>

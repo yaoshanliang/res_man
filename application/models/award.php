@@ -25,5 +25,17 @@
 			$res = $this->db->get('award');
 			return $res->result();
 		}
+
+		public function updateAward($projectid,$id,$order,$time)
+		{
+			$bool = $this->db->update('award',array('id'=>$id,'order'=>$order,'time'=>$time),array('projectid'=>$projectid));
+			return $bool;
+		}
+
+		public function deleteAward($projectid,$id)
+		{
+			$bool = $this->db->delete('award',array('projectid'=>$projectid,'id'=>$id));
+			return $bool;
+		}
 	}
 ?>

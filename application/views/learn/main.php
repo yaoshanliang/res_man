@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>人员信息管理</title>
+    <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,42 +17,46 @@
     <![endif]-->
   </head>
   <body>
+
     <div>
       <table>
-        <caption>所有人员信息</caption>
         <tr>
-          <td>编号</td>
-          <td>姓名</td>
-          <td>职务</td>
+          <td>institute</td>
+          <td>content</td>
+          <td>start</td>
+          <td>end</td>
+          <td>list</td>
         </tr>
-      <?php foreach($person as $item): ?>
+      <?php foreach($learn as $item):?>
         <tr>
-          <td><?=$item->id?></td>
-          <td><?=$item->name?></td>
-          <td><?=$item->duties?></td>
+          <td><?=$item->institute?></td>
+          <td><?=$item->content?></td>
+          <td><?=$item->start?></td>
+          <td><?=$item->end?></td>
+          <td><?=$item->list?></td>
         </tr>
       <?php endforeach; ?>
       </table>
-    </div>    
-    <h3>添加</h3>
-    <form action="<?=site_url('personmanage/add')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>修改</h3>
-    <form action="<?=site_url('personmanage/modify')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>删除</h3>
-    <form action="<?=site_url('personmanage/delete')?>">
-      编号<input type="text" name="id"><br/>
-      <input type="submit">
-    </form>
+    </div>
+
+    <div>
+      <form action="<?=site_url('learnmanage/add')?>" method="post">
+        institute<input type="text" name="institute"><br/>
+        content<input type="text" name="content"><br/>
+        start<input type="text" name="start"><br/>
+        end<input type="text" name="end"><br/>
+        list<input type="text" name="list"><br/>
+        <input type="submit">
+      </form>
+    </div>
+
+    <div>
+      <form action="<?=site_url('learnmanage/delete')?>" method="post">
+        institute<input type="text" name="institute"><br/>
+        content<input type="text" name="content"><br/>
+        <input type="submit">
+      </form>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

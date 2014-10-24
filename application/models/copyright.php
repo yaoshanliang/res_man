@@ -27,5 +27,17 @@
 			$res = $this->db->get('copyright');
 			return $res->result();
 		}
+
+		public function updateCopyright($number,$name,$register,$person,$institute,$time)
+		{
+			$data = array(
+				'number'=>$number,
+				'name'=>$name,
+				'person'=>$person,
+				'institute'=>$institute,
+				'time'=>$time
+				);
+			return $this->db->update('copyright',$data,array('register'=>$register));
+		}
 	}
 ?>

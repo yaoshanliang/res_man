@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>人员信息管理</title>
+    <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,42 +17,47 @@
     <![endif]-->
   </head>
   <body>
+
     <div>
       <table>
-        <caption>所有人员信息</caption>
         <tr>
-          <td>编号</td>
-          <td>姓名</td>
-          <td>职务</td>
+          <td>name</td>
+          <td>duty</td>
+          <td>start</td>
+          <td>end</td>
+          <td>id</td>
         </tr>
-      <?php foreach($person as $item): ?>
+      <?php foreach($part as $item):?>
         <tr>
-          <td><?=$item->id?></td>
           <td><?=$item->name?></td>
-          <td><?=$item->duties?></td>
+          <td><?=$item->duty?></td>
+          <td><?=$item->start?></td>
+          <td><?=$item->end?></td>
+          <td><?=$item->id?></td>
         </tr>
       <?php endforeach; ?>
       </table>
-    </div>    
-    <h3>添加</h3>
-    <form action="<?=site_url('personmanage/add')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>修改</h3>
-    <form action="<?=site_url('personmanage/modify')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>删除</h3>
-    <form action="<?=site_url('personmanage/delete')?>">
-      编号<input type="text" name="id"><br/>
-      <input type="submit">
-    </form>
+    </div>
+
+    <div>
+      <form action="<?=site_url('partmanage/add')?>" method="post">
+        name<input type="text" name="name"><br/>
+        duty<input type="text" name="duty"><br/>
+        start<input type="text" name="start"><br/>
+        end<input type="text" name="end"><br/>
+        id<input type="text" name="id"><br/>
+        <input type="submit">
+      </form>
+    </div>
+
+    <div>
+      <form action="<?=site_url('partmanage/delete')?>" method="post">
+        name<input type="text" name="name"><br/>
+        duty<input type="text" name="duty"><br/>
+        id<input type="text" name="id"><br/>
+        <input type="submit">
+      </form>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

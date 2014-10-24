@@ -27,5 +27,17 @@
 			$res = $this->db->get('patent');
 			return $res->result();
 		}
+
+		public function updatePatent($number,$name,$register,$person,$institute,$time)
+		{
+			$data = array(
+				'number'=>$number,
+				'name'=>$name,
+				'person'=>$person,
+				'institute'=>$institute,
+				'time'=>$time
+				);
+			return $this->db->update('patent',$data,array('register'=>$register));
+		}
 	}
 ?>

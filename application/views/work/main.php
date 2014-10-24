@@ -19,38 +19,36 @@
   <body>
     <div>
       <table>
-        <caption>所有人员信息</caption>
         <tr>
-          <td>编号</td>
-          <td>姓名</td>
-          <td>职务</td>
+          <td>$name</td>
+          <td>$publisher</td>
+          <td>$publishdate</td>
+          <td>$personlist</td>
         </tr>
-      <?php foreach($person as $item): ?>
+      <?php foreach($work as $item): ?>
         <tr>
-          <td><?=$item->id?></td>
           <td><?=$item->name?></td>
-          <td><?=$item->duties?></td>
+          <td><?=$item->publisher?></td>
+          <td><?=$item->publishdate?></td>
+          <td><?=$item->personlist?></td>
         </tr>
       <?php endforeach; ?>
       </table>
     </div>    
     <h3>添加</h3>
-    <form action="<?=site_url('personmanage/add')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
+    <form action="<?=site_url('workmanage/add')?>" method="post">
+      name<input type="text" name="name"><br/>
+      publisher<input type="text" name="publisher"><br/>
+      publishdate<input type="text" name="publishdate"><br/>
+      personlist<input type="text" name="personlist"><br/>
       <input type="submit">
     </form>
     <h3>修改</h3>
-    <form action="<?=site_url('personmanage/modify')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>删除</h3>
-    <form action="<?=site_url('personmanage/delete')?>">
-      编号<input type="text" name="id"><br/>
+    <form action="<?=site_url('workmanage/modify')?>" method="post">
+     name<input type="text" name="name"><br/>
+      publisher<input type="text" name="publisher"><br/>
+      publishdate<input type="text" name="publishdate"><br/>
+      personlist<input type="text" name="personlist"><br/>
       <input type="submit">
     </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

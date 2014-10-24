@@ -19,38 +19,44 @@
   <body>
     <div>
       <table>
-        <caption>所有人员信息</caption>
         <tr>
-          <td>编号</td>
-          <td>姓名</td>
-          <td>职务</td>
+          <td>$number</td>
+          <td>$name</td>
+          <td>$register</td>
+          <td>$person</td>
+          <td>$institute</td>
+          <td>$time</td>
         </tr>
-      <?php foreach($person as $item): ?>
+      <?php foreach($patent as $item): ?>
         <tr>
-          <td><?=$item->id?></td>
+          <td><?=$item->number?></td>
           <td><?=$item->name?></td>
-          <td><?=$item->duties?></td>
+          <td><?=$item->register?></td>
+          <td><?=$item->person?></td>
+          <td><?=$item->institute?></td>
+          <td><?=$item->time?></td>
         </tr>
       <?php endforeach; ?>
       </table>
     </div>    
     <h3>添加</h3>
-    <form action="<?=site_url('personmanage/add')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
+    <form action="<?=site_url('patentmanage/add')?>" method="post">
+      number<input type="text" name="number"><br/>
+      name<input type="text" name="name"><br/>
+      register<input type="text" name="register"><br/>
+      person<input type="text" name="person"><br/>
+      institute<input type="text" name="institute"><br/>
+      time<input type="text" name="time"><br/>
       <input type="submit">
     </form>
     <h3>修改</h3>
-    <form action="<?=site_url('personmanage/modify')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>删除</h3>
-    <form action="<?=site_url('personmanage/delete')?>">
-      编号<input type="text" name="id"><br/>
+    <form action="<?=site_url('patentmanage/modify')?>" method="post">
+      number<input type="text" name="number"><br/>
+      name<input type="text" name="name"><br/>
+      register<input type="text" name="register"><br/>
+      person<input type="text" name="person"><br/>
+      institute<input type="text" name="institute"><br/>
+      time<input type="text" name="time"><br/>
       <input type="submit">
     </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
