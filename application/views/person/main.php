@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>请登录</title>
+    <title>人员信息管理</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,11 +17,35 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Please Login</h1>
-    <form action="<?=base_url()?>index.php/welcome/index" method="post">
-      <p>Name:</p><input type="text" name="user"/>
-      <p>Password:</p><input type="password" name="password"/>
-      <p>Captcha:</p><input type="text" name="captcha"/> <?php echo $image ?>
+    <div>
+      <table>
+        <caption>所有人员信息</caption>
+        <tr>
+          <td>编号</td>
+          <td>姓名</td>
+          <td>职务</td>
+        </tr>
+      <?php foreach($person as $item): ?>
+        <tr>
+          <td><?=$item->id?></td>
+          <td><?=$item->name?></td>
+          <td><?=$item->duties?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>    
+    <h3>添加</h3>
+    <form action="<?=site_url('personmanage/add')?>">
+      编号<input type="text" name="id"><br/>
+      姓名<input type="text" name="name"><br/>
+      职务<input type="text" name="duties"><br/>
+      <input type="submit">
+    </form>
+    <h3>修改</h3>
+    <form action="<?=site_url('personmanage/modify')?>">
+      编号<input type="text" name="id"><br/>
+      姓名<input type="text" name="name"><br/>
+      职务<input type="text" name="duties"><br/>
       <input type="submit">
     </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>SRAMP</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,11 +19,12 @@
   <body>
     <h1>XXX研究中心科研成果管理平台</h1>
     <h3>信息总览</h3>
+    <a href="<?=site_url('admin/modify')?>">管理账户信息</a>
     <hr/>
     <hr/>
     <div>
       <table>
-        <caption>人员信息</caption>
+        <caption><a href="<?=site_url('personmanage/index')?>">人员信息</a></caption>
         <tr>
           <td>ID</td>
           <td>Name</td>
@@ -42,7 +43,7 @@
 
     <div>
       <table>
-      <caption>项目列表</caption>
+      <caption><a href="<?site_url('')?>">项目列表</a></caption>
         <tr>
           <td>name</td>
           <td>source</td>
@@ -63,7 +64,7 @@
 
     <div>
       <table>
-        <caption>国际合作</caption>
+        <caption><a href="<?site_url('')?>">国际合作</a></caption>
         <tr>
           <td>category</td>
           <td>list</td>
@@ -86,7 +87,7 @@
 
     <div>
       <table>
-        <caption>专利权</caption>
+        <caption><a href="<?site_url('')?>">专利权</a></caption>
         <tr>
           <td>name</td>
           <td>person</td>
@@ -107,7 +108,7 @@
 
     <div>
       <table>
-        <caption>软件著作权</caption>
+        <caption><a href="<?site_url('')?>">软件著作权</a></caption>
         <tr>
           <td>name</td>
           <td>person</td>
@@ -126,7 +127,7 @@
     <hr>
     <div>
       <table>
-        <caption>出版专著情况</caption>
+        <caption><a href="<?site_url('')?>">出版专著情况</a></caption>
         <tr>
           <td>name</td>
           <td>publisher</td>
@@ -146,7 +147,7 @@
     <div>
       <table>
         <tr>
-          <caption>学术组织兼职情况</caption>
+          <caption><a href="<?site_url('')?>">学术组织兼职情况</a></caption>
           <td>name</td>
           <td>duty</td>
           <td>id</td>
@@ -164,7 +165,7 @@
     <hr>
     <div>
       <table>
-        <caption>成员进修学习情况</caption>
+        <caption><a href="<?site_url('')?>">成员进修学习情况</a></caption>
         <tr>
           <td>institute</td>
           <td>content</td>
