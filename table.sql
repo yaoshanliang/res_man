@@ -162,7 +162,7 @@ create table cooperation(
 	category text not null,
 	list text not null,
 	`number` int not null,
-	place int not null,
+	place text not null,
 	purpose text not null,
 	url text not null,
 	news char(1) not null,

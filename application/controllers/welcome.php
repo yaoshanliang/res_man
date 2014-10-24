@@ -72,7 +72,40 @@ class Welcome extends CI_Controller {
 	// 主界面
 	public function home()
 	{
-		$this->load->view("home_page");
+		// 获取所有人员
+		$this->db->select('id,name');
+		$res = $this->db->get('person');
+		$data['person'] = $res->result();
+		// 获取所有项目
+		$this->db->select('name,source,principal');
+		$res = $this->db->get('project');
+		$data['project'] = $res->result();
+		// 获取所有国际合作
+		$this->db->select('category,list,place,purpose');
+		$res = $this->db->get('cooperation');
+		$data['cooperation'] = $res->result();
+		// 获取所有专利
+		$this->db->select('name,person,time');
+		$res = $this->db->get('patent');
+		$data['patent'] = $res->result();
+		// 获取所有著作权
+		$this->db->select('name,person,time');
+		$res = $this->db->get('copyright');
+		$data['copyright'] = $res->result();
+		// 获取所有著作
+		$this->db->select('name,publisher,personlist');
+		$res = $this->db->get('work');
+		$data['work'] = $res->result();
+		// 获取所有人员兼职情况
+		$this->db->select('name,duty,id');
+		$res = $this->db->get('part');
+		$data['part'] = $res->result();
+		// 获取所有人员进修学习情况
+		$this->db->select('institute,content,list');
+		$res = $this->db->get('learn');
+		$data['learn'] = $res->result();
+		// 输出到home_page
+		$this->load->view("home_page",$data);
 	}
 
 }

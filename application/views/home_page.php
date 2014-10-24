@@ -18,9 +18,168 @@
   </head>
   <body>
     <h1>XXX研究中心科研成果管理平台</h1>
-    <p>科研项目来源管理</p>>
-
+    <h3>信息总览</h3>
+    <hr/>
+    <hr/>
+    <div>
+      <table>
+        <caption>人员信息</caption>
+        <tr>
+          <td>ID</td>
+          <td>Name</td>
+        </tr>
+      <?php foreach($person as $item): ?>
+        <tr>
+          <td><?=$item->id?></td>
+          <td><?=$item->name?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
     
+    <hr/>
+    <hr/>
+
+    <div>
+      <table>
+      <caption>项目列表</caption>
+        <tr>
+          <td>name</td>
+          <td>source</td>
+          <td>principal(ID)</td>
+        </tr>
+      <?php foreach($project as $item):?>
+        <tr>
+          <td><?=$item->name?></td>
+          <td><?=$item->source?></td>
+          <td><?=$item->principal?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+
+    <hr>
+    <hr>
+
+    <div>
+      <table>
+        <caption>国际合作</caption>
+        <tr>
+          <td>category</td>
+          <td>list</td>
+          <td>place</td>
+          <td>purpose</td>
+        </tr>
+      <?php foreach($cooperation as $item): ?>
+        <tr>
+          <td><?=$item->category?></td>
+          <td><?=$item->list?></td>
+          <td><?=$item->place?></td>
+          <td><?=$item->purpose?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+
+    <hr>
+    <hr>
+
+    <div>
+      <table>
+        <caption>专利权</caption>
+        <tr>
+          <td>name</td>
+          <td>person</td>
+          <td>time</td>
+        </tr>
+      <?php foreach($patent as $item): ?>
+        <tr>
+          <td><?=$item->name?></td>
+          <td><?=$item->person?></td>
+          <td><?=$item->time?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+
+    <hr>
+    <hr>
+
+    <div>
+      <table>
+        <caption>软件著作权</caption>
+        <tr>
+          <td>name</td>
+          <td>person</td>
+          <td>time</td>
+        </tr>
+      <?php foreach($copyright as $item): ?>
+        <tr>
+          <td><?=$item->name?></td>
+          <td><?=$item->person?></td>
+          <td><?=$item->time?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+    <hr>
+    <hr>
+    <div>
+      <table>
+        <caption>出版专著情况</caption>
+        <tr>
+          <td>name</td>
+          <td>publisher</td>
+          <td>personlist</td>
+        </tr>
+      <?php foreach($work as $item): ?>
+        <tr>
+          <td><?=$item->name?></td>
+          <td><?=$item->publisher?></td>
+          <td><?=$item->personlist?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+    <hr>
+    <hr>
+    <div>
+      <table>
+        <tr>
+          <caption>学术组织兼职情况</caption>
+          <td>name</td>
+          <td>duty</td>
+          <td>id</td>
+        </tr>
+      <?php foreach($part as $item): ?>
+        <tr>
+          <td><?=$item->name?></td>
+          <td><?=$item->duty?></td>
+          <td><?=$item->id?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+    <hr>
+    <hr>
+    <div>
+      <table>
+        <caption>成员进修学习情况</caption>
+        <tr>
+          <td>institute</td>
+          <td>content</td>
+          <td>list/td>
+        </tr>
+      <?php foreach($learn as $item): ?>
+        <tr>
+          <td><?=$item->institute?></td>
+          <td><?=$item->content?></td>
+          <td><?=$item->list?></td>
+        </tr>
+      <?php endforeach; ?>
+      </table>
+    </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
