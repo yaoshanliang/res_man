@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SRAMP</a>
+          <a class="navbar-brand" href="#"><i class="fa fa-home fa-fw"></i>&nbsp;SRAMP</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -73,185 +73,240 @@
       <br/>
       <br/>
       <div class="page-header">
-      <h1>科研成果管理平台 <small>Scientfific Research Achievement Manage Platform</small></h1>
+        <h1>科研成果管理平台 <small>Scientfific Research Achievement Manage Platform</small></h1>
       </div>
-      <h3>信息总览</h3>
-        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="主要信息概览">
-        信息总览
-        </button>
-      <a href="<?=site_url('admin/modify')?>">管理账户信息</a>
-      <hr/>
-      <hr/>
-  
-      <div class="row" 
-
-      <div class="panel panel-success">
-        <div class="panel-heading">
-          <h3 class="panel-title">人员信息</h3>
-        </div>
-        <div class="panel-body">
-          <table class="table table-striped table-hover">
-            <caption><a href="<?=site_url('personmanage/index')?>">人员信息</a></caption>
-            <tr>
-              <td>ID</td>
-              <td>Name</td>
-            </tr>
-          <?php foreach($person as $item): ?>
-            <tr>
-              <td><?=$item->id?></td>
-              <td><?=$item->name?></td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
-        <div class="panel-footer">
-          Panel footer
-        </div>
+      <div class="row">
+        <h3>信息总览 <small><a href="<?=site_url('admin/modify')?>">管理账户信息</a></small></h3>
       </div>
-
+      <br/>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">人员信息</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <td>人员编号</td>
+                  <td>姓名</td>
+                </tr>
+              <?php foreach($person as $item): ?>
+                <tr>
+                  <td><?=$item->id?></td>
+                  <td><?=$item->name?></td>
+                </tr>
+              <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('personmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+        <!--第一大列结束  -->
+        <div class="col-sm-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">项目列表</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                    <td>项目名称</td>
+                    <td>项目来源</td>
+                    <td>项目负责人</td>
+                  </tr>
+                <?php foreach($project as $item):?>
+                  <tr>
+                    <td><?=$item->name?></td>
+                    <td><?=$item->source?></td>
+                    <td><?=$item->principal?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('projectmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+        <!-- 第二大列结束 -->
+         <div class="col-sm-4">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">国际合作</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <td>类别</td>
+                  <td>名单</td>
+                  <td>地方</td>
+                  <td>目的</td>
+                </tr>
+              <?php foreach($cooperation as $item): ?>
+                <tr>
+                  <td><?=$item->category?></td>
+                  <td><?=$item->list?></td>
+                  <td><?=$item->place?></td>
+                  <td><?=$item->purpose?></td>
+                </tr>
+              <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('cooperationmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+        <!-- 第三大列结束 -->
+      </div> 
+      <!-- 行结束 -->
       
-      <hr/>
-      <hr/>
-
-      <div>
-        <table>
-        <caption><a href="<?=site_url('projectmanage/index')?>">项目列表</a></caption>
-          <tr>
-            <td>name</td>
-            <td>source</td>
-            <td>principal(ID)</td>
-          </tr>
-        <?php foreach($project as $item):?>
-          <tr>
-            <td><?=$item->name?></td>
-            <td><?=$item->source?></td>
-            <td><?=$item->principal?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
+      <div class="row">
+      <!-- 开始第一大列 -->
+        <div class="col-sm-4">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">专利权</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+               <tr>
+                <td>专利名</td>
+                <td>专利权人</td>
+                <td>时间</td>
+              </tr>
+            <?php foreach($patent as $item): ?>
+              <tr>
+                <td><?=$item->name?></td>
+                <td><?=$item->person?></td>
+                <td><?=$item->time?></td>
+              </tr>
+            <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('patentmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+      <!-- 开始第二大列 -->
+        <div class="col-sm-4">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">软件著作权</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <td>软件著作权名</td>
+                  <td>著作权人</td>
+                  <td>时间</td>
+                </tr>
+              <?php foreach($copyright as $item): ?>
+                <tr>
+                  <td><?=$item->name?></td>
+                  <td><?=$item->person?></td>
+                  <td><?=$item->time?></td>
+                </tr>
+              <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('copyrightmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+      <!-- 开始第三大列 -->
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">出版专著情况</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <td>专著名</td>
+                  <td>出版商</td>
+                  <td>著者表</td>
+                </tr>
+              <?php foreach($work as $item): ?>
+                <tr>
+                  <td><?=$item->name?></td>
+                  <td><?=$item->publisher?></td>
+                  <td><?=$item->personlist?></td>
+                </tr>
+              <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('workmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <hr>
-      <hr>
-
-      <div>
-        <table>
-          <caption><a href="<?=site_url('cooperationmanage/index')?>">国际合作</a></caption>
-          <tr>
-            <td>category</td>
-            <td>list</td>
-            <td>place</td>
-            <td>purpose</td>
-          </tr>
-        <?php foreach($cooperation as $item): ?>
-          <tr>
-            <td><?=$item->category?></td>
-            <td><?=$item->list?></td>
-            <td><?=$item->place?></td>
-            <td><?=$item->purpose?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
-      </div>
-
-      <hr>
-      <hr>
-
-      <div>
-        <table>
-          <caption><a href="<?=site_url('patentmanage/index')?>">专利权</a></caption>
-          <tr>
-            <td>name</td>
-            <td>person</td>
-            <td>time</td>
-          </tr>
-        <?php foreach($patent as $item): ?>
-          <tr>
-            <td><?=$item->name?></td>
-            <td><?=$item->person?></td>
-            <td><?=$item->time?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
-      </div>
-
-      <hr>
-      <hr>
-
-      <div>
-        <table>
-          <caption><a href="<?=site_url('copyrightmanage/index')?>">软件著作权</a></caption>
-          <tr>
-            <td>name</td>
-            <td>person</td>
-            <td>time</td>
-          </tr>
-        <?php foreach($copyright as $item): ?>
-          <tr>
-            <td><?=$item->name?></td>
-            <td><?=$item->person?></td>
-            <td><?=$item->time?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
-      </div>
-      <hr>
-      <hr>
-      <div>
-        <table>
-          <caption><a href="<?=site_url('workmanage/index')?>">出版专著情况</a></caption>
-          <tr>
-            <td>name</td>
-            <td>publisher</td>
-            <td>personlist</td>
-          </tr>
-        <?php foreach($work as $item): ?>
-          <tr>
-            <td><?=$item->name?></td>
-            <td><?=$item->publisher?></td>
-            <td><?=$item->personlist?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
-      </div>
-      <hr>
-      <hr>
-      <div>
-        <table>
-          <tr>
-            <caption><a href="<?=site_url('partmanage/index')?>">学术组织兼职情况</a></caption>
-            <td>name</td>
-            <td>duty</td>
-            <td>id</td>
-          </tr>
-        <?php foreach($part as $item): ?>
-          <tr>
-            <td><?=$item->name?></td>
-            <td><?=$item->duty?></td>
-            <td><?=$item->id?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
-      </div>
-      <hr>
-      <hr>
-      <div>
-        <table>
-          <caption><a href="<?=site_url('learnmanage/index')?>">成员进修学习情况</a></caption>
-          <tr>
-            <td>institute</td>
-            <td>content</td>
-            <td>list</td>
-          </tr>
-        <?php foreach($learn as $item): ?>
-          <tr>
-            <td><?=$item->institute?></td>
-            <td><?=$item->content?></td>
-            <td><?=$item->list?></td>
-          </tr>
-        <?php endforeach; ?>
-        </table>
+      
+      <div class="row">
+      <!-- 开始第一大列 -->
+        <div class="col-sm-4">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">学术组织兼职情况</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                 <tr>
+                    <td>组织名</td>
+                    <td>职责</td>
+                    <td>兼职人</td>
+                  </tr>
+                <?php foreach($part as $item): ?>
+                  <tr>
+                    <td><?=$item->name?></td>
+                    <td><?=$item->duty?></td>
+                    <td><?=$item->id?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('partmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
+      <!-- 开始第二大列 -->
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">成员进修学习情况</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <td>学习机构</td>
+                  <td>学习内容</td>
+                  <td>人员清单</td>
+                </tr>
+              <?php foreach($learn as $item): ?>
+                <tr>
+                  <td><?=$item->institute?></td>
+                  <td><?=$item->content?></td>
+                  <td><?=$item->list?></td>
+                </tr>
+              <?php endforeach; ?>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <a href="<?=site_url('learnmanage/index')?>">维护</a>
+            </div>
+          </div>
+        </div>
       </div>
   </div>
+  <footer>
+    HIT <i class="fa fa-copyright"></i> Carpela 
+  </footer>
   </body>
 </html>
