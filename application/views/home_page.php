@@ -86,31 +86,38 @@
         <h1>科研成果管理平台 <small>Scientfific Research Achievement Manage Platform</small></h1>
       </div>
       <div class="row">
-        <h3>信息总览 <small><a href="<?=site_url('admin/modify')?>">管理账户信息</a></small></h3>
+        <h3>简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
       </div>
       <div class="row">
        <div class="checkbox">
           <label>
             <input type="checkbox" value="person" checked> 人员信息
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="project" checked> 项目信息
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="cooperation" checked> 国际合作
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="patent"> 专利权
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="copyright"> 软件著作权
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="work"> 出版专著情况
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="part" checked> 学术兼职情况
           </label>
+          &nbsp;&nbsp;&nbsp;
           <label>
             <input type="checkbox" value="learn" checked> 成员进修学习情况
           </label>
@@ -203,7 +210,6 @@
       <!-- 行结束 -->
       
       <div class="row">
-      <!-- 开始第一大列 -->
         <div class="col-sm-4" id="patent" hidden>
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -230,6 +236,7 @@
             </div>
           </div>
         </div>
+      <!-- 结束第一大列 -->
       <!-- 开始第二大列 -->
         <div class="col-sm-4" id="copyright" hidden>
           <div class="panel panel-warning">
@@ -344,9 +351,6 @@
       </div>
   </div>
 
-  <div class="container">
-
-  </div>
   <footer>
     HIT <i class="fa fa-copyright"></i> Carpela 
   </footer>
