@@ -305,6 +305,9 @@
         </div>
       </div>
   </div>
+
+  <div class="container">
+  </div>
   <footer>
     HIT <i class="fa fa-copyright"></i> Carpela 
   </footer>

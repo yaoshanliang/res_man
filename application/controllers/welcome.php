@@ -5,6 +5,13 @@ class Welcome extends CI_Controller {
 	//登录验证
 	public function index()
 	{
+		$this->load->library('session');
+		// 验证是否登陆
+		if($this->session->userdata('token') == 'in')
+		{
+			$this->home();
+			return;
+		}
 		//生成验证码
 		$this->load->helper("captcha");
 		$vals = array(
@@ -38,6 +45,8 @@ class Welcome extends CI_Controller {
 		$this->load->model("Admin");
 		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row->count!=0)
 		{
+			$this->session->set_userdata('username',$user);
+			$this->session->set_userdata('token','in');
 			/*验证成功*/
 			$this -> home();
 		}else
@@ -46,11 +55,10 @@ class Welcome extends CI_Controller {
 			$data['image'] = $cap['image'];
 			$this->load->view("user/login",$data);
 		}
-		
 	}
 	
 	// 主界面
-	public function home()
+	private function home()
 	{
 		// 获取所有人员
 		$this->db->select('id,name');
@@ -90,4 +98,3 @@ class Welcome extends CI_Controller {
 
 }
 ?>
-
