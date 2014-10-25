@@ -4,19 +4,25 @@
 		// 用户名密码修改
 		public function modify()
 		{
-			$user = $this->input->post("usr");
-			$passwd = $this->input->post("passwd");
-			if($user && $passwd)
+			$user = $this->input->post("user");
+			$oldpasswd = md5($this->input->post("oldpassword"));
+			$passwd = md5($this->input->post("newpassword"));
+			$data['msg'] = 2;
+			$this->load->model("Admin");
+			if($user)
 			{
-				$this -> load -> model("Admin");
-				if($this -> Admin -> setUser($user))
-					echo "用户名修改成功";
-				if($this -> Admin -> setPasswd($passwd))
-					echo "密码修改成功";
-			}else
-			{
-				$this -> load -> view("user/modify");
+				if($user == $this->Admin->getUser() && $oldpasswd == $this->Admin->getPasswd())
+				{
+					if($this->Admin->setPasswd($passwd))
+					{
+						$data['msg'] = 0;
+					}
+				}else
+				{
+					$data['msg'] = 1;
+				}
 			}
+			$this->load->view("user/modify",$data);
 		}
 	}
 ?>

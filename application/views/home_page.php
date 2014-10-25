@@ -34,45 +34,32 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><i class="fa fa-home fa-fw"></i>&nbsp;SRAMP</a>
+          <a class="navbar-brand" href=""><i class="fa fa-home fa-fw"></i>&nbsp;SRAMP</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="#">功能</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">信息维护 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="<?=site_url('personmanage/index')?>">人员信息</a></li>
+                <li><a href="<?=site_url('projectmanage/index')?>">项目信息</a></li>
+                <li><a href="<?=site_url('cooperationmanage/index')?>">国际合作信息</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="<?=site_url('learnmanage/index')?>">成员进修学习信息</a></li>
+                <li><a href="<?=site_url('partmanage/index')?>">学术组织兼职信息</a></li>
                 <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="<?=site_url('patentmanage/index')?>">专利权信息</a></li>
+                <li><a href="<?=site_url('copyrightmanage/index')?>">软件著作权信息</a></li>
+                <li><a href="<?=site_url('workmanage/index')?>">出版著作信息</a></li>
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+            <li><a href="#"><i class="fa fa-user"></i>&nbsp; 用户</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -83,7 +70,7 @@
       <br/>
       <br/>
       <div class="page-header">
-        <h1>科研成果管理平台 <small>Scientfific Research Achievement Manage Platform</small></h1>
+        <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
       </div>
       <div class="row">
         <h3>简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
@@ -349,10 +336,12 @@
           </div>
         </div>
       </div>
+  
   </div>
-
   <footer>
-    HIT <i class="fa fa-copyright"></i> Carpela 
+    <div class="container">
+        HIT <i class="fa fa-copyright"></i> Carpela 2014 
+    </div>
   </footer>
   </body>
 </html>
