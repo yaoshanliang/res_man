@@ -11,9 +11,7 @@ class Welcome extends CI_Controller {
 		    'word' => rand(1000,9999),
 		    'img_path' => './captcha/',
 		    'img_url' => base_url()."captcha/",
-		    'img_width' => '150',
-		    'img_height' => 30,
-		    'expiration' => 120
+		    'expiration' => 60
 	    );
 	    $cap = create_captcha($vals);
 	    $data = array(
@@ -29,7 +27,7 @@ class Welcome extends CI_Controller {
 		$passwd = md5($this->input->post("password"));
 		$captcha = $this->input->post("captcha");
 		//删除过期的验证码
-		$expiration = time()-120; // 2分钟限制
+		$expiration = time()-60; // 2分钟限制
 		$this->db->query("DELETE FROM captcha WHERE captcha_time < ".$expiration); 
 		// 再看是否有验证码存在
 		$sql = "SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
@@ -38,10 +36,10 @@ class Welcome extends CI_Controller {
 		$row = $query->row();
 		//从数据库获得数据
 		$this->load->model("Admin");
-		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row -> count != 0)
+		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row->count!=0)
 		{
 			/*验证成功*/
-			$this -> show();
+			$this -> home();
 		}else
 		{	
 			/*验证失败*/

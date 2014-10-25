@@ -18,7 +18,7 @@
   </head>
   <body>
     <h1>Please Login</h1>
-    <form action="<?=base_url()?>index.php/welcome/modify" method="post">
+    <form action="<?=base_url()?>index.php/adminmanage/modify" method="post">
       <p>Name:</p><input type="text" name="usr"/>
       <p>Password:</p><input type="password" name="passwd"/>
       <input type="submit">

@@ -1,5 +1,5 @@
 <?php 
-	class admin extends CI_Controller
+	class adminmanage extends CI_Controller
 	{
 		// 用户名密码修改
 		public function modify()
