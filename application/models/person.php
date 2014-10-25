@@ -20,7 +20,13 @@
 
 		public function modifyPerson($id,$name,$duties)
 		{
-			$bool = $this->db->update('person',array('name'=>$name,'duties'=>$duties),array('id' => $id));
+			if($name)
+			{
+				$bool = $this->db->update('person',array('name'=>$name),array('id' => $id));
+			}else
+			{
+				$bool = $this->db->update('person',array('duties'=>$duties),array('id' => $id));
+			}
 			return $bool;
 		}
 

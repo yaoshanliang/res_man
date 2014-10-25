@@ -1,7 +1,7 @@
 <?php 
 	class adminmanage extends CI_Controller
 	{
-		// 用户名密码修改
+		// 密码修改
 		public function modify()
 		{
 			$user = $this->input->post("user");

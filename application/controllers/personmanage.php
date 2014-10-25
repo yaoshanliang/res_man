@@ -4,10 +4,14 @@
 	{
 		public function index()
 		{
+			$this->load->view('person/main');
+		}
+		public function show()
+		{
 			$this->load->model('person');
 			$res = $this->person->getPerson();
 			$data['person'] = $res;
-			$this->load->view('person/main',$data);
+			$this->load->view('person/list',$data);
 		}
 		public function add()
 		{
@@ -25,16 +29,17 @@
 		}
 		public function modify()
 		{
-			parse_str($_SERVER['QUERY_STRING'], $_GET);
-			$name = $_GET['name'];
-			$id = $_GET['id'];
-			$duties = $_GET['duties'];
+			$name = $this->input->post('name');
+			$id = $this->input->post('id');
+			$duties = $this->input->post('duties');
 			$this->load->model('person');
 			if($this->person->modifyPerson($id,$name,$duties))
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
-
 		}
 		public function delete()
 		{
