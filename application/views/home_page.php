@@ -11,6 +11,16 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $("[type='checkbox']").click(function()
+      {
+        var obj = "#"+event.target.value;
+        $(obj).toggle();
+      });
+    });
+    </script>
   </head>
   <body>
   <div class="container-fluid">
@@ -78,9 +88,37 @@
       <div class="row">
         <h3>信息总览 <small><a href="<?=site_url('admin/modify')?>">管理账户信息</a></small></h3>
       </div>
+      <div class="row">
+       <div class="checkbox">
+          <label>
+            <input type="checkbox" value="person" checked> 人员信息
+          </label>
+          <label>
+            <input type="checkbox" value="project" checked> 项目信息
+          </label>
+          <label>
+            <input type="checkbox" value="cooperation" checked> 国际合作
+          </label>
+          <label>
+            <input type="checkbox" value="patent"> 专利权
+          </label>
+          <label>
+            <input type="checkbox" value="copyright"> 软件著作权
+          </label>
+          <label>
+            <input type="checkbox" value="work"> 出版专著情况
+          </label>
+          <label>
+            <input type="checkbox" value="part" checked> 学术兼职情况
+          </label>
+          <label>
+            <input type="checkbox" value="learn" checked> 成员进修学习情况
+          </label>
+        </div>
+      </div>
       <br/>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="person">
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">人员信息</h3>
@@ -105,10 +143,10 @@
           </div>
         </div>
         <!--第一大列结束  -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="project">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">项目列表</h3>
+              <h3 class="panel-title">项目列表 </h3>
             </div>
             <div class="panel-body">
               <table class="table table-striped table-hover">
@@ -132,7 +170,7 @@
           </div>
         </div>
         <!-- 第二大列结束 -->
-         <div class="col-sm-4">
+         <div class="col-sm-4" id="cooperation">
           <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title">国际合作</h3>
@@ -166,7 +204,7 @@
       
       <div class="row">
       <!-- 开始第一大列 -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="patent" hidden>
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">专利权</h3>
@@ -193,7 +231,7 @@
           </div>
         </div>
       <!-- 开始第二大列 -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="copyright" hidden>
           <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title">软件著作权</h3>
@@ -220,7 +258,7 @@
           </div>
         </div>
       <!-- 开始第三大列 -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="work" hidden>
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">出版专著情况</h3>
@@ -250,7 +288,7 @@
       
       <div class="row">
       <!-- 开始第一大列 -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="part">
           <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title">学术组织兼职情况</h3>
@@ -277,7 +315,7 @@
           </div>
         </div>
       <!-- 开始第二大列 -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="learn">
           <div class="panel panel-success">
             <div class="panel-heading">
               <h3 class="panel-title">成员进修学习情况</h3>
@@ -307,6 +345,7 @@
   </div>
 
   <div class="container">
+
   </div>
   <footer>
     HIT <i class="fa fa-copyright"></i> Carpela 
