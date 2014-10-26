@@ -32,9 +32,9 @@
 			return $res->result();
 		}
 
-		public function deleteCooperation($category,$place,$purpose)
+		public function deleteCooperation($category,$number,$place,$purpose)
 		{
-			$bool= $this->db->delete('cooperation',array('category'=>$category,'place'=>$place));
+			$bool= $this->db->delete('cooperation',array('category'=>$category,'number'=>$number,'place'=>$place));
 			return $bool;
 		}
 	}

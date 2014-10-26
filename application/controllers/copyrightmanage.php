@@ -3,10 +3,15 @@
 	{
 		public function index()
 		{
+			$this->load->view('copyright/main');
+		}
+
+		public function show()
+		{
 			$this->load->model('copyright');
 			$res = $this->copyright->getCopyright();
 			$data['copyright'] = $res;
-			$this->load->view('copyright/main',$data);
+			$this->load->view('copyright/list',$data);
 		}
 		public function add()
 		{

@@ -41,15 +41,29 @@
         $("#remove").hide();
         if($(event.target).text() == "删除")
         {
-          var data = { id: $("#reinputID").val() };
-          $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
+          var data = {
+            category: $("#inputNewCategory").val(),
+            number: $("#inputNewNumber").val(),
+            place: $("#inputNewPlace").val(),
+            purpose: $("#inputNewPurpose").val()
+          };
+          $.post("<?=site_url('cooperationmanage/delete')?>",data,function(res,status)
             {
               alert(res);
             }); 
         }else
         {
-          var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
-          $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
+          var data = {
+            category: $("#inputCategory").val(),
+            list: $("#inputList").val(),
+            number: $("#inputNumber").val(),
+            place: $("#inputPlace").val(),
+            purpose: $("#inputPurpose").val(),
+            url: $("#inputURL").val(),
+            news: $("#inputNews").val(),
+            picture: $("#inputPicture").val()
+          };
+          $.post("<?=site_url('cooperationmanage/add')?>",data,function(res,status)
             {
               alert(res);
             });
@@ -121,57 +135,83 @@
         <a class="btn btn-default" id="remove_record">删除记录</a>
     </div>
     <br/>
-    <div id="record" hidden>
-      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
+    <div class="row" id="record" hidden>
+      <form class="form-horizontal col-sm-6 col-sm-offset-2" role="form" action="<?=site_url('cooperationmanage/add')?>" method="post">
         <div class="form-group">
-          <label class="sr-only" for="inputName">姓名</label>
-          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
+          <label for="inputCategory" class="col-sm-3 control-label">类别</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputCategory" name="category" placeholder="Category">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputList" class="col-sm-3 control-label" name="list">人员列表</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputList" placeholder="List">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputNumber" class="col-sm-3 control-label" name="number">人数</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputNumber" placeholder="Number">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPlace" class="col-sm-3 control-label" name="place">来/出访地</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputPlace" placeholder="Place">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPurpose" class="col-sm-3 control-label" name="purpose">目的</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputPurpose" placeholder="Purpose">
+          </div>
         </div>
          <div class="form-group">
-          <label class="sr-only" for="inputDuty">职务</label>
-          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
+          <label for="inputURL" class="col-sm-3 control-label" name="url">URL</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputURL" placeholder="URL">
+          </div>
         </div>
-        <button type="submit" class="btn btn-default">添加</button>
+         <div class="form-group">
+          <label for="inputNews" class="col-sm-3 control-label" name="news">新闻报道否</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputNews" placeholder="News">
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="inputPicture" class="col-sm-3 control-label" name="picture">照片保存否</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputPicture" placeholder="Picture">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-6">
+            <button type="submit" class="btn btn-default">添加</button>
+          </div>
+        </div>
       </form>
     </div>
     <div id="remove" hidden>
-         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="reinputID">编号</label>
-            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+         <form class="form-inline" role="form" action="<?=site_url('cooperationmanage/delete')?>" method="post">
+            <div class="form-group">
+              <label for="inputNewCategory" class="sr-only">类别</label>
+              <input type="text" class="form-control" id="inputNewCategory" name="category" placeholder="Category">
           </div>
-          <button type="submit" class="btn btn-default">删除</button>
-        </form>
+          <div class="form-group">
+            <label for="inputNewNumber" class="sr-only" name="number">人数</label>
+            <input type="text" class="form-control" id="inputNewNumber" placeholder="Number">
+          </div>
+          <div class="form-group">
+            <label for="inputNewPurpose" class="sr-only" name="purpose">目的</label>
+            <input type="text" class="form-control" id="inputNewPurpose" placeholder="Purpose">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">删除</button>
+        </div>
     </div>
     <br/>
     <div id="detail">
     </div> 
-
-    <div>
-      <form action="<?=site_url('cooperationmanage/add')?>" method="post">
-        category<input type="text" name="category"><br/>
-        list<input type="text" name="list"><br/>
-        number<input type="text" name="number"><br/>
-        place<input type="text" name="place"><br/>
-        purpose<input type="text" name="purpose"><br/>
-        url<input type="text" name="url"><br/>
-        news<input type="text" name="news"><br/>
-        picture<input type="text" name="picture"><br/>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div>
-      <form action="<?=site_url('cooperationmanage/delete')?>" method="post">
-        category<input type="text" name="category"><br/>
-        purpose<input type="text" name="purpose"><br/>
-        place<input type="text" name="place"><br/>
-        <input type="submit">
-      </form>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

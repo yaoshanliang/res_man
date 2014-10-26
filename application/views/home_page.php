@@ -76,36 +76,30 @@
         <h3>简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
       </div>
       <div class="row">
+      <label >
        <div class="checkbox">
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="person" checked> 人员信息
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="project" checked> 项目信息
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="cooperation" checked> 国际合作
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="patent"> 专利权
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="copyright"> 软件著作权
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="work"> 出版专著情况
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="part" checked> 学术兼职情况
           </label>
-          &nbsp;&nbsp;&nbsp;
-          <label>
+          <label class="checkbox-inline">
             <input type="checkbox" value="learn" checked> 成员进修学习情况
           </label>
         </div>

@@ -16,19 +16,24 @@
     {
       $("table tr:gt(0)").click(function()
       {
-          $(event.target).parent().children().html();
-          // var data = { id: $(event.target).text() };
-          // $.post("<?=site_url('coopeartionmanage/delete')?>",data,function(res,status)
-          // {
-          //   alert(res);
-          // });
+          var rec = $(event.target).parent().children();
+          var data = {
+            category: rec.eq(0).text(),
+            number: rec.eq(2).text(),
+            place: rec.eq(3).text(),
+            purpose: rec.eq(4).text()
+          };
+          $.post("<?=site_url('cooperationmanage/delete')?>",data,function(res,status)
+          {
+            alert(res);
+          });
       });
     });
     </script>
   </head>
   <body>
-
       <table class="table table-striped table-hover">
+        <tbody>
         <tr>
           <td>类别</td>
           <td>人员清单</td>
@@ -51,6 +56,8 @@
           <td><?=$item->picture?></td>
         </tr>
       <?php endforeach; ?>
+      </tbody>
+        <tfoot>点击某行删除对应记录</tfoot>
       </table>
 
   </body>

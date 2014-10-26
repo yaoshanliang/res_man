@@ -33,12 +33,16 @@
 		{
 			$category = $this->input->post('category');
 			$place = $this->input->post('place');
+			$number = $this->input->post('number');
 			$purpose = $this->input->post('purpose');
 			$this->load->model('cooperation');
-			$bool = $this->cooperation->deleteCooperation($category,$place,$purpose);
+			$bool = $this->cooperation->deleteCooperation($category,$number,$place,$purpose);
 			if($bool)
 			{
-				echo "success";
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
 			}
 		}
 	}
