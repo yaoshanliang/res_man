@@ -43,7 +43,7 @@ class Welcome extends CI_Controller {
 		$row = $query->row();
 		//从数据库获得数据
 		$this->load->model("Admin");
-		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row->count!=0)
+		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row->count != 0)
 		{
 			$this->session->set_userdata('username',$user);
 			$this->session->set_userdata('token','in');

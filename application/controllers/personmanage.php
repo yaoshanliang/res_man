@@ -4,6 +4,11 @@
 	{
 		public function index()
 		{
+			$this->load->library('session');
+			if($this->session->userdata('token') != "in")
+			{
+				redirect(site_url("welcome/index"), 'refresh');
+			}
 			$this->load->view('person/main');
 		}
 		public function show()
@@ -15,16 +20,12 @@
 		}
 		public function add()
 		{
-			parse_str($_SERVER['QUERY_STRING'], $_GET);
-			$name = $_GET['name'];
-			$id = $_GET['id'];
-			$duties = $_GET['duties'];
+			$name = $this->input->post('name');
+			$duties = $this->input->post('duties');
 			$this->load->model('person');
-			if(!is_numeric($id))
-				$id = null;
-			if($this->person->insertPerson($id,$name,$duties))
+			if($this->person->insertPerson($name,$duties))
 			{
-				echo "Success<br/>";
+				echo "Success";
 			}
 		}
 		public function modify()
@@ -43,9 +44,16 @@
 		}
 		public function delete()
 		{
-			parse_str($_SERVER['QUERY_STRING'], $_GET);
-			$id = $_GET['id'];
+			$id = $this->input->post("id");
 			$this->load->model('person');
+			if($this->person->deletePerson($id))
+			{
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
+			}
+
 		}
 	}
 ?>

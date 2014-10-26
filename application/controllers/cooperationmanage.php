@@ -3,11 +3,14 @@
 	{
 		public function index()
 		{
+			$this->load->view('cooperation/main');
+		}
+		public function show()
+		{
 			$res = $this->db->get('cooperation');
 			$data['cooperation'] = $res->result();
-			$this->load->view('cooperation/main',$data);
+			$this->load->view('cooperation/list',$data);
 		}
-
 		public function add()
 		{
 			$category = $this->input->post('category');

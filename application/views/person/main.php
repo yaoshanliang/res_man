@@ -13,13 +13,51 @@
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-      $("#refresh").click(function()
+
+      $("#refresh_list").click(function()
       {
         $.get("<?=site_url('personmanage/show')?>",function(data,status){
           $("#detail").html(data);
         });
       });
-      $("#refresh").click();
+
+      $("#refresh_list").click();
+
+      $("#add_record").click(function()
+      {
+        $("#remove").hide();
+        $("#record").toggle();
+      });
+
+      $("#remove_record").click(function()
+      {
+        $("#record").hide();
+        $("#remove").toggle();
+      });
+
+      $(":submit").click(function()
+      {
+        $("#record").hide();
+        $("#remove").hide();
+        if($(event.target).text() == "删除")
+        {
+          var data = { id: $("#reinputID").val() };
+          $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
+            {
+              alert(res);
+            }); 
+        }else
+        {
+          var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
+          $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
+            {
+              alert(res);
+            });
+        }
+        // 刷新一次数据 ---这段代码无效
+        $("#refresh_list").click(); 
+        return false;
+      });
     });
     </script>
   </head>
@@ -76,34 +114,37 @@
       <div class="row">
         <h3 class="text-center">人员信息维护</h3>
       </div>
-    <div><a class="btn btn-default" id="refresh">刷新人员列表</a></div>
+    <div>
+        <a class="btn btn-default" id="refresh_list">刷新人员列表</a>
+        <a class="btn btn-default" id="add_record">添加人员信息</a>
+        <a class="btn btn-default" id="remove_record">删除一条记录</a>
+    </div>
+    <br/>
+    <div id="record" hidden>
+      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
+        <div class="form-group">
+          <label class="sr-only" for="inputName">姓名</label>
+          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
+        </div>
+         <div class="form-group">
+          <label class="sr-only" for="inputDuty">职务</label>
+          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
+        </div>
+        <button type="submit" class="btn btn-default">添加</button>
+      </form>
+    </div>
+    <div id="remove" hidden>
+         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
+          <div class="form-group">
+            <label class="sr-only" for="reinputID">编号</label>
+            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+          </div>
+          <button type="submit" class="btn btn-default">删除</button>
+        </form>
+    </div>
     <br/>
     <div id="detail">
     </div> 
 
-
-    <h3>添加</h3>
-    <form action="<?=site_url('personmanage/add')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>修改</h3>
-    <form action="<?=site_url('personmanage/modify')?>">
-      编号<input type="text" name="id"><br/>
-      姓名<input type="text" name="name"><br/>
-      职务<input type="text" name="duties"><br/>
-      <input type="submit">
-    </form>
-    <h3>删除</h3>
-    <form action="<?=site_url('personmanage/delete')?>">
-      编号<input type="text" name="id"><br/>
-      <input type="submit">
-    </form>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
