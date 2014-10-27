@@ -3,9 +3,14 @@
 	{
 		public function index()
 		{
+			$this->load->view('learn/main');
+		}
+
+		public function show()
+		{
 			$res = $this->db->get('learn');
 			$data['learn'] = $res->result();
-			$this->load->view('learn/main',$data);
+			$this->load->view('learn/list',$data);
 		}
 
 		public function add()

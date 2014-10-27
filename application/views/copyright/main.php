@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>人员信息管理</title>
+    <title>国际合作信息管理</title>
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">

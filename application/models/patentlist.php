@@ -17,9 +17,9 @@
 			return $this->db->insert('patentlist',$data);
 		}
 
-		public function getPatentlist()
+		public function getPatentlist($identifier)
 		{
-			$res = $this->db->get('patentlist');
+			$res = $this->db->where('identifier',$identifier)->get('patentlist');
 			return $res->result();
 		}
 	}

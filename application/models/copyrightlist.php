@@ -14,12 +14,12 @@
 				'identifier'=>$identifier,
 				'order'=>$order
 				);
-			return $this->db->insert('copyright',$data);
+			return $this->db->insert('copyrightlist',$data);
 		}
 
-		public function getCopyright()
+		public function getCopyrightList($identifier)
 		{
-			$res = $this->db->get('copyright');
+			$res = $this->db->where('identifier',$identifier)->get('copyrightlist');
 			return $res->result();
 		}
 	}

@@ -30,6 +30,12 @@
 			return $bool;
 		}
 
+		public function getPersonById($id)
+		{
+			$res = $this->db->where('id',$id)->get('person');
+			return $res->row()->name;
+		}
+
 		public function deletePerson($id)
 		{
 			$bool = $this->db->delete('person',array('id'=>$id));

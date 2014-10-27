@@ -11,6 +11,7 @@
 			$this->load->model('copyright');
 			$res = $this->copyright->getCopyright();
 			$data['copyright'] = $res;
+			$this->load->model('copyrightlist');
 			$this->load->view('copyright/list',$data);
 		}
 		public function add()

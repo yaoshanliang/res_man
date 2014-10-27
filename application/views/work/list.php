@@ -20,7 +20,7 @@
         if(index==0)
         {
           var data = { id: $(event.target).text() };
-          $.post("<?=site_url('copyrightmanage/delete')?>",data,function(res,status)
+          $.post("<?=site_url('workmanage/delete')?>",data,function(res,status)
           {
             alert(res);
           });
@@ -50,43 +50,18 @@
   <body>
 
       <table class="table table-striped table-hover">
-         <tr>
-          <td>编号</td>
-          <td>名称</td>
-          <td>登记号</td>
-          <td>著作权人</td>
-          <td>授予单位</td>
-          <td>授予时间</td>
-          <td>人员名单</td>
-        </tr>
-      <?php foreach($copyright as $item): ?>
         <tr>
-          <td><?=$item->number?></td>
+          <td>专著名称</td>
+          <td>出版商</td>
+          <td>出版时间</td>
+          <td>人员列表</td>
+        </tr>
+      <?php foreach($work as $item): ?>
+        <tr>
           <td><?=$item->name?></td>
-          <td><?=$item->register?></td>
-          <td><?=$item->person?></td>
-          <td><?=$item->institute?></td>
-          <td><?=$item->time?></td>
-          <td>
-          <?php 
-          // 获取人员名单 restrinct: <9
-          $this->load->model('copyrightlist');   
-          $res = $this->copyrightlist->getCopyrightlist($item->number);
-          $str = "";
-          foreach($res as $item2)
-          {
-            for($i=0;$i<10;$i++)
-            {
-              if($i == $item2->order)
-              {
-                $res = $this->db->where('id',$item2->id)->get('person');
-                $str .= $res->row()->name.",";
-              }
-            }
-          }
-          echo rtrim($str,',');
-          ?>
-          </td>
+          <td><?=$item->publisher?></td>
+          <td><?=$item->publishdate?></td>
+          <td><?=$item->personlist?></td>
         </tr>
       <?php endforeach; ?>
       </table>

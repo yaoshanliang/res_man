@@ -50,30 +50,25 @@
   <body>
 
       <table class="table table-striped table-hover">
-         <tr>
+          <tr>
           <td>编号</td>
-          <td>名称</td>
-          <td>登记号</td>
+          <td>著作权名称</td>
+          <td>著作权编号</td>
           <td>著作权人</td>
-          <td>授予单位</td>
-          <td>授予时间</td>
-          <td>人员名单</td>
+          <td>颁发机构</td>
+          <td>时间</td>
         </tr>
-      <?php foreach($copyright as $item): ?>
+      <?php foreach($patent as $item): ?>
         <tr>
           <td><?=$item->number?></td>
           <td><?=$item->name?></td>
           <td><?=$item->register?></td>
-          <td><?=$item->person?></td>
-          <td><?=$item->institute?></td>
-          <td><?=$item->time?></td>
           <td>
           <?php 
           // 获取人员名单 restrinct: <9
-          $this->load->model('copyrightlist');   
-          $res = $this->copyrightlist->getCopyrightlist($item->number);
+          $res = $this->db->where('identifier',$item->number)->get('patentlist');
           $str = "";
-          foreach($res as $item2)
+          foreach($res->result() as $item2)
           {
             for($i=0;$i<10;$i++)
             {
@@ -87,6 +82,8 @@
           echo rtrim($str,',');
           ?>
           </td>
+          <td><?=$item->institute?></td>
+          <td><?=$item->time?></td>
         </tr>
       <?php endforeach; ?>
       </table>

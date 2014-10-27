@@ -3,10 +3,15 @@
 	{
 		public function index()
 		{
+			$this->load->view('patent/main');
+		}
+
+		public function show()
+		{
 			$this->load->model('patent');
 			$res = $this->patent->getPatent();
 			$data['patent'] = $res;
-			$this->load->view('patent/main',$data);
+			$this->load->view('patent/list',$data);
 		}
 		public function add()
 		{

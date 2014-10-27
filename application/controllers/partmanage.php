@@ -3,11 +3,15 @@
 	{
 		public function index()
 		{
-			$res = $this->db->get('part');
-			$data['part'] = $res->result();
-			$this->load->view('part/main',$data);
+			$this->load->view('part/main');
 		}
 
+		public function show()
+		{
+			$res = $this->db->get('part');
+			$data['part'] = $res->result();
+			$this->load->view('part/list',$data);
+		}
 		public function add()
 		{
 			$name = $this->input->post('name');

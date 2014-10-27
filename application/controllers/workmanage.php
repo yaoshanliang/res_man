@@ -3,10 +3,15 @@
 	{
 		public function index()
 		{
+			$this->load->view('work/main');
+		}
+
+		public function show()
+		{
 			$this->load->model('work');
 			$res = $this->work->getWork();
 			$data['work'] = $res;
-			$this->load->view('work/main',$data);
+			$this->load->view('work/list',$data);
 		}
 		public function add()
 		{
