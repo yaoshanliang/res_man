@@ -1,16 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
-	public function __construct()
-		{
-			parent::__construct();
-			$this->load->library('session');
-			if($this->session->userdata('token') != 'in')
-			{
-				redirect(site_url('welcome/login'),'refresh');
-			}
-		}
 		
 	//登录验证
 	public function login()
