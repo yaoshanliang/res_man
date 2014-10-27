@@ -59,7 +59,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-user"></i>&nbsp; 用户</a></li>
+            <li><a href="<?=site_url('adminmanage/logout')?>"><i class="fa fa-user"></i>&nbsp; 注销</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -75,6 +75,8 @@
       <div class="row">
         <h3>简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
       </div>
+
+      <p contenteditable="true">可编辑P标签，测试用</p>
       <div class="row">
       <label >
        <div class="checkbox">
@@ -330,11 +332,12 @@
           </div>
         </div>
       </div>
-  
   </div>
   <footer>
     <div class="container">
-        HIT <i class="fa fa-copyright"></i> Carpela 2014 
+        <hr/>
+        HIT <i class="fa fa-copyright"></i> Carpela 2014  All rights reserved.
+        <p> Powered by Bootstrap, JQuery, Ajax & CodeIgniter</p>
     </div>
   </footer>
   </body>

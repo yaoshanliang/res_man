@@ -1,6 +1,15 @@
 <?php 
 	class adminmanage extends CI_Controller
 	{
+		public function __construct()
+		{
+			parent::__construct();
+			$this->load->library('session');
+			if($this->session->userdata('token') != 'in')
+			{
+				redirect(site_url('welcome/login'),'refresh');
+			}
+		}
 		// 密码修改
 		public function modify()
 		{
@@ -23,6 +32,16 @@
 				}
 			}
 			$this->load->view("user/modify",$data);
+		}
+
+		public function logout()
+		{
+			$this->load->library('session');
+			if($this->session->userdata('token') == 'in')
+			{
+				$this->session->set_userdata('token','out');
+			}
+			redirect(site_url('welcome/login'),'refresh');
 		}
 	}
 ?>

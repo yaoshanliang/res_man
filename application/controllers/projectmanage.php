@@ -1,11 +1,25 @@
 <?php
 	class projectmanage extends CI_Controller
 	{
+		public function __construct()
+		{
+			parent::__construct();
+			$this->load->library('session');
+			if($this->session->userdata('token') != 'in')
+			{
+				redirect(site_url('welcome/login'),'refresh');
+			}
+		}
+		
 		public function index()
+		{
+			$this->load->view('project/main');
+		}
+		public function show()
 		{
 			$res = $this->db->get('project');
 			$data['project'] = $res->result();
-			$this->load->view('project/main',$data);
+			$this->load->view('project/list',$data);
 		}
 
 		public function add()

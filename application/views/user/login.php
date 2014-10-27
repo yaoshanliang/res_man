@@ -22,7 +22,7 @@
       <br/>
       <br/>
       <div class="col-sm-6 col-sm-offset-4">
-        <form class="form-horizontal" role="form" action="<?=base_url()?>index.php/welcome/index" method="post">
+        <form class="form-horizontal" role="form" action="<?=base_url()?>index.php/welcome/login" method="post">
           <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-5">

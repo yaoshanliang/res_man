@@ -2,6 +2,16 @@
 	//维护 个人信息
 	class personmanage extends CI_Controller
 	{
+		public function __construct()
+		{
+			parent::__construct();
+			$this->load->library('session');
+			if($this->session->userdata('token') != 'in')
+			{
+				redirect(site_url('welcome/login'),'refresh');
+			}
+		}
+		
 		public function index()
 		{
 			$this->load->library('session');

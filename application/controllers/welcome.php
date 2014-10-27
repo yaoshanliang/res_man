@@ -2,16 +2,20 @@
 
 class Welcome extends CI_Controller {
 
+	public function __construct()
+		{
+			parent::__construct();
+			$this->load->library('session');
+			if($this->session->userdata('token') != 'in')
+			{
+				redirect(site_url('welcome/login'),'refresh');
+			}
+		}
+		
 	//登录验证
-	public function index()
+	public function login()
 	{
 		$this->load->library('session');
-		// 验证是否登陆
-		if($this->session->userdata('token') == 'in')
-		{
-			$this->home();
-			return;
-		}
 		//生成验证码
 		$this->load->helper("captcha");
 		$vals = array(
@@ -48,7 +52,7 @@ class Welcome extends CI_Controller {
 			$this->session->set_userdata('username',$user);
 			$this->session->set_userdata('token','in');
 			/*验证成功*/
-			$this -> home();
+			redirect(site_url('welcome/home'),'refresh');
 		}else
 		{	
 			/*验证失败*/
@@ -58,8 +62,15 @@ class Welcome extends CI_Controller {
 	}
 	
 	// 主界面
-	private function home()
+	public function home()
 	{
+		$this->load->library('session');
+		// 验证是否登陆
+		if($this->session->userdata('token') != 'in')
+		{
+			redirect(site_url('welcome/login'),'refresh');
+			return;
+		}
 		// 获取所有人员
 		$this->db->select('id,name');
 		$res = $this->db->get('person');
