@@ -42,3 +42,11 @@
     </nav>
   </div>
 </header>
+
+<div class="container">
+      <br/>
+      <br/>
+      <div class="page-header">
+        <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
+      </div>
+</div>

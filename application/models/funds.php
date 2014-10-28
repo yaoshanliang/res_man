@@ -21,7 +21,7 @@
 
 		public function getFundsByID($id)
 		{
-			$res = $this->db->where('projectid',$id)->$get('funds');
+			$res = $this->db->where('projectid',$id)->get('funds');
 			return $res->result();
 		}
 	}

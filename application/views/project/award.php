@@ -6,7 +6,11 @@
         </tr>
       <?php foreach($award as $item): ?>
         <tr>
-          <td><?=$item->id?></td>
+          <td>
+          <?php
+              $res = $this->db->where('id',$item->id)->get('person');
+              echo $res->row()->name;
+          ?>(<?=$item->id?>)</td>
           <td><?=$item->order?></td>
           <td><?=$item->time?></td>
         </tr>

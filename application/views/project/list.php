@@ -6,7 +6,7 @@
         var index = $(event.target).index(); //列索引
         if(index==0)
         {
-          var data = { projectgiid: $(event.target).text() };
+          var data = { projectid: $(event.target).text() };
           $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
           {
             $("#refresh_list").click();
@@ -61,26 +61,6 @@
         });
       });
 
-      $("table tr:gt(0)").mouseover(function()
-      {
-        var opid = $(event.target).parent().children().first().html();
-        var data = {
-          projectid: opid;
-        };
-        $.post("<?=site_url('projectmanage/award')?>",data,function(data,status)
-        {
-          $("#award").html(data);
-        });
-        $.post("<?=site_url('projectmanage/funds')?>",data,function(data,status)
-        {
-          $("#funds").html(data);
-        });
-        $.post("<?=site_url('projectmanage/validation')?>",data,function(data,status)
-        {
-          $("#validation").html(data);
-        });
-      });
-
     });
 </script>
   
@@ -117,12 +97,3 @@
         </tr>
       <?php endforeach; ?>
       </table>
-
-<div id="award">
-</div>
-<hr/>
-<div id="funds">
-</div>
-<hr/>
-<div id="validation">
-</div>

@@ -25,12 +25,38 @@
 
       $("#remove_record").click(function()
       {
+        $("#show_msg_div").hide();
         $("#remove").slideToggle();
       });
 
+      $("#show_msg").click(function()
+      {
+        $("#remove").hide();
+        $("#show_msg_div").slideToggle();
+      });
+
+      $("#show_msg_btn").click(function()
+      {
+          var data = {
+            projectid: $("#inputMsgProjectid").val()
+          };
+          $.post("<?=site_url('projectmanage/get_award')?>",data,function(res,status)
+            {
+              $("#award_msg").html(res);
+            }); 
+          $.post("<?=site_url('projectmanage/get_funds')?>",data,function(res,status)
+            {
+              $("#funds_msg").html(res);
+            });
+          $.post("<?=site_url('projectmanage/get_validation')?>",data,function(res,status)
+            {
+              $("#validation_msg").html(res);
+            });
+      });
       $(":submit").click(function()
       {
         $("#remove").hide();
+        $("#show_msg_div").hide();
         if($(event.target).text() == "删除")
         {
           var data = {
@@ -38,6 +64,7 @@
           };
           $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
             {
+              $("#refresh_list").click(); 
               alert(res);
             }); 
         }else
@@ -57,11 +84,12 @@
           };
           $.post("<?=site_url('projectmanage/add')?>",data,function(res,status)
             {
+              $("#refresh_list").click(); 
               alert(res);
             });
         }
         // 刷新一次数据
-        $("#refresh_list").click(); 
+        // $("#refresh_list").click(); 
         return true;
       });
     });
@@ -72,19 +100,15 @@
     <?php $this->load->view('template/navbar');?>
 
     <div class="container">
-      <br/>
-      <br/>
-      <div class="page-header">
-        <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
-      </div>
       <div class="row">
         <h3 class="text-center">项目信息维护</h3>
       </div>
+      <hr/>
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
         <a class="btn btn-default" id="remove_record">删除记录</a>
-        
+        <a class="btn btn-default" id="show_msg">显示更多信息</a>
         <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addFunds" href="<?=site_url('projectmanage/funds')?>">
           添加经费信息
         </a>
@@ -205,10 +229,30 @@
           <div class="form-group">
             <button type="submit" class="btn btn-default">删除</button>
         </div>
+        </form>
+    </div>
+    <div id="show_msg_div" hidden>
+         <form class="form-inline" role="form">
+            <div class="form-group">
+              <label for="inputMsgProjectid" class="sr-only">项目编号</label>
+              <input type="text" class="form-control" id="inputMsgProjectid" placeholder="项目编号">
+          </div>
+          <div class="form-group">
+            <button type="button" id="show_msg_btn" class="btn btn-default">显示</button>
+        </div>
+        </form>
     </div>
     <br/>
     <div id="detail">
     </div> 
+    <div class="row">
+      <div id="award_msg" class="col-sm-4">
+      </div>
+      <div id="funds_msg" class="col-sm-4">
+      </div>
+      <div id="validation_msg" class="col-sm-4">
+      </div>
+    </div>
     <?php $this->load->view('template/footer') ?>
   </body>
 </html>

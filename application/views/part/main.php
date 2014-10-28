@@ -66,14 +66,10 @@
     <?php $this->load->view('template/navbar');?>
 
     <div class="container">
-      <br/>
-      <br/>
-      <div class="page-header">
-        <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
-      </div>
       <div class="row">
         <h3 class="text-center">国际合作信息维护</h3>
       </div>
+      <hr/>
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>

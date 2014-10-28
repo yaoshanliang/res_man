@@ -108,7 +108,7 @@
 		{
 			$projectid = $this->input->post('projectid');
 			$this->load->model('award');
-			$data['award'] = $this->award->getAwardByID($projectid)->result();
+			$data['award'] = $this->award->getAwardByID($projectid);
 			$this->load->view('project/award',$data);
 		}
 
@@ -138,7 +138,7 @@
 		{
 			$projectid = $this->input->post('projectid');
 			$this->load->model('validation');
-			$data['validation'] = $this->validation->getValidationByID($projectid)->result();
+			$data['validation'] = $this->validation->getValidationByID($projectid);
 			$this->load->view('project/validation',$data);
 		}
 
@@ -169,7 +169,7 @@
 		{
 			$projectid = $this->input->post('projectid');
 			$this->load->model('funds');
-			$data['funds'] = $this->funds->getFundsByID($projectid)->result();
+			$data['funds'] = $this->funds->getFundsByID($projectid);
 			$this->load->view('project/funds',$data);
 		}
 
