@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>项目管理页面</title>
+    <title>科研成果管理平台</title>
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
@@ -23,46 +23,53 @@
 
       $("#refresh_list").click();
 
-      $("#add_record").click(function()
-      {
-        $("#remove").hide();
-        $("#record").toggle();
-      });
-
       $("#remove_record").click(function()
       {
-        $("#record").hide();
-        $("#remove").toggle();
+        $("#remove").slideToggle();
       });
 
       $(":submit").click(function()
       {
-        $("#record").hide();
         $("#remove").hide();
         if($(event.target).text() == "删除")
         {
-          var data = { id: $("#reinputID").val() };
-          $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
+          var data = {
+            projectid: $("#reinputProjectid").val()
+          };
+          $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
             {
               alert(res);
             }); 
         }else
         {
-          var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
-          $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
+          var data = {
+            name: $("#inputName").val(),
+            source: $("#inputSource").val(),
+            level: $("#inputLevel").val(),
+            principal: $("#inputPrincipal").val(),
+            start: $("#inputStart").val(),
+            end: $("#inputEnd").val(),
+            money: $("#d").val(),
+            currency: $("#inputCurrency").val(),
+            contract: $("#inputContract").val(),
+            credit: $("#inputCredit").val(),
+            type: $("#inputType").val()
+          };
+          $.post("<?=site_url('projectmanage/add')?>",data,function(res,status)
             {
               alert(res);
             });
         }
-        // 刷新一次数据 ---这段代码无效
+        // 刷新一次数据
         $("#refresh_list").click(); 
-        return false;
+        return true;
       });
     });
     </script>
   </head>
   <body>
-    <?php $this->load->view('template/navbar') ?>
+
+    <?php $this->load->view('template/navbar');?>
 
     <div class="container">
       <br/>
@@ -71,81 +78,105 @@
         <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
       </div>
       <div class="row">
-        <h3 class="text-center">人员信息维护</h3>
+        <h3 class="text-center">项目信息维护</h3>
       </div>
     <div>
-        <a class="btn btn-default" id="refresh_list">刷新人员列表</a>
-        <a class="btn btn-default" id="add_record">添加人员信息</a>
-        <a class="btn btn-default" id="remove_record">删除一条记录</a>
-    </div>
-    <br/>
-    <div id="record" hidden>
-      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
-        <div class="form-group">
-          <label class="sr-only" for="inputName">姓名</label>
-          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
-        </div>
-         <div class="form-group">
-          <label class="sr-only" for="inputDuty">职务</label>
-          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
-        </div>
-        <button type="submit" class="btn btn-default">添加</button>
-      </form>
-    </div>
-    <div id="remove" hidden>
-         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="reinputID">编号</label>
-            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+        <a class="btn btn-default" id="refresh_list">刷新列表</a>
+        <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
+        <a class="btn btn-default" id="remove_record">删除记录</a>
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">添加信息</h4>
+                </div>
+                <div class="modal-body">
+                      <form class="form-horizontal">
+                          <div class="form-group">
+                            <label for="inputName" class="col-sm-2 control-label" >项目名称</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputName" placeholder="Name">
+                            </div>
+                            <label for="inputSource" class="col-sm-2 control-label">项目来源</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputSource" placeholder="Source">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputLevel" class="col-sm-2 control-label">项目等级</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputLevel" placeholder="Level">
+                            </div>
+                            <label for="inputPrincipal" class="col-sm-2 control-label">项目负责人</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputPrincipal" placeholder="Principal">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputStart" class="col-sm-2 control-label">开始时间</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputStart" placeholder="Start Time">
+                            </div>
+                            <label for="inputEnd" class="col-sm-2 control-label">结束时间</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputEnd" placeholder="End Time">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputMoney" class="col-sm-2 control-label">合同额</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputMoney" placeholder="Money">
+                            </div>
+                            <label for="inputCurrency" class="col-sm-2 control-label">货币种类</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputCurrency" placeholder="Currency">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputContract" class="col-sm-2 control-label">合同号</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputContract" placeholder="合同号">
+                            </div>
+                            <label for="inputCredit" class="col-sm-2 control-label">经费卡号</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputCredit" placeholder="Credit">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputType" class="col-sm-2 control-label">项目类型</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputType" placeholder="Type">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-8 col-sm-2">
+                              <button type="submit" class="btn btn-default">确认添加</button>
+                            </div>
+                          </div>
+                      </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="btn btn-default">删除</button>
-        </form>
+    </div>
+
+    <br/>
+    <div id="remove" hidden>
+         <form class="form-inline" role="form">
+            <div class="form-group">
+              <label for="reinputProjectid" class="sr-only">项目编号</label>
+              <input type="text" class="form-control" id="reinputProjectid" placeholder="项目编号">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">删除</button>
+        </div>
     </div>
     <br/>
     <div id="detail">
     </div> 
 
-    <div>
-      <form action="<?=site_url('projectmanage/add')?>" method="post">
-        name<input type="text" name="name"><br/>
-        source<input type="text" name="source"><br/>
-        level<input type="text" name="level"><br/>
-        principal<input type="text" name="principal"><br/>
-        start<input type="text" name="start"><br/>
-        end<input type="text" name="end"><br/>
-        money<input type="text" name="money"><br/>
-        currency<input type="text" name="currency"><br/>
-        contract<input type="text" name="contract"><br/>
-        credit<input type="text" name="credit"><br/>
-        type<input type="text" name="type"><br/>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div>
-      <form action="<?=site_url('projectmanage/modify')?>" method="post">
-        projectid<input type="text" name="projectid"><br/>
-        name<input type="text" name="name"><br/>
-        source<input type="text" name="source"><br/>
-        level<input type="text" name="level"><br/>
-        principal<input type="text" name="principal"><br/>
-        start<input type="text" name="start"><br/>
-        end<input type="text" name="end"><br/>
-        money<input type="text" name="money"><br/>
-        currency<input type="text" name="currency"><br/>
-        contract<input type="text" name="contract"><br/>
-        credit<input type="text" name="credit"><br/>
-        type<input type="text" name="type"><br/>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div>
-      <form action="<?=site_url('projectmanage/delete')?>">
-        projectid<input type="text" name="projectid"><br/>
-        <input type="submit">
-      </form>
-    </div>
     <?php $this->load->view('template/footer') ?>
   </body>
 </html>

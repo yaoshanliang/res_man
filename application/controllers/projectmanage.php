@@ -38,7 +38,10 @@
 			$this->load->model('project');
 			if($this->project->insertProject($name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type))
 			{
-				echo "success";
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
 			}
 		}
 		public function delete()
@@ -46,7 +49,10 @@
 			$this->load->model('project');
 			if($this->project->deleteProject($projectid))
 			{
-				echo "success";
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
 			}
 		}
 		public function modify()
@@ -63,10 +69,15 @@
 			$contract = $this->input->post('contract');
 			$credit = $this->input->post('credit');
 			$type = $this->input->post('type');
+			$which = $this->input->post('which');
 			$this->load->model('project');
-			if($this->project->updateProject($name,$source,$level,$principal,$start,$end,$money,$currency,$contarct,$credit,$type))
+			if($currency =="" || $currency == null) $currency="DEFAULT";
+			if($this->project->updateProject($projectid,$name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which))
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
 		}
 

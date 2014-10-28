@@ -17,7 +17,8 @@
 	{
 		public function insertProject($name,$source,$level = null,$principal,$start,$end,$money,$currency,$contract,$credit,$type)
 		{
-			$data = array('projectid'=>null,
+			$data = array(
+				'projectid'=>null,
 				'name'=>$name,
 				'source'=>$source,
 				'level'=>$level,
@@ -39,20 +40,11 @@
 			return $res->result();
 		}
 
-		public function updateProject($projectid,$name,$source,$level = null,$principal,$start,$end,$money,$currency,$contarct,$credit,$type)
+		public function updateProject($projectid,$name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which)
 		{
-			$data = array('projectid'=>null,
-				'name'=>$name,
-				'source'=>$source,
-				'level'=>$level,
-				'principal'=>$principal,
-				'start'=>$start,
-				'end'=>$end,
-				'money'=>$money,
-				'currency'=>$currency,
-				'contract'=>$contract,
-				'credit'=>$credit,
-				'type'=>$type);
+			$data = array(
+				$which => $$which
+				);
 			$bool = $this->db->update('project',$data,array('projectid'=>$projectid));
 			return $bool;
 
@@ -63,5 +55,6 @@
 			$bool = $this->db->delete('project',array('projectid'=>$projectid));
 			return $bool;
 		}
+
 	}
 ?>
