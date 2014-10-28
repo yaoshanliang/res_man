@@ -6,7 +6,7 @@
         var index = $(event.target).index(); //列索引
         if(index==0)
         {
-          var data = { id: $(event.target).text() };
+          var data = { projectgiid: $(event.target).text() };
           $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
           {
             $("#refresh_list").click();

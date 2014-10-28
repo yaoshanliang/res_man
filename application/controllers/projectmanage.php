@@ -47,6 +47,7 @@
 		public function delete()
 		{
 			$this->load->model('project');
+			$projectid = $this->input->post('projectid');
 			if($this->project->deleteProject($projectid))
 			{
 				echo "删除成功";

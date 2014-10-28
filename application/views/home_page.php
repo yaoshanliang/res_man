@@ -35,8 +35,12 @@
       <div class="row">
         <h3>简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
       </div>
-
-      <p contenteditable="true">可编辑P标签，测试用</p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+          <span class="sr-only">70% Complete (success)</span>
+        </div>
+      </div>
+      <p contenteditable="true">上面是开发进度,这是可编辑P标签，测试用</p>
       <div class="row">
       <label >
        <div class="checkbox">
