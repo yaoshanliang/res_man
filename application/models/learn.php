@@ -11,6 +11,7 @@
 		public function insertLearn($institute,$content,$start,$end,$list)
 		{
 			$data = array(
+				'number'=>null,
 				'institute'=>$institute,
 				'content'=>$content,
 				'start'=>$start,
@@ -26,9 +27,18 @@
 			return $res->result();
 		}
 
-		public function deleteLearn($institute,$content)
+		public function updateLearn($number,$institute,$content,$start,$end,$list,$which)
 		{
-			$bool = $this->db->delete('learn',array('institute'=>$institute,'content'=>$content));
+			$data = array(
+				$which => $$which
+			);
+			$bool = $this->db->update('learn',$data,array('number'=>$number));
+			return $bool;
+		}
+
+		public function deleteLearn($number)
+		{
+			$bool = $this->db->delete('learn',array('number'=>$number));
 			return $bool;
 		}
 	}

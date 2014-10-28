@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>成员进修学习</title>
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
@@ -23,40 +23,40 @@
 
       $("#refresh_list").click();
 
-      $("#add_record").click(function()
-      {
-        $("#remove").hide();
-        $("#record").toggle();
-      });
-
       $("#remove_record").click(function()
       {
-        $("#record").hide();
-        $("#remove").toggle();
+        $("#remove").slideToggle();
       });
 
       $(":submit").click(function()
       {
-        $("#record").hide();
         $("#remove").hide();
-        // if($(event.target).text() == "删除")
-        // {
-        //   var data = { id: $("#reinputID").val() };
-        //   $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
-        //     {
-        //       alert(res);
-        //     }); 
-        // }else
-        // {
-        //   var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
-        //   $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
-        //     {
-        //       alert(res);
-        //     });
-        // }
-        // 刷新一次数据 ---这段代码无效
+        if($(event.target).text() == "删除")
+        {
+          var data = {
+            number: $("#reinputID").val()
+          };
+          $.post("<?=site_url('learnmanage/delete')?>",data,function(res,status)
+            {
+              alert(res);
+            }); 
+        }else
+        {
+          var data = {
+            institute: $("#inputInstitute").val(),
+            content: $("#inputContent").val(),
+            start: $("#inputStart").val(),
+            end: $("#inputEnd").val(),
+            list: $("#inputList").val()
+          };
+          $.post("<?=site_url('learnmanage/add')?>",data,function(res,status)
+            {
+              alert(res);
+            });
+        }
+        // 刷新一次数据
         $("#refresh_list").click(); 
-        return false;
+        return true;
       });
     });
     </script>
@@ -71,60 +71,79 @@
         <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
       </div>
       <div class="row">
-        <h3 class="text-center">软件著作权信息维护</h3>
+        <h3 class="text-center">成员进修学习情况信息维护</h3>
       </div>
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
-        <a class="btn btn-default" id="add_record">添加信息</a>
+        <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
         <a class="btn btn-default" id="remove_record">删除记录</a>
-    </div>
-    <br/>
-    <div id="record" hidden>
-      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
-        <div class="form-group">
-          <label class="sr-only" for="inputName">姓名</label>
-          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
-        </div>
-         <div class="form-group">
-          <label class="sr-only" for="inputDuty">职务</label>
-          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
-        </div>
-        <button type="submit" class="btn btn-default">添加</button>
-      </form>
-    </div>
-    <div id="remove" hidden>
-         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="reinputID">编号</label>
-            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">添加信息</h4>
+                </div>
+                <div class="modal-body">
+                      <form class="form-horizontal">
+                          <div class="form-group">
+                            <label for="inputInstitute" class="col-sm-3 control-label">学习机构</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputInstitute" placeholder="Institute">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputContent" class="col-sm-3 control-label">学习内容</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputContent" placeholder="Content">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputStart" class="col-sm-3 control-label">开始时间</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputStart" placeholder="Start">
+                            </div>
+                          </div>
+                           <div class="form-group">
+                            <label for="inputEnd" class="col-sm-3 control-label">结束时间</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputEnd" placeholder="End">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputList" class="col-sm-3 control-label">人员列表</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputList" placeholder="Person List">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-2">
+                              <button type="submit" class="btn btn-default">添加</button>
+                            </div>
+                          </div>
+                      </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="btn btn-default">删除</button>
-        </form>
+    </div>
+
+    <br/>
+    <div id="remove" hidden>
+         <form class="form-inline" role="form">
+            <div class="form-group">
+              <label for="reinputID" class="sr-only">编号</label>
+              <input type="text" class="form-control" id="reinputID" placeholder="Number">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">删除</button>
+        </div>
     </div>
     <br/>
     <div id="detail">
     </div> 
 
-
-
-    <div>
-      <form action="<?=site_url('learnmanage/add')?>" method="post">
-        institute<input type="text" name="institute"><br/>
-        content<input type="text" name="content"><br/>
-        start<input type="text" name="start"><br/>
-        end<input type="text" name="end"><br/>
-        list<input type="text" name="list"><br/>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div>
-      <form action="<?=site_url('learnmanage/delete')?>" method="post">
-        institute<input type="text" name="institute"><br/>
-        content<input type="text" name="content"><br/>
-        <input type="submit">
-      </form>
-    </div>
     <?php $this->load->view('template/footer') ?>
   </body>
 </html>

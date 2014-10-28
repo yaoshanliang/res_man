@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>国际合作</title>
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
@@ -23,46 +23,47 @@
 
       $("#refresh_list").click();
 
-      $("#add_record").click(function()
-      {
-        $("#remove").hide();
-        $("#record").toggle();
-      });
-
       $("#remove_record").click(function()
       {
-        $("#record").hide();
-        $("#remove").toggle();
+        $("#remove").slideToggle();
       });
 
       $(":submit").click(function()
       {
-        $("#record").hide();
         $("#remove").hide();
-        // if($(event.target).text() == "删除")
-        // {
-        //   var data = { id: $("#reinputID").val() };
-        //   $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
-        //     {
-        //       alert(res);
-        //     }); 
-        // }else
-        // {p
-        //   var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
-        //   $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
-        //     {
-        //       alert(res);
-        //     });
-        // }
-        // 刷新一次数据 ---这段代码无效
+        if($(event.target).text() == "删除")
+        {
+          var data = {
+            number: $("#reinputNumber").val()
+          };
+          $.post("<?=site_url('partmanage/delete')?>",data,function(res,status)
+            {
+              alert(res);
+            }); 
+        }else
+        {
+          var data = {
+            name: $("#inputName").val(),
+            duty: $("#inputDuty").val(),
+            start: $("#inputStart").val(),
+            end: $("#inputEnd").val(),
+            id: $("#inputPerson").val()
+          };
+          $.post("<?=site_url('partmanage/add')?>",data,function(res,status)
+            {
+              alert(res);
+            });
+        }
+        // 刷新一次数据
         $("#refresh_list").click(); 
-        return false;
+        return true;
       });
     });
     </script>
   </head>
   <body>
-    <?php $this->load->view('template/navbar') ?>
+
+    <?php $this->load->view('template/navbar');?>
 
     <div class="container">
       <br/>
@@ -71,59 +72,80 @@
         <h1>科研成果管理平台 <small>Scientific Research Achievement Manage Platform</small></h1>
       </div>
       <div class="row">
-        <h3 class="text-center">软件著作权信息维护</h3>
+        <h3 class="text-center">国际合作信息维护</h3>
       </div>
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
-        <a class="btn btn-default" id="add_record">添加信息</a>
+        <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
         <a class="btn btn-default" id="remove_record">删除记录</a>
-    </div>
-    <br/>
-    <div id="record" hidden>
-      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
-        <div class="form-group">
-          <label class="sr-only" for="inputName">姓名</label>
-          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
-        </div>
-         <div class="form-group">
-          <label class="sr-only" for="inputDuty">职务</label>
-          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
-        </div>
-        <button type="submit" class="btn btn-default">添加</button>
-      </form>
-    </div>
-    <div id="remove" hidden>
-         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="reinputID">编号</label>
-            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">添加信息</h4>
+                </div>
+                <div class="modal-body">
+                      <form class="form-horizontal">
+                          <div class="form-group">
+                            <label for="inputName" class="col-sm-3 control-label">兼职学术组织</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputName" placeholder="Name">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputDuty" class="col-sm-3 control-label">职责</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputDuty" placeholder="Duty">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputStart" class="col-sm-3 control-label">开始时间</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputStart" placeholder="Start Time">
+                            </div>
+                          </div>
+                           <div class="form-group">
+                            <label for="inputEnd" class="col-sm-3 control-label">结束时间</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputEnd" placeholder="News reported">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputPerson" class="col-sm-3 control-label" name="news">兼职人员</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" id="inputPerson" placeholder="Person ID">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-2">
+                              <button type="submit" class="btn btn-default">添加</button>
+                            </div>
+                          </div>
+                      </form>
+                </div>
+              </div>
+            </div>
           </div>
-          <button type="submit" class="btn btn-default">删除</button>
+    </div>
+
+    <br/>
+    <div id="remove" hidden>
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="reinputNumber" class="sr-only">人数</label>
+            <input type="text" class="form-control" id="reinputNumber" placeholder="Number">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">删除</button>
+          </div>
         </form>
     </div>
     <br/>
     <div id="detail">
     </div> 
 
-    <div>
-      <form action="<?=site_url('partmanage/add')?>" method="post">
-        name<input type="text" name="name"><br/>
-        duty<input type="text" name="duty"><br/>
-        start<input type="text" name="start"><br/>
-        end<input type="text" name="end"><br/>
-        id<input type="text" name="id"><br/>
-        <input type="submit">
-      </form>
-    </div>
-
-    <div>
-      <form action="<?=site_url('partmanage/delete')?>" method="post">
-        name<input type="text" name="name"><br/>
-        duty<input type="text" name="duty"><br/>
-        id<input type="text" name="id"><br/>
-        <input type="submit">
-      </form>
-    </div>
     <?php $this->load->view('template/footer') ?>
   </body>
 </html>

@@ -24,14 +24,18 @@
 			return $res->result();
 		}
 
-		public function updateWork($name,$publisher,$publishdate,$personlist)
+		public function updateWork($name,$publisher,$publishdate,$personlist,$which)
 		{
 			$data = array(
-				'publisher'=>$publisher,
-				'publishdate'=>$publishdate,
-				'personlist'=>$personlist
+				$which => $$which
 				);
-			return $this->db->update('work',array('name'=>$name));
+			return $this->db->update('work',$data,array('name'=>$name));
+		}
+
+		public function deleteWork($name)
+		{
+			$bool = $this->db->delete('work',array('name'=>$name));
+			return $bool;
 		}
 	}
 ?>

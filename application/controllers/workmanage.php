@@ -32,7 +32,10 @@
 			$this->load->model('work');
 			if($this->work->insertWork($name,$publisher,$publishdate,$personlist))
 			{
-				echo "Success<br/>";
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
 			}
 		}
 		public function modify()
@@ -41,12 +44,28 @@
 			$publisher = $this->input->post('publisher');
 			$publishdate = $this->input->post('publishdate');
 			$personlist = $this->input->post('personlist');
+			$which = $this->input->post('which');
 			$this->load->model('work');
-			if($this->work->updateWork($name,$publisher,$publishdate,$personlist))
+			if($this->work->updateWork($name,$publisher,$publishdate,$personlist,$which))
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
 
+		}
+		public function delete()
+		{
+			$name = $this->input->post('name');
+			$this->load->model('work');
+			if($this->work->deleteWork($name))
+			{
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
+			}
 		}
 	}
 ?>

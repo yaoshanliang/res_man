@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>软件著作权信息</title>
-    <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
-    <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
-    <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
-    <script src="<?=base_url()?>js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
+
     <script type="text/javascript">
     $(document).ready(function()
     {
@@ -19,13 +7,16 @@
         var index = $(event.target).index(); //列索引
         if(index==0)
         {
-          var data = { id: $(event.target).text() };
-          $.post("<?=site_url('learnmanage/delete')?>",data,function(res,status)
+          var data = { number: $(event.target).text() };
+          $.post("<?=site_url('partmanage/delete')?>",data,function(res,status)
           {
+            $("#refresh_list").click();
             alert(res);
           });
           return;
         }
+        if(index == 5)
+          return;
         var colname = $(event.target).parent().parent().children().first().children().eq(index).html();//列名
         var value = $(event.target).text();
         var result = prompt("请输入新的"+colname+":",value);
@@ -34,23 +25,29 @@
         var opid = $(event.target).parent().children().first().html();
         if(index == 1)
         {
-          var data={ id: opid, name: result };
-        }else
+          var data={ number: opid, name: result, which: 'name' };
+        }else if(index == 2)
         {
-          var data={ id: opid, duties: result };
+          var data={ number: opid, duty: result, which: 'duty' };
+        }else if(index == 3)
+        {
+          var data={ number: opid, start: result, which: 'start' };
+        }else if(index == 4)
+        {
+          var data={ number: opid, end: result, which: 'end' };
         }
-        $.post("<?=site_url('personmanage/modify')?>",data,function(res,status)
+        $.post("<?=site_url('partmanage/modify')?>",data,function(res,status)
         {
+          $("#refresh_list").click();
           alert(res);
         });
       });
     });
     </script>
-  </head>
-  <body>
 
       <table class="table table-striped table-hover">
        <tr>
+          <td>编号</td>
           <td>兼职学术组织</td>
           <td>职责</td>
           <td>开始时间</td>
@@ -59,6 +56,7 @@
         </tr>
       <?php foreach($part as $item):?>
         <tr>
+          <td><?=$item->number?></td>
           <td><?=$item->name?></td>
           <td><?=$item->duty?></td>
           <td><?=$item->start?></td>
@@ -71,6 +69,3 @@
         </tr>
       <?php endforeach; ?>
       </table>
-
-  </body>
-</html>

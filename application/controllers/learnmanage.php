@@ -34,19 +34,44 @@
 			$bool = $this->learn->insertLearn($institute,$content,$start,$end,$list);
 			if($bool)
 			{
-				echo "success";
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
 			}
 		}
 
-		public function delete()
+		public function modify()
 		{
 			$institute = $this->input->post('institute');
 			$content = $this->input->post('content');
+			$start = $this->input->post('start');
+			$end = $this->input->post('end');
+			$list = $this->input->post('list');
+			$number = $this->input->post('number');
+			$which = $this->input->post('which');
 			$this->load->model('learn');
-			$bool = $this->learn->deleteLearn($institute,$content);
+			$bool = $this->learn->updateLearn($number,$institute,$content,$start,$end,$list,$which);
 			if($bool)
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
+			}
+
+		}
+		public function delete()
+		{
+			$number = $this->input->post('number');
+			$this->load->model('learn');
+			$bool = $this->learn->deleteLearn($number);
+			if($bool)
+			{
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
 			}
 		}
 	}

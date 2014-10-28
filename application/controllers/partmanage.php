@@ -33,20 +33,40 @@
 			$bool = $this->part->insertPart($name,$duty,$start,$end,$id);
 			if($bool)
 			{
-				echo "success";
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
 			}
 		}
 
 		public function delete()
 		{
-			$name = $this->input->post('name');
-			$duty = $this->input->post('duty');
-			$id = $this->input->post('id');
+			$number = $this->input->post('number');
 			$this->load->model('part');
-			$bool = $this->part->deletePart($name,$duty,$id);
+			$bool = $this->part->deletePart($number);
 			if($bool)
 			{
 				echo "success";
+			}
+		}
+
+		public function modify()
+		{
+			$name = $this->input->post('name');
+			$number = $this->input->post('number');
+			$duty = $this->input->post('duty');
+			$start = $this->input->post('start');
+			$end = $this->input->post('end');
+			$which = $this->input->post('which');
+			$this->load->model('part');
+			$bool = $this->part->updatePart($number,$name,$duty,$start,$end,$which);
+			if($bool)
+			{
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
 		}
 	}

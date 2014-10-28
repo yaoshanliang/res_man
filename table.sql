@@ -129,6 +129,7 @@ create table copyrightlist(
 
 ###14.出版专著 work
 create table work(
+	number int not null primary key auto_increment,
 	name text not null,
 	publisher text not null,
 	publishdate text not null,
@@ -137,6 +138,7 @@ create table work(
 
 ###15.学术团体（组织）兼职情况 part
 create table part(
+	number int not null primary key auto_increment,
 	name text not null,
 	duty text not null,
 	start text not null,
@@ -147,6 +149,7 @@ create table part(
 
 ###16.国内外进修及学习情况 learn
 create table learn(
+	number int not null primary key auto_increment,
 	institute text not null,
 	content text not null,
 	start text not null,
@@ -159,6 +162,7 @@ create table learn(
 
 ###17.国际合作情况 cooperation
 create table cooperation(
+	number int not null primary key auto_increment,
 	category text not null,
 	list text not null,
 	`number` int not null,

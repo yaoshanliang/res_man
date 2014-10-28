@@ -11,7 +11,7 @@
     <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
-        <script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function(){
 
       $("#refresh_list").click(function()
@@ -90,7 +90,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">添加人员信息</h4>
+                  <h4 class="modal-title">添加信息</h4>
                 </div>
                 <div class="modal-body">
                       <form class="form-horizontal">

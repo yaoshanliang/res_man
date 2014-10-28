@@ -36,6 +36,12 @@
 			return $res->row()->name;
 		}
 
+		public function getPersonByName($name)
+		{
+			$res = $this->db->where('name',$name)->get('person');
+			return $res->row()->id;
+		}
+
 		public function deletePerson($id)
 		{
 			// 有外键约束的 无法删除
