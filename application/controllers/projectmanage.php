@@ -104,6 +104,14 @@
 			}
 		}
 
+		public function get_award()
+		{
+			$projectid = $this->input->post('projectid');
+			$this->load->model('award');
+			$data['award'] = $this->award->getAwardByID($projectid)->result();
+			$this->load->view('project/award',$data);
+		}
+
 		public function validation()
 		{
 			$this->load->view('project/addvalidation');
@@ -125,6 +133,15 @@
 				echo "添加失败";
 			}
 		}
+
+		public function get_validation()
+		{
+			$projectid = $this->input->post('projectid');
+			$this->load->model('validation');
+			$data['validation'] = $this->validation->getValidationByID($projectid)->result();
+			$this->load->view('project/validation',$data);
+		}
+
 		public function funds()
 		{
 			$this->load->view('project/addfunds');
@@ -146,6 +163,14 @@
 			{
 				echo "添加失败";
 			}
+		}
+
+		public function get_funds()
+		{
+			$projectid = $this->input->post('projectid');
+			$this->load->model('funds');
+			$data['funds'] = $this->funds->getFundsByID($projectid)->result();
+			$this->load->view('project/funds',$data);
 		}
 
 	}

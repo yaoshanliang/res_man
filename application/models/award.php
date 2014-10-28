@@ -20,9 +20,9 @@
 			return $bool;
 		}
 
-		public function getAward()
+		public function getAwardByID($id)
 		{
-			$res = $this->db->get('award');
+			$res = $this->db->where('projectid',$id)->get('award');
 			return $res->result();
 		}
 

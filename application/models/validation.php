@@ -19,9 +19,9 @@
 			return $this->db->insert('validation',$data);
 		}
 
-		public function getValidation()
+		public function getValidationByID($id)
 		{
-			$res = $this->db->get('validation');
+			$res = $this->db->where('projectid',$id)->get('validation');
 			return $res->result();
 		}
 	}
