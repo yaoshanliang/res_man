@@ -4,7 +4,7 @@
 	// name varchar(10) not null,
 	// duties text
 	// );
-	class Person extends CI_Model
+	class person extends CI_Model
 	{
 		public function insertPerson($name,$duties)
 		{
@@ -38,6 +38,7 @@
 
 		public function deletePerson($id)
 		{
+			// 有外键约束的 无法删除
 			$bool = $this->db->delete('person',array('id'=>$id));
 			return $bool;
 		}

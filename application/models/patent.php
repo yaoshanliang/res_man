@@ -28,16 +28,19 @@
 			return $res->result();
 		}
 
-		public function updatePatent($number,$name,$register,$person,$institute,$time)
+		public function updatePatent($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(
-				'number'=>$number,
-				'name'=>$name,
-				'person'=>$person,
-				'institute'=>$institute,
-				'time'=>$time
+				$which => $$which
 				);
-			return $this->db->update('patent',$data,array('register'=>$register));
+			return $this->db->update('patent',$data,array('number'=>$number));
+		}
+
+		public function deletePatent()
+		{
+			$res = $this->db->delete('patent',array('number'=>$number));
+			$res &= $this->db->delete('patentlist',array('identifier'=>$number));
+			return $res;
 		}
 	}
 ?>

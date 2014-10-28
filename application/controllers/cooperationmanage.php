@@ -35,7 +35,10 @@
 			$bool = $this->cooperation->insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture);
 			if($bool)
 			{
-				echo "success";
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
 			}
 		}
 

@@ -96,6 +96,9 @@ class Welcome extends CI_Controller {
 		// 输出到home_page
 		$this->load->view("home_page",$data);
 	}
-
+	public function test()
+	{
+		$this->load->view('bootstrap-template');
+	}
 }
 ?>

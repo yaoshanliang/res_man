@@ -26,16 +26,18 @@
 		}
 		public function add()
 		{
-			$number = $this->input->post('number');
 			$name = $this->input->post('name');
 			$register = $this->input->post('register');
 			$person = $this->input->post('person');
 			$institute = $this->input->post('institute');
 			$time = $this->input->post('time');
 			$this->load->model('copyright');
-			if($this->copyright->insertCopyright($number,$name,$register,$person,$institute,$time))
+			if($this->copyright->insertCopyright($name,$register,$person,$institute,$time))
 			{
-				echo "Success<br/>";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
 		}
 		public function modify()
@@ -46,12 +48,48 @@
 			$person = $this->input->post('person');
 			$institute = $this->input->post('institute');
 			$time = $this->input->post('time');
+			$which = $this->input->post('which');
 			$this->load->model('copyright');
-			if($this->copyright->updateCopyright($number,$name,$register,$person,$institute,$time))
+			if($this->copyright->updateCopyright($number,$name,$register,$person,$institute,$time,$which))
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
+		}
 
+		public function delete()
+		{
+			$number = $this->input->post('number');
+			$this->load->model('copyright');
+			if($this->copyright->deleteCopyright($number))
+			{
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
+			}
+		}
+
+		public function copyrightlist()
+		{
+			$this->load->view("copyright/addlist");
+		}
+
+		public function cr_add()
+		{
+			$id = $this->input->post('id');
+			$identifier = $this->input->post('identifier');
+			$order = $this->input->post('order');
+			$this->load->model('copyrightlist');
+			if($this->copyrightlist->insertCopyrightlist($id,$identifier,$order))
+			{
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
+			}
 		}
 	}
 ?>

@@ -8,7 +8,7 @@
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
@@ -17,93 +17,37 @@
       $("#refresh_list").click(function()
       {
         $.get("<?=site_url('personmanage/show')?>",function(data,status){
-          $("#detail").html(data);
+          if(status=="success") $("#detail").html(data);
         });
       });
-
       $("#refresh_list").click();
 
-      $("#add_record").click(function()
+      $("#removeRecord").click(function()
       {
-        $("#remove").hide();
-        $("#record").toggle();
+        var data = { id: $("#reinputID").val() };
+        $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
+        {
+          alert(res);
+        }); 
+        // 刷新一次数据 
+        $("#refresh_list").click();
       });
 
-      $("#remove_record").click(function()
+      $("#addRecord").click(function()
       {
-        $("#record").hide();
-        $("#remove").toggle();
-      });
-
-      $(":submit").click(function()
-      {
-        $("#record").hide();
-        $("#remove").hide();
-        if($(event.target).text() == "删除")
+        var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
+        $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
         {
-          var data = { id: $("#reinputID").val() };
-          $.post("<?=site_url('personmanage/delete')?>",data,function(res,status)
-            {
-              alert(res);
-            }); 
-        }else
-        {
-          var data = { id: $("inputID").val(), name: $("#inputName").val(), duties: $("#inputDuty").val() };
-          $.post("<?=site_url('personmanage/add')?>",data,function(res,status)
-            {
-              alert(res);
-            });
-        }
-        // 刷新一次数据 ---这段代码无效
-        $("#refresh_list").click(); 
-        return false;
+          alert(res);
+        });
+        // 刷新一次数据 
+        $("#refresh_list").click();
       });
     });
     </script>
   </head>
   <body>
-    <div class="container-fluid">
-      <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href=""><i class="fa fa-home fa-fw"></i>&nbsp;SRAMP</a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li><a href="<?=site_url('welcome/index')?>">首页</a></li>
-              <li><a href="#">功能</a></li>
-              <li class="dropdown">
-                <a href="" class="dropdown-toggle active" data-toggle="dropdown">信息维护 <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="<?=site_url('personmanage/index')?>">人员信息</a></li>
-                  <li><a href="<?=site_url('projectmanage/index')?>">项目信息</a></li>
-                  <li><a href="<?=site_url('cooperationmanage/index')?>">国际合作信息</a></li>
-                  <li class="divider"></li>
-                  <li><a href="<?=site_url('learnmanage/index')?>">成员进修学习信息</a></li>
-                  <li><a href="<?=site_url('partmanage/index')?>">学术组织兼职信息</a></li>
-                  <li class="divider"></li>
-                  <li><a href="<?=site_url('patentmanage/index')?>">专利权信息</a></li>
-                  <li><a href="<?=site_url('copyrightmanage/index')?>">软件著作权信息</a></li>
-                  <li><a href="<?=site_url('workmanage/index')?>">出版著作信息</a></li>
-                </ul>
-              </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><i class="fa fa-user"></i>&nbsp; 用户</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    </div>
+    <?php $this->load->view('template/navbar.php'); ?>
 
     <div class="container">
       <br/>
@@ -114,37 +58,76 @@
       <div class="row">
         <h3 class="text-center">人员信息维护</h3>
       </div>
-    <div>
-        <a class="btn btn-default" id="refresh_list">刷新人员列表</a>
-        <a class="btn btn-default" id="add_record">添加人员信息</a>
-        <a class="btn btn-default" id="remove_record">删除一条记录</a>
-    </div>
-    <br/>
-    <div id="record" hidden>
-      <form class="form-inline" role="form" action="<?=site_url('personmanage/add')?>" method="post">
-        <div class="form-group">
-          <label class="sr-only" for="inputName">姓名</label>
-          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
-        </div>
-         <div class="form-group">
-          <label class="sr-only" for="inputDuty">职务</label>
-          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职责">
-        </div>
-        <button type="submit" class="btn btn-default">添加</button>
-      </form>
-    </div>
-    <div id="remove" hidden>
-         <form class="form-inline" role="form" action="<?=site_url('personmanage/delete')?>" method="post">
-          <div class="form-group">
-            <label class="sr-only" for="reinputID">编号</label>
-            <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
-          </div>
-          <button type="submit" class="btn btn-default">删除</button>
-        </form>
-    </div>
-    <br/>
-    <div id="detail">
-    </div> 
+      <div>
+        <a class="btn btn-default" id="refresh_list">刷新列表</a>
+        <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
+        <a class="btn btn-default" data-toggle="modal" data-target="#removeModal">删除记录</a>
 
+          <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">添加人员信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="name" class="form-control" id="inputName" placeholder="姓名">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label for="inputDuty" class="col-sm-2 control-label">职务</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="duties" class="form-control" id="inputDuty" placeholder="职务">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-4">
+                          <input type="submit" id="addRecord" class="btn btn-default"></input>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title">删除人员信息</h4>
+                </div>
+                <div class="modal-body">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="reinputID" class="col-sm-2 control-label">编号</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="id" class="form-control" id="reinputID" placeholder="编号">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-4">
+                          <button type="submit" id="removeRecord" class="btn btn-default">删除</button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <br/>
+        <br/>
+        <div id="detail">
+        </div> 
+      </div>
+    <?php $this->load->view('template/footer'); ?>
   </body>
 </html>

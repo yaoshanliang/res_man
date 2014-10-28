@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>软件著作权信息</title>
-    <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
-    <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="<?=base_url()?>js/bootstrap.min.js"></script>
-    <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function()
     {
       $("table tr:gt(0)").click(function()
       {
         var index = $(event.target).index(); //列索引
+        if(index == 6)
+        {
+          //修改人员名单
+          $("#addListBtn").click();
+          // alert("you failed!");
+          return;
+        }
         if(index==0)
         {
-          var data = { id: $(event.target).text() };
-          $.post("<?=site_url('copyrightmanage/delete')?>",data,function(res,status)
+          var data = { number: $(event.target).text() };
+          $.post("<?=site_url('patentmanage/delete')?>",data,function(res,status)
           {
+            $("#refresh_list").click();
             alert(res);
           });
           return;
@@ -34,59 +29,67 @@
         var opid = $(event.target).parent().children().first().html();
         if(index == 1)
         {
-          var data={ id: opid, name: result };
-        }else
+          var data={ number: opid, name: result, which: 'name' };
+        }else if(index == 2)
         {
-          var data={ id: opid, duties: result };
+          var data={ number: opid, register: result, which: 'register' };
+        }else if(index == 3)
+        {
+          var data={ number: opid, person: result, which: 'person' };
+        }else if(index == 4)
+        {
+          var data={ number: opid, institute: result, which: 'institute' };
+        }else if(index == 5)
+        {
+          var data={ number: opid, time: result, which: 'time' };
         }
-        $.post("<?=site_url('personmanage/modify')?>",data,function(res,status)
+        $.post("<?=site_url('patentmanage/modify')?>",data,function(res,status)
         {
+          $("#refresh_list").click();
           alert(res);
         });
       });
     });
     </script>
-  </head>
-  <body>
 
-      <table class="table table-striped table-hover">
-          <tr>
-          <td>编号</td>
-          <td>著作权名称</td>
-          <td>著作权编号</td>
-          <td>著作权人</td>
-          <td>颁发机构</td>
-          <td>时间</td>
-        </tr>
-      <?php foreach($patent as $item): ?>
-        <tr>
-          <td><?=$item->number?></td>
-          <td><?=$item->name?></td>
-          <td><?=$item->register?></td>
-          <td>
-          <?php 
-          // 获取人员名单 restrinct: <9
-          $res = $this->db->where('identifier',$item->number)->get('patentlist');
-          $str = "";
-          foreach($res->result() as $item2)
-          {
-            for($i=0;$i<10;$i++)
-            {
-              if($i == $item2->order)
-              {
-                $res = $this->db->where('id',$item2->id)->get('person');
-                $str .= $res->row()->name.",";
-              }
-            }
-          }
-          echo rtrim($str,',');
-          ?>
-          </td>
-          <td><?=$item->institute?></td>
-          <td><?=$item->time?></td>
-        </tr>
-      <?php endforeach; ?>
-      </table>
 
-  </body>
-</html>
+<table class="table table-striped table-hover">
+   <tr>
+    <td>编号</td>
+    <td>名称</td>
+    <td>专利权号</td>
+    <td>专利权人</td>
+    <td>授予单位</td>
+    <td>授予时间</td>
+    <td>人员名单</td>
+  </tr>
+<?php foreach($patent as $item): ?>
+  <tr>
+    <td><?=$item->number?></td>
+    <td><?=$item->name?></td>
+    <td><?=$item->register?></td>
+    <td><?=$item->person?></td>
+    <td><?=$item->institute?></td>
+    <td><?=$item->time?></td>
+    <td>
+    <?php 
+    // 获取人员名单 restrinct: <9
+    $res = $this->db->where('identifier',$item->number)->get('patentlist')->result();
+    $str = "";
+    foreach($res as $item2)
+    {
+      for($i=0;$i<10;$i++)
+      {
+        if($i == $item2->order)
+        {
+          $res = $this->db->where('id',$item2->id)->get('person');
+          $str .= $res->row()->name.",";
+        }
+      }
+    }
+    echo rtrim($str,',');
+    ?>
+    </td>
+  </tr>
+<?php endforeach; ?>
+</table>

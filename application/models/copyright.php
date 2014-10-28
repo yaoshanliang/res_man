@@ -9,10 +9,10 @@
 	// );
 	class Copyright extends CI_Model
 	{
-		public function insertCopyright($number,$name,$register,$person,$institute,$time)
+		public function insertCopyright($name,$register,$person,$institute,$time)
 		{
 			$data = array(
-				'number'=>$number,
+				'number'=>null,
 				'name'=>$name,
 				'register'=>$register,
 				'person'=>$person,
@@ -28,16 +28,19 @@
 			return $res->result();
 		}
 
-		public function updateCopyright($number,$name,$register,$person,$institute,$time)
+		public function updateCopyright($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(
-				'number'=>$number,
-				'name'=>$name,
-				'person'=>$person,
-				'institute'=>$institute,
-				'time'=>$time
+				$which => $$which
 				);
-			return $this->db->update('copyright',$data,array('register'=>$register));
+			return $this->db->update('copyright',$data,array('number'=>$number));
+		}
+
+		public function deleteCopyright($number)
+		{
+			$res = $this->db->delete('copyright',array('number'=>$number));
+			$res &= $this->db->delete('copyrightlist',array('identifier'=>$number));
+			return $res;
 		}
 	}
 ?>

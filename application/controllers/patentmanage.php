@@ -45,12 +45,47 @@
 			$person = $this->input->post('person');
 			$institute = $this->input->post('institute');
 			$time = $this->input->post('time');
+			$which = $this->input->post('which');
 			$this->load->model('patent');
-			if($this->patent->updatePatent($number,$name,$register,$person,$institute,$time))
+			if($this->patent->updatePatent($number,$name,$register,$person,$institute,$time,$which))
 			{
-				echo "success";
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
 			}
+		}
 
+		public function delete()
+		{
+			$number = $this->input->post('number');
+			$this->load->model('patent');
+			if($this->patent->deletePatent($number))
+			{
+				echo "删除成功";
+			}else
+			{
+				echo "删除失败";
+			}
+		}
+
+		public function patentlist()
+		{
+			$this->load->view('patent/addlist');
+		}
+		public function p_add()
+		{
+			$id = $this->input->post('id');
+			$identifier = $this->input->post('identifier');
+			$order = $this->input->post('order');
+			$this->load->model('patentlist');
+			if($this->patentlist->insertPatentlist($id,$identifier,$order))
+			{
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
+			}
 		}
 	}
 ?>
