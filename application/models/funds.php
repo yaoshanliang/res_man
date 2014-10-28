@@ -7,10 +7,11 @@
 	// );
 	class Funds extends CI_Model
 	{
-		public function insertFunds($projectid,$payoff,$remain,$others = null)
+		public function insertFunds($projectid,$payoff,$year,$remain,$others = null)
 		{
 			$data = array(
 				'projectid'=>$projectid,
+				'year'=>$year,
 				'payoff'=>$payoff,
 				'remain'=>$remain,
 				'others'=>$others

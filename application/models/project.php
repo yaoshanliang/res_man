@@ -53,6 +53,9 @@
 		public function deleteProject($projectid)
 		{
 			$bool = $this->db->delete('project',array('projectid'=>$projectid));
+			$bool = $bool && $this->db->delete('award',array('projectid'=>$projectid));
+			$bool = $bool && $this->db->delete('validation',array('projectid'=>$projectid));
+			$bool = $bool && $this->db->delete('funds',array('projectid'=>$projectid));
 			return $bool;
 		}
 

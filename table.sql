@@ -74,6 +74,7 @@ create table funds(
 	projectid int not null,
 	payoff float not null,
 	remain float not null,
+	year varchar(5) not null,
 	others text
 	);
 

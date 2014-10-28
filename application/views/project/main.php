@@ -84,6 +84,39 @@
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
         <a class="btn btn-default" id="remove_record">删除记录</a>
+        
+        <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addFunds" href="<?=site_url('projectmanage/funds')?>">
+          添加经费信息
+        </a>
+
+          <div class="modal fade" id="addFunds" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div>
+
+        <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addAward" href="<?=site_url('projectmanage/awards')?>">
+          添加获奖信息
+        </a>
+
+          <div class="modal fade" id="addAward" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div>
+
+        <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addValidation" href="<?=site_url('projectmanage/validation')?>">
+          添加验收信息
+        </a>
+
+          <div class="modal fade" id="addValidation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div>
 
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

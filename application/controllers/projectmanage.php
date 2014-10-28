@@ -82,5 +82,71 @@
 			}
 		}
 
+		public function awards()
+		{
+			$this->load->view('project/addaward');
+		}
+
+		public function aw_add()
+		{
+			$projectid = $this->input->post('projectid');
+			$id = $this->input->post('id');
+			$order = $this->input->post('order');
+			$time = $this->input->post('time');
+			$this->load->model('award');
+			$bool = $this->award->insertAward($projectid,$id,$order,$time);
+			if($bool)
+			{
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
+			}
+		}
+
+		public function validation()
+		{
+			$this->load->view('project/addvalidation');
+		}
+
+		public function va_add()
+		{
+			$projectid = $this->input->post('projectid');
+			$time = $this->input->post('time');
+			$institute = $this->input->post('institute');
+			$others = $this->input->post('others');
+			$this->load->model('validation');
+			$bool = $this->validation->insertValidation($projectid,$time,$institute,$others);
+			if($bool)
+			{
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
+			}
+		}
+		public function funds()
+		{
+			$this->load->view('project/addfunds');
+		}
+		public function fu_add()
+		{
+			$projectid = $this->input->post('projectid');
+			$payoff = $this->input->post('payoff');
+			$year = $this->input->post('year');
+			$remain = $this->input->post('remain');
+			$others = $this->input->post('others');
+			// echo $projectid,$payoff,$year,$remain,$others;
+			$this->load->model('funds');
+			$bool = $this->funds->insertFunds($projectid,$payoff,$year,$remain,$others);
+			if($bool)
+			{
+				echo "添加成功";
+			}else
+			{
+				echo "添加失败";
+			}
+		}
+
 	}
 ?>
