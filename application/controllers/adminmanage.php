@@ -1,15 +1,6 @@
 <?php 
-	class adminmanage extends CI_Controller
+	class adminmanage extends MY_Controller
 	{
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->library('session');
-			if($this->session->userdata('token') != 'in')
-			{
-				redirect(site_url('welcome/login'),'refresh');
-			}
-		}
 		// 密码修改
 		public function modify()
 		{

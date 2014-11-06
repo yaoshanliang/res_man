@@ -67,7 +67,7 @@
 
     <div class="container">
       <div class="row">
-        <h3 class="text-center">国际合作信息维护</h3>
+        <h3 class="text-center">成员进修学习信息维护</h3>
       </div>
       <hr/>
     <div>

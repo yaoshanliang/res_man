@@ -1,15 +1,6 @@
 <?php
-	class projectmanage extends CI_Controller
+	class projectmanage extends MY_Controller
 	{
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->library('session');
-			if($this->session->userdata('token') != 'in')
-			{
-				redirect(site_url('welcome/login'),'refresh');
-			}
-		}
 		
 		public function index()
 		{

@@ -1,15 +1,6 @@
 <?php
-	class cooperationmanage extends CI_Controller
+	class cooperationmanage extends MY_Controller
 	{
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->library('session');
-			if($this->session->userdata('token') != 'in')
-			{
-				redirect(site_url('welcome/login'),'refresh');
-			}
-		}
 		
 		public function index()
 		{
