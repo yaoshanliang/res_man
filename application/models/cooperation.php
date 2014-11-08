@@ -37,5 +37,13 @@
 			$bool= $this->db->delete('cooperation',array('category'=>$category,'number'=>$number,'place'=>$place));
 			return $bool;
 		}
+
+		public function updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which)
+		{
+			$data = array(
+				$which => $$which
+			);
+			$bool = $this->db->update('part',$data,array('id'=>$id));
+		}
 	}
 ?>

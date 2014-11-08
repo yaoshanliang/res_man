@@ -168,7 +168,7 @@ create table learn(
 
 ###17.国际合作情况 cooperation
 create table cooperation(
-	number int not null primary key auto_increment,
+	id int not null primary key auto_increment,
 	category text not null,
 	list text not null,
 	`number` int not null,

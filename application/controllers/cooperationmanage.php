@@ -49,5 +49,27 @@
 				echo "删除失败";
 			}
 		}
+
+		public function modify()
+		{
+			$category = $this->input->post('category');
+			$id = $this->input->post('id');
+			$list = $this->input->post('list');
+			$number = $this->input->post('number');
+			$place = $this->input->post('place');
+			$purpose = $this->input->post('purpose');
+			$url = $this->input->post('url');
+			$news = $this->input->post('news');
+			$picture = $this->input->post('picture');
+			$which = $this->input->post('which');
+			$this->load->model('cooperation');
+			if($this->coopeartion->updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which))
+			{
+				echo "修改成功";
+			}else
+			{
+				echo "修改失败";
+			}
+		}
 	}
 ?>
