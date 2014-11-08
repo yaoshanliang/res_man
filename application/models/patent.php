@@ -42,5 +42,10 @@
 			$res &= $this->db->delete('patentlist',array('identifier'=>$number));
 			return $res;
 		}
+
+		public function addFile($id,$file)
+		{
+			$res = $this->db->update('patent',array('file'=>$file),array('number'=>$id));
+		}
 	}
 ?>

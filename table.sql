@@ -99,7 +99,8 @@ create table copyright(
 	register text not null,
 	person int not null,
 	institute text not null,
-	time text not null
+	time text not null,
+	file text
 );
 
 ###11.专利情况 patent
@@ -109,7 +110,8 @@ create table patent(
 	register text not null,
 	person int not null,
 	institute text not null,
-	time text not null
+	time text not null,
+	file text
 );
 
 ###12.专利人员名单 patentlist

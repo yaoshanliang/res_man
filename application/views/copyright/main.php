@@ -25,7 +25,14 @@
 
       $("#remove_record").click(function()
       {
+        $("#upload").hide();
         $("#remove").slideToggle();
+      });
+
+      $("#upload_file").click(function()
+      {
+        $("#remove").hide();
+        $("#upload").slideToggle();
       });
 
       $(":submit").click(function()
@@ -40,7 +47,7 @@
             {
               alert(res);
             }); 
-        }else
+        }else if($(event.target).text() == "添加")
         {
           var data = {
             name: $("#inputName").val(),
@@ -73,6 +80,7 @@
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
         <a class="btn btn-default" id="remove_record">删除记录</a>
+        <a class="btn btn-default" id="upload_file">上传证明文件</a>
         <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addList" href="<?=site_url('copyrightmanage/copyrightlist')?>">
           添加人员名单
         </a>
@@ -143,6 +151,21 @@
           </div>
           <button type="submit" class="btn btn-default">删除</button>
         </form>
+    </div>
+    
+    <div class="row" id="upload" hidden>
+    <form role="form" class="form-inline" action="<?=site_url('copyrightfile/file_upload')?>" method="post" enctype="multipart/form-data">
+      <div class="form-group col-sm-2">
+        <label for="inputFileNumber" class="sr-only">编号</label>
+        <input type="text" class="form-control" id="inputFileNumber" placeholder="编号">
+      </div>
+      <div class="form-group col-sm-2">
+        <label for="inputFile" class="sr-only">证明文件</label>
+        <input type="file" id="inputFile" name="file">
+        <p class="help-block">只支持jpg,png,gif文件</p>
+      </div>
+      <button type="submit" class="btn btn-default">上传</button>
+    </form>
     </div>
     <br/>
     <div id="detail">

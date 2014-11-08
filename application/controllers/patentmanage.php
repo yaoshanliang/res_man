@@ -64,6 +64,7 @@
 		{
 			$this->load->view('patent/addlist');
 		}
+
 		public function p_add()
 		{
 			$id = $this->input->post('id');
@@ -78,5 +79,6 @@
 				echo "添加失败";
 			}
 		}
+
 	}
 ?>

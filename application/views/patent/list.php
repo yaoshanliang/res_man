@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-      $("table tr:gt(0)").click(function()
+      $("table tr:gt(0) td:lt(7)").click(function()
       {
         var index = $(event.target).index(); //列索引
         if(index == 6)
@@ -62,6 +62,7 @@
     <td>授予单位</td>
     <td>授予时间</td>
     <td>人员名单</td>
+    <td>证明文件</td>
   </tr>
 <?php foreach($patent as $item): ?>
   <tr>
@@ -89,6 +90,9 @@
     }
     echo rtrim($str,',');
     ?>
+    </td>
+    <td>
+      <a href="<?=site_url('patentfile/file_download')?>?file=<?=$item->file?>&number=<?=$item->number?>"><?=$item->file?></a>
     </td>
   </tr>
 <?php endforeach; ?>

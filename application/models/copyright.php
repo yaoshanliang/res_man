@@ -42,5 +42,10 @@
 			$res &= $this->db->delete('copyrightlist',array('identifier'=>$number));
 			return $res;
 		}
+
+		public function addFile($id,$file)
+		{
+			$res = $this->db->update('copyright',array('file'=>$file),array('number'=>$id));
+		}
 	}
 ?>
