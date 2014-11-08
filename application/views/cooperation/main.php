@@ -34,10 +34,7 @@
         if($(event.target).text() == "删除")
         {
           var data = {
-            category: $("#inputNewCategory").val(),
-            number: $("#inputNewNumber").val(),
-            place: $("#inputNewPlace").val(),
-            purpose: $("#inputNewPurpose").val()
+            id: $("#inputDeleteID").val()
           };
           $.post("<?=site_url('cooperationmanage/delete')?>",data,function(res,status)
             {
@@ -146,16 +143,8 @@
     <div id="remove" hidden>
          <form class="form-inline" role="form">
             <div class="form-group">
-              <label for="inputNewCategory" class="sr-only">类别</label>
-              <input type="text" class="form-control" id="inputNewCategory" name="category" placeholder="Category">
-          </div>
-          <div class="form-group">
-            <label for="inputNewNumber" class="sr-only" name="number">人数</label>
-            <input type="text" class="form-control" id="inputNewNumber" placeholder="Number">
-          </div>
-          <div class="form-group">
-            <label for="inputNewPurpose" class="sr-only" name="purpose">目的</label>
-            <input type="text" class="form-control" id="inputNewPurpose" placeholder="Purpose">
+              <label for="inputDeleteID" class="sr-only">类别</label>
+              <input type="text" class="form-control" id="inputDeleteID" placeholder="Category">
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-default">删除</button>

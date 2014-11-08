@@ -22,6 +22,7 @@
 			$url = $this->input->post('url');
 			$news = $this->input->post('news');
 			$picture = $this->input->post('picture');
+
 			$this->load->model('cooperation');
 			$bool = $this->cooperation->insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture);
 			if($bool)
@@ -35,12 +36,9 @@
 
 		public function delete()
 		{
-			$category = $this->input->post('category');
-			$place = $this->input->post('place');
-			$number = $this->input->post('number');
-			$purpose = $this->input->post('purpose');
+			$id = $this->input->post('id');
 			$this->load->model('cooperation');
-			$bool = $this->cooperation->deleteCooperation($category,$number,$place,$purpose);
+			$bool = $this->cooperation->deleteCooperation($id);
 			if($bool)
 			{
 				echo "删除成功";
@@ -62,8 +60,9 @@
 			$news = $this->input->post('news');
 			$picture = $this->input->post('picture');
 			$which = $this->input->post('which');
+
 			$this->load->model('cooperation');
-			if($this->coopeartion->updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which))
+			if($this->cooperation->updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which))
 			{
 				echo "修改成功";
 			}else
