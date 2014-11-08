@@ -18,15 +18,12 @@
 			return $res->result();
 		}
 
-		public function modifyPerson($id,$name,$duties)
+		public function modifyPerson($id,$name,$duties,$phonenumber,$position,$email,$which)
 		{
-			if($name)
-			{
-				$bool = $this->db->update('person',array('name'=>$name),array('id' => $id));
-			}else
-			{
-				$bool = $this->db->update('person',array('duties'=>$duties),array('id' => $id));
-			}
+			$data = array(
+				$which=>$$which
+				);
+			$bool = $this->db->update('person',$data,array('id'=>$id));
 			return $bool;
 		}
 

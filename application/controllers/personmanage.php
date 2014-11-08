@@ -34,8 +34,12 @@
 			$name = $this->input->post('name');
 			$id = $this->input->post('id');
 			$duties = $this->input->post('duties');
+			$position = $this->input->post('position');
+			$phonenumber = $this->input->post('phonenumber');
+			$email = $this->input->post('email');
+			$which = $this->input->post('which');
 			$this->load->model('person');
-			if($this->person->modifyPerson($id,$name,$duties))
+			if($this->person->modifyPerson($id,$name,$duties,$phonenumber,$position,$email,$which))
 			{
 				echo "修改成功";
 			}else

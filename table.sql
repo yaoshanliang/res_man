@@ -27,7 +27,10 @@ create table captcha (
 create table person(
 	id int primary key not null auto_increment,
 	name varchar(10) not null,
-	duties text
+	duties text,
+	phonenumber text,
+	email text,
+	position text
 	);
 
 ###4.项目来源 source

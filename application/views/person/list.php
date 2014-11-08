@@ -22,10 +22,19 @@ $(document).ready(function()
     var opid = $(event.target).parent().children().first().html();
     if(index == 1)
     {
-      var data={ id: opid, name: result };
+      var data={ id: opid, name: result, which:'name' };
+    }else if(index == 2)
+    {
+      var data={ id: opid, duties: result, which:'duties' };
+    }else if(index == 3)
+    {
+      var data={ id: opid, phonenumber: result, which:'phonenumber' };
+    }else if(index == 4)
+    {
+      var data={ id: opid, email: result, which:'email' };
     }else
     {
-      var data={ id: opid, duties: result };
+      var data={ id: opid, position: result, which:'position' };
     }
     $.post("<?=site_url('personmanage/modify')?>",data,function(res,status)
     {
@@ -41,12 +50,18 @@ $(document).ready(function()
     <td>编号(点击删除)</td>
     <td>姓名(点击修改)</td>
     <td>职务(点击修改)</td>
+    <td>手机号码(点击修改)</td>
+    <td>邮箱(点击修改)</td>
+    <td>职称(点击修改)</td>
   </tr>
 <?php foreach($person as $item): ?>
   <tr>
     <td><?=$item->id?></td>
     <td><?=$item->name?></td>
     <td><?=$item->duties?></td>
+    <td><?=$item->phonenumber?></td>
+    <td><?=$item->email?></td>
+    <td><?=$item->position?></td>
   </tr>
 <?php endforeach; ?>
 </table>
