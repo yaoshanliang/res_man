@@ -20,9 +20,9 @@
 			$content = $this->input->post('content');
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
-			$list = $this->input->post('list');
+			$person = $this->input->post('person');
 			$this->load->model('learn');
-			$bool = $this->learn->insertLearn($institute,$content,$start,$end,$list);
+			$bool = $this->learn->insertLearn($institute,$content,$start,$end,$person);
 			if($bool)
 			{
 				echo "添加成功";
@@ -38,11 +38,11 @@
 			$content = $this->input->post('content');
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
-			$list = $this->input->post('list');
+			$person = $this->input->post('person');
 			$number = $this->input->post('number');
 			$which = $this->input->post('which');
 			$this->load->model('learn');
-			$bool = $this->learn->updateLearn($number,$institute,$content,$start,$end,$list,$which);
+			$bool = $this->learn->updateLearn($number,$institute,$content,$start,$end,$person,$which);
 			if($bool)
 			{
 				echo "修改成功";

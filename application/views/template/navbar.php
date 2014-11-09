@@ -17,7 +17,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="<?=site_url('welcome/home')?>">首页</a></li>
-            <li><a href="<?=site_url('')?>">功能</a></li>
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">功能 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="<?=site_url('export/index')?>">导出文件</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown">信息维护 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

@@ -8,7 +8,7 @@
 // );
 	class Learn extends CI_Model
 	{
-		public function insertLearn($institute,$content,$start,$end,$list)
+		public function insertLearn($institute,$content,$start,$end,$person)
 		{
 			$data = array(
 				'number'=>null,
@@ -16,7 +16,7 @@
 				'content'=>$content,
 				'start'=>$start,
 				'end'=>$end,
-				'list'=>$list
+				'person'=>$list
 				);
 			return $this->db->insert('learn',$data);
 		}
@@ -27,7 +27,7 @@
 			return $res->result();
 		}
 
-		public function updateLearn($number,$institute,$content,$start,$end,$list,$which)
+		public function updateLearn($number,$institute,$content,$start,$end,$person,$which)
 		{
 			$data = array(
 				$which => $$which

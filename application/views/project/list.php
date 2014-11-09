@@ -4,6 +4,7 @@
       $("table tr:gt(0)").click(function()
       {
         var index = $(event.target).index(); //列索引
+        if(index>=11) return;
         if(index==0)
         {
           var data = { projectid: $(event.target).text() };
