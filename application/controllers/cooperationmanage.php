@@ -22,9 +22,10 @@
 			$url = $this->input->post('url');
 			$news = $this->input->post('news');
 			$picture = $this->input->post('picture');
+			$year = $this->input->post('year');
 
 			$this->load->model('cooperation');
-			$bool = $this->cooperation->insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture);
+			$bool = $this->cooperation->insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture,$year);
 			if($bool)
 			{
 				echo "添加成功";
@@ -59,10 +60,11 @@
 			$url = $this->input->post('url');
 			$news = $this->input->post('news');
 			$picture = $this->input->post('picture');
+			$year = $this->input->post('year');
 			$which = $this->input->post('which');
 
 			$this->load->model('cooperation');
-			if($this->cooperation->updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which))
+			if($this->cooperation->updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$year,$which))
 			{
 				echo "修改成功";
 			}else

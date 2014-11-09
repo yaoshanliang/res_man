@@ -46,6 +46,9 @@
           }else if(index == 8)
           {
             var data={ id: opid, picture: result, which: 'picture' };
+          }else if(index == 9)
+          {
+            var data={ id: opid, year: result, which: 'year'}
           }
 
           $.post("<?=site_url('cooperationmanage/modify')?>",data,function(res,status)
@@ -69,6 +72,7 @@
           <td>链接</td>
           <td>新闻报道</td>
           <td>照片保留</td>
+          <td>年份</td>
         </tr>
       <?php foreach($cooperation as $item):?>
         <tr>
@@ -81,6 +85,7 @@
           <td><?=$item->url?></td>
           <td><?=$item->news?></td>
           <td><?=$item->picture?></td>
+          <td><?=$item->year?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>

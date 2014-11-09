@@ -50,7 +50,8 @@
             purpose: $("#inputPurpose").val(),
             url: $("#inputURL").val(),
             news: $("#inputNews").val(),
-            picture: $("#inputPicture").val()
+            picture: $("#inputPicture").val(),
+            year: $("#inputYear").val()
           };
           $.post("<?=site_url('cooperationmanage/add')?>",data,function(res,status)
             {
@@ -128,7 +129,11 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <div class="col-sm-offset-8 col-sm-2">
+                            <label for="inputYear" class="col-sm-2 control-label" name="year">年份</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputYear" placeholder="Year">
+                            </div>
+                            <div class="col-sm-offset-6 col-sm-2">
                               <button type="submit" class="btn btn-default">添加</button>
                             </div>
                           </div>
@@ -144,7 +149,7 @@
          <form class="form-inline" role="form">
             <div class="form-group">
               <label for="inputDeleteID" class="sr-only">类别</label>
-              <input type="text" class="form-control" id="inputDeleteID" placeholder="Category">
+              <input type="text" class="form-control" id="inputDeleteID" placeholder="编号">
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-default">删除</button>

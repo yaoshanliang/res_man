@@ -73,7 +73,7 @@
 
     <div class="container">
       <div class="row">
-        <h3 class="text-center">专利权信息维护</h3>
+        <h3 class="text-center">专利信息维护</h3>
       </div>
       <hr/>
     <div>

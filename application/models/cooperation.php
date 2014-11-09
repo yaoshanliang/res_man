@@ -11,7 +11,7 @@
 // );
 	class Cooperation extends CI_Model
 	{
-		public function insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture)
+		public function insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture,$year)
 		{
 			$data = array(
 				'category'=>$category,
@@ -21,7 +21,8 @@
 				'purpose'=>$purpose,
 				'url'=>$url,
 				'news'=>$news,
-				'picture'=>$picture
+				'picture'=>$picture,
+				'year'=>$year
 				);
 			return $this->db->insert('cooperation',$data);
 		}
@@ -38,7 +39,7 @@
 			return $bool;
 		}
 
-		public function updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$which)
+		public function updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$year,$which)
 		{
 			$data = array(
 				$which => $$which
