@@ -264,13 +264,13 @@
                 <tr>
                   <td>学习机构</td>
                   <td>学习内容</td>
-                  <td>人员清单</td>
+                  <td>人员编号</td>
                 </tr>
               <?php foreach($learn as $item): ?>
                 <tr>
                   <td><?=$item->institute?></td>
                   <td><?=$item->content?></td>
-                  <td><?=$item->list?></td>
+                  <td><?=$item->person?></td>
                 </tr>
               <?php endforeach; ?>
               </table>

@@ -90,7 +90,7 @@ class Welcome extends CI_Controller {
 		$res = $this->db->get('part');
 		$data['part'] = $res->result();
 		// 获取所有人员进修学习情况
-		$this->db->select('institute,content,list');
+		$this->db->select('institute,content,person');
 		$res = $this->db->get('learn');
 		$data['learn'] = $res->result();
 		// 输出到home_page

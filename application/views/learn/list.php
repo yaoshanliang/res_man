@@ -35,7 +35,7 @@ $(document).ready(function()
       var data={ number: opid, end: result, which: 'end' };
     }else
     {
-      var data={ number: opid, list: result, which: 'list' };
+      var data={ number: opid, person: result, which: 'person' };
     }
 
     $.post("<?=site_url('learnmanage/modify')?>",data,function(res,status)
@@ -55,7 +55,7 @@ $(document).ready(function()
     <td>学习内容</td>
     <td>开始时间</td>
     <td>结束时间</td>
-    <td>人员列表</td>
+    <td>人员</td>
   </tr>
 <?php foreach($learn as $item):?>
   <tr>
@@ -64,7 +64,10 @@ $(document).ready(function()
     <td><?=$item->content?></td>
     <td><?=$item->start?></td>
     <td><?=$item->end?></td>
-    <td><?=$item->list?></td>
+    <td><?php
+    $res = $this->db->where('id',$item->person)->get('person');
+    echo $res->row()->name;
+    ?></td>
   </tr>
 <?php endforeach; ?>
 </table>

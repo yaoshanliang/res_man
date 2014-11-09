@@ -47,7 +47,7 @@
             content: $("#inputContent").val(),
             start: $("#inputStart").val(),
             end: $("#inputEnd").val(),
-            list: $("#inputList").val()
+            person: $("#inputPerson").val()
           };
           $.post("<?=site_url('learnmanage/add')?>",data,function(res,status)
             {
@@ -108,9 +108,9 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputList" class="col-sm-3 control-label">人员列表</label>
+                            <label for="inputPerson" class="col-sm-3 control-label">人员</label>
                             <div class="col-sm-6">
-                              <input type="text" class="form-control" id="inputList" placeholder="Person List">
+                              <input type="text" class="form-control" id="inputPerson" placeholder="Person">
                             </div>
                           </div>
                           <div class="form-group">

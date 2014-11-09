@@ -160,7 +160,8 @@ create table learn(
 	content text not null,
 	start text not null,
 	end text not null,
-	list text not null
+	person int not null,
+	foreign key(person) references person(id)
 );
 
 
@@ -176,6 +177,7 @@ create table cooperation(
 	purpose text not null,
 	url text not null,
 	news char(1) not null,
-	picture char(1) not null
+	picture char(1) not null,
+	year text not null
 );
 	
