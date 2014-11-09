@@ -10,7 +10,7 @@
           <?php
               $res = $this->db->where('id',$item->id)->get('person');
               echo $res->row()->name;
-          ?>(<?=$item->id?>)</td>
+          ?></td>
           <td><?=$item->order?></td>
           <td><?=$item->time?></td>
         </tr>

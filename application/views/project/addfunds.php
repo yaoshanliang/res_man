@@ -9,7 +9,6 @@
 			{
 				projectid: $("#inputProjectid").val(),
 				payoff: $("#inputPayoff").val(),
-				remain: $("#inputRemain").val(),
 				year: $("#inputYear").val(),
 				others: $("#inputOthers").val()
 			};
@@ -48,13 +47,6 @@
 		    <label for="inputPayoff" class="col-sm-2 control-label">支入</label>
 		    <div class="col-sm-10">
 		      <input type="text" class="form-control" id="inputPayoff" placeholder="Payoff">
-		    </div>
-		  </div>
-		  
-		  <div class="form-group">
-		    <label for="inputRemain" class="col-sm-2 control-label">剩余</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="inputRemain" placeholder="Remain">
 		    </div>
 		  </div>
 

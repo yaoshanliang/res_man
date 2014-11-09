@@ -42,7 +42,7 @@ create table source(
 create table project(
 	`projectid` int primary key not null auto_increment,
 	name text not null,`source` text not null,
-	`level` text,
+	`type` text not null,
 	`principal` int not null,
 	`start` text not null,
 	`end` text not null,
@@ -50,7 +50,6 @@ create table project(
 	`currency` varchar(10) not null default "RMB",
 	`contract` text not null,
 	credit text not null,
-	`type` text not null,
 	foreign key(principal) references person(id)
 	);
 
@@ -76,7 +75,6 @@ create table validation(
 create table funds(
 	projectid int not null,
 	payoff float not null,
-	remain float not null,
 	year varchar(5) not null,
 	others text
 	);
@@ -180,4 +178,11 @@ create table cooperation(
 	picture char(1) not null,
 	year text not null
 );
-	
+
+###18.项目成员名单 projectlist
+create table projectlist(
+	projectid int not null,
+	id int not null,
+	`order` int not null,
+	foreign key(id) REFERENCES person(id)
+	);

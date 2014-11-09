@@ -142,11 +142,10 @@
 			$projectid = $this->input->post('projectid');
 			$payoff = $this->input->post('payoff');
 			$year = $this->input->post('year');
-			$remain = $this->input->post('remain');
 			$others = $this->input->post('others');
 			// echo $projectid,$payoff,$year,$remain,$others;
 			$this->load->model('funds');
-			$bool = $this->funds->insertFunds($projectid,$payoff,$year,$remain,$others);
+			$bool = $this->funds->insertFunds($projectid,$payoff,$year,$others);
 			if($bool)
 			{
 				echo "添加成功";

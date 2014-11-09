@@ -1,9 +1,10 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-      $("table tr:gt(0) td:lt(7)").click(function()
+      $("table tr:gt(0)").click(function()
       {
         var index = $(event.target).index(); //列索引
+        if(index == 7) return;
         if(index == 6)
         {
           //修改人员名单
@@ -13,6 +14,7 @@
         }
         if(index==0)
         {
+          if($(event.target).text() == $(event.target).parent().children().last().html()) return;
           var data = { number: $(event.target).text() };
           $.post("<?=site_url('patentmanage/delete')?>",data,function(res,status)
           {

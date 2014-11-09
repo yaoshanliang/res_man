@@ -28,7 +28,7 @@
           var data={ projectid: opid, source: result, which: 'source' };
         }else if(index == 3)
         {
-          var data={ projectid: opid, level: level, which: 'level'};
+          var data={ projectid: opid, type: result, which: 'type'};
         }else if(index == 4)
         {
           var data={ projectid: opid, principal: result, which: 'principal'};
@@ -50,9 +50,6 @@
         }else if(index == 10)
         {
           var data={ projectid: opid, credit: result, which: 'credit'};
-        }else if(index == 11)
-        {
-          var data={ projectid: opid, type: result, which: 'type'};
         }
         $.post("<?=site_url('projectmanage/modify')?>",data,function(res,status)
         {
@@ -78,14 +75,14 @@
           <td>货币种类</td>
           <td>合同号</td>
           <td>经费卡号</td>
-          <td>项目类型</td>
+          <td>人员名单</td>
         </tr>
       <?php foreach($project as $item): ?>
         <tr>
           <td><?=$item->projectid?></td>
           <td><?=$item->name?></td>
           <td><?=$item->source?></td>
-          <td><?=$item->level?></td>
+          <td><?=$item->type?></td>
           <td><?=$item->principal?></td>
           <td><?=$item->start?></td>
           <td><?=$item->end?></td>
@@ -93,7 +90,25 @@
           <td><?=$item->currency?></td>
           <td><?=$item->contract?></td>
           <td><?=$item->credit?></td>
-          <td><?=$item->type?></td>
+          <td>
+            <?php 
+            // 获取人员名单 restrinct: <9
+            $res = $this->db->where('projectid',$item->projectid)->get('projectlist')->result();
+            $str = "";
+            foreach($res as $item2)
+            {
+              for($i=0;$i<10;$i++)
+              {
+                if($i == $item2->order)
+                {
+                  $res = $this->db->where('id',$item2->id)->get('person');
+                  $str .= $res->row()->name.",";
+                }
+              }
+            }
+            echo rtrim($str,',');
+            ?>
+          </td>
         </tr>
       <?php endforeach; ?>
       </table>

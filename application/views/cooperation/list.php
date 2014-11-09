@@ -5,6 +5,7 @@
       $("table tr:gt(0)").click(function()
       {
           var index = $(event.target).index(); //列索引
+          if(index == 10) return;
           if(index==0)
           {
             var data = { id: $(event.target).text() };
