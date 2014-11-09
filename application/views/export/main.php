@@ -22,19 +22,33 @@
       </div>
       <hr/>
     <div>
-    <form class="form-inline" role="form" action="<?=site_url('export/do_export')?>" method="post">
+    <form class="form-horizontal" role="form" action="<?=site_url('export/do_export')?>" method="post">
           <div class="form-group">
-            <label for="inputType" class="sr-only">类别</label>
-            <input type="text" class="form-control" id="inputType" name="type" placeholder="类型">
+            <label for="inputFilename" class="col-sm-offset-2 col-sm-2 control-label">文件名</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="inputFilename" name="filename" placeholder="File Name">
+            </div>
           </div>
           <div class="form-group">
-            <label for="inputFilename" class="sr-only">类别</label>
-            <input type="text" class="form-control" id="inputFilename" name="filename" placeholder="文件名">
+            <div class="col-sm-4 col-sm-offset-4">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="type" value="excel" checked/> EXCEL
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="type" value="pdf" /> PDF 
+                </label>
+              </div>
+            </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-default">导出</button>
+            <div class="col-sm-4 col-sm-offset-4">
+              <button type="submit" class="btn btn-default">导出</button>
+            </div>
         </div>
-        </form>
+    </form>
 
     <?php $this->load->view('template/footer') ?>
   </body>

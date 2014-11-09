@@ -13,6 +13,7 @@
 			$objPHPExcel = new PHPExcel();
 
 			$filename = $this->input->post('filename');
+			if($filename==""||$filename==null) $filename="statitics";
 			$m_exportType = $this->input->post('type');
 			// 设置excel文档的属性
 			$objPHPExcel->getProperties()->setCreator("Sam.c")
@@ -36,13 +37,14 @@
 
 			// 如果需要输出EXCEL格式
 			if($m_exportType=="excel"){   
-			    $objWriter = IOFactory::createWriter($objPHPExcel, 'Excel5');
+				$filename = $filename.".xlsx";
+			    $objWriter = IOFactory::createWriter($objPHPExcel, 'Excel2007');
 			    // 从浏览器直接输出$filename
 			    header("Pragma: public");
 			    header("Expires: 0");
 			    header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
 			    header("Content-Type:application/force-download");
-			    header("Content-Type: application/vnd.ms-excel;");
+			    header("Content-Type:application/vnd.ms-excel;");
 			    header("Content-Type:application/octet-stream");
 			    header("Content-Type:application/download");
 			    header("Content-Disposition:attachment;filename=".$filename);
@@ -51,16 +53,17 @@
 			}
 			// 如果需要输出PDF格式
 			if($m_exportType=="pdf"){
+				$filename = $filename.".pdf";
 			    $objWriter = IOFactory::createWriter($objPHPExcel, 'PDF');
 			    $objWriter->setSheetIndex(0);
 			    header("Pragma: public");
 			    header("Expires: 0");
 			    header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
 			    header("Content-Type:application/force-download");
-			    header("Content-Type: application/pdf");
+			    header("Content-Type:application/pdf");
 			    header("Content-Type:application/octet-stream");
 			    header("Content-Type:application/download");
-			    header("Content-Disposition:attachment;filename=".$m_strOutputPdfFileName);
+			    header("Content-Disposition:attachment;filename=".$filename);
 			    header("Content-Transfer-Encoding:binary");
 			    $objWriter->save("php://output"); 
 			}
@@ -77,6 +80,20 @@
 			// 设置默认字体和大小
 			$objPHPExcel->getDefaultStyle()->getFont()->setName("宋体");
 			$objPHPExcel->getDefaultStyle()->getFont()->setSize(10);
+
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 
 			// 标题栏
 			$objPHPExcel->getActiveSheet()->mergeCells('A1:L1');
@@ -134,6 +151,21 @@
 			$objPHPExcel->getDefaultStyle()->getFont()->setName("宋体");
 			$objPHPExcel->getDefaultStyle()->getFont()->setSize(10);
 
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
+
 			// 标题栏
 			$objPHPExcel->getActiveSheet()->mergeCells('A1:M1');
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
@@ -190,6 +222,15 @@
 			// 设置默认字体和大小
 			$objPHPExcel->getDefaultStyle()->getFont()->setName("宋体");
 			$objPHPExcel->getDefaultStyle()->getFont()->setSize(10);
+
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
 
 			// 标题栏
 			$objPHPExcel->getActiveSheet()->mergeCells('A1:G1');
@@ -251,6 +292,15 @@
 			// 设置默认字体和大小
 			$objPHPExcel->getDefaultStyle()->getFont()->setName("宋体");
 			$objPHPExcel->getDefaultStyle()->getFont()->setSize(10);
+
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
 
 			// 标题栏
 			$objPHPExcel->getActiveSheet()->mergeCells('A1:G1');
@@ -320,6 +370,14 @@
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ICES研究中心2013年度科研项目鉴定(验收)情况');
 
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+
 			//信息栏
 			$objPHPExcel->getActiveSheet()->setCellValue('A2', '序号');
 			$objPHPExcel->getActiveSheet()->setCellValue('B2', '项目名称');
@@ -370,6 +428,13 @@
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ICES研究中心2013年度 出版专著情况');
 
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
 			//信息栏
 			$objPHPExcel->getActiveSheet()->setCellValue('A2', '序号');
 			$objPHPExcel->getActiveSheet()->setCellValue('B2', '专著名称');
@@ -410,6 +475,14 @@
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ICES研究中心2013年度 学术团体兼职情况');
+
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
 
 			//信息栏
 			$objPHPExcel->getActiveSheet()->setCellValue('A2', '序号');
@@ -455,6 +528,14 @@
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ICES研究中心2013年度 国内外进修及学习情况');
 
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+
 			//信息栏					
 			$objPHPExcel->getActiveSheet()->setCellValue('A2', '序号');
 			$objPHPExcel->getActiveSheet()->setCellValue('B2', '进修学习单位');
@@ -462,6 +543,10 @@
 			$objPHPExcel->getActiveSheet()->setCellValue('D2', '开始时间');
 			$objPHPExcel->getActiveSheet()->setCellValue('E2', '结束时间');
 			$objPHPExcel->getActiveSheet()->setCellValue('F2', '(进修及学习)人员姓名');
+
+			//设置填充的样式和背景色
+			// $objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
+			$objPHPExcel->getActiveSheet()->getStyle('A2:F2')->getFill()->getStartColor()->setARGB('00C0FFC0');
 
 			$this->load->model('learn');
 			$i = 3;
@@ -498,6 +583,20 @@
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
 			$objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 			$objPHPExcel->getActiveSheet()->setCellValue('A1', 'ICES研究中心2013年度 国际合作情况');
+			
+			//列宽度自适应
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 
 			//信息栏					  
 			$objPHPExcel->getActiveSheet()->setCellValue('A2', '序号');
@@ -512,7 +611,7 @@
 			$objPHPExcel->getActiveSheet()->setCellValue('J2', '新闻报道链接');
 			$objPHPExcel->getActiveSheet()->setCellValue('K2', '新闻报告保存否');
 			$objPHPExcel->getActiveSheet()->setCellValue('L2', '照片保存否');
-
+			
 			$this->load->model('cooperation');
 			$i = 3;
 			$res = $this->cooperation->getCooperation();
