@@ -46,8 +46,11 @@
             category: $("#inputCategory").val(),
             list: $("#inputList").val(),
             number: $("#inputNumber").val(),
+            start: $("$inputStart").val(),
+            end: $("$inputEnd").val(),
             place: $("#inputPlace").val(),
             purpose: $("#inputPurpose").val(),
+            report: $("#inputReport").val(),
             url: $("#inputURL").val(),
             news: $("#inputNews").val(),
             picture: $("#inputPicture").val(),
@@ -109,6 +112,16 @@
                             </div>
                           </div>
                           <div class="form-group">
+                            <label for="inputStart" class="col-sm-2 control-label" name="start">开始时间</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputStart" placeholder="Start Time">
+                            </div>
+                            <label for="inputEnd" class="col-sm-2 control-label" name="end">结束时间</label>
+                            <div class="col-sm-4">
+                              <input type="text" class="form-control" id="inputEnd" placeholder="End Time">
+                            </div>
+                          </div>
+                          <div class="form-group">
                             <label for="inputPurpose" class="col-sm-2 control-label" name="purpose">目的</label>
                             <div class="col-sm-4">
                               <input type="text" class="form-control" id="inputPurpose" placeholder="Purpose">
@@ -129,9 +142,9 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputYear" class="col-sm-2 control-label" name="year">年份</label>
+                            <label for="inputReport" class="col-sm-4 control-label" name="year">报告名称</label>
                             <div class="col-sm-4">
-                              <input type="text" class="form-control" id="inputYear" placeholder="Year">
+                              <input type="text" class="form-control" id="inputReport" placeholder="Report Name">
                             </div>
                             <div class="col-sm-offset-6 col-sm-2">
                               <button type="submit" class="btn btn-default">添加</button>
@@ -154,6 +167,7 @@
           <div class="form-group">
             <button type="submit" class="btn btn-default">删除</button>
         </div>
+        </form>
     </div>
     <br/>
     <div id="detail">
