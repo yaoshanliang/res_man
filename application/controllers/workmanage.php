@@ -16,6 +16,12 @@
 		}
 		public function add()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$name = $this->input->post('name');
 			$publisher = $this->input->post('publisher');
 			$publishdate = $this->input->post('publishdate');
@@ -31,13 +37,20 @@
 		}
 		public function modify()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 1)
+			{
+				echo "权限错误";
+				return;
+			}
+			$number = $this->input->post('number');
 			$name = $this->input->post('name');
 			$publisher = $this->input->post('publisher');
 			$publishdate = $this->input->post('publishdate');
 			$personlist = $this->input->post('personlist');
 			$which = $this->input->post('which');
 			$this->load->model('work');
-			if($this->work->updateWork($name,$publisher,$publishdate,$personlist,$which))
+			if($this->work->updateWork($number,$name,$publisher,$publishdate,$personlist,$which))
 			{
 				echo "修改成功";
 			}else
@@ -48,9 +61,15 @@
 		}
 		public function delete()
 		{
-			$name = $this->input->post('name');
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
+			$number = $this->input->post('number');
 			$this->load->model('work');
-			if($this->work->deleteWork($name))
+			if($this->work->deleteWork($number))
 			{
 				echo "删除成功";
 			}else

@@ -10,6 +10,7 @@
 		public function insertWork($name,$publisher,$publishdate,$personlist)
 		{
 			$data = array(
+				'number'=>null,
 				'name'=>$name,
 				'publisher'=>$publisher,
 				'publishdate'=>$publishdate,
@@ -24,17 +25,17 @@
 			return $res->result();
 		}
 
-		public function updateWork($name,$publisher,$publishdate,$personlist,$which)
+		public function updateWork($number,$name,$publisher,$publishdate,$personlist,$which)
 		{
 			$data = array(
 				$which => $$which
 				);
-			return $this->db->update('work',$data,array('name'=>$name));
+			return $this->db->update('work',$data,array('number'=>$number));
 		}
 
-		public function deleteWork($name)
+		public function deleteWork($number)
 		{
-			$bool = $this->db->delete('work',array('name'=>$name));
+			$bool = $this->db->delete('work',array('number'=>$number));
 			return $bool;
 		}
 	}
