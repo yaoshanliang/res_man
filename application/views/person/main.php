@@ -87,27 +87,27 @@
                     <form class="form-horizontal">
                       <div class="form-group">
                         <label for="inputName" class="col-sm-2 control-label">姓名</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputName" placeholder="Name">
                         </div>
                         <label for="inputDuty" class="col-sm-2 control-label">职务</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputDuty" placeholder="Duty">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputPhonenumber" class="col-sm-2 control-label">手机号码</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputPhonenumber" placeholder="Phone Number">
                         </div>
                         <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                           <input type="email" class="form-control" id="inputEmail" placeholder="Email">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputPosition" class="col-sm-2 control-label">职称</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                           <input type="text" class="form-control" id="inputPosition" placeholder="Title">
                         </div>
                       </div>

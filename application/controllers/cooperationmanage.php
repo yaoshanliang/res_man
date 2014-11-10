@@ -14,6 +14,12 @@
 		}
 		public function add()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$category = $this->input->post('category');
 			$list = $this->input->post('list');
 			$number = $this->input->post('number');
@@ -38,6 +44,12 @@
 
 		public function delete()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$id = $this->input->post('id');
 			$this->load->model('cooperation');
 			$bool = $this->cooperation->deleteCooperation($id);
@@ -52,6 +64,12 @@
 
 		public function modify()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 1)
+			{
+				echo "权限错误";
+				return;
+			}
 			$category = $this->input->post('category');
 			$id = $this->input->post('id');
 			$list = $this->input->post('list');

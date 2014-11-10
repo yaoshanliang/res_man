@@ -14,6 +14,7 @@
 		public function insertCooperation($category,$list,$number,$place,$purpose,$url,$news,$picture,$report,$start,$end)
 		{
 			$data = array(
+				'id'=>null,
 				'category'=>$category,
 				'list'=>$list,
 				'number'=>$number,
