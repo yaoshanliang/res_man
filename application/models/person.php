@@ -36,7 +36,7 @@
 		public function getPersonByName($name)
 		{
 			$res = $this->db->where('name',$name)->get('person');
-			return $res->row()->id;
+			return $res->row();
 		}
 
 		public function deletePerson($id)

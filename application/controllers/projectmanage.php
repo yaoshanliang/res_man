@@ -62,9 +62,26 @@
 		{
 			$projectid = $this->input->post('projectid');
 			$name = $this->input->post('name');
+			// 对于项目来源的处理
 			$source = $this->input->post('source');
-			$level = $this->input->post('level');
+			$this->load->model('source');
+			if($this->source->getSourceByName($source)==null)
+			{
+				// 来源不存在，则加入
+				$this->source->addSource($source);
+			}
+			// 存编号
+			$source = $this->source->getSourceByName($source)->number;
+			// 对于负责人处理，存编号
 			$principal = $this->input->post('principal');
+			$this->load->model('person');
+			if($this->person->getPersonByName($principal)==null)
+			{
+				echo "修改姓名不存在";
+				return;
+			}
+			$principal = $this->person->getPersonByName($principal)->id;
+
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
 			$money = $this->input->post('money');
@@ -75,7 +92,7 @@
 			$which = $this->input->post('which');
 			$this->load->model('project');
 			if($currency =="" || $currency == null) $currency="DEFAULT";
-			if($this->project->updateProject($projectid,$name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which))
+			if($this->project->updateProject($projectid,$name,$source,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which))
 			{
 				echo "修改成功";
 			}else
