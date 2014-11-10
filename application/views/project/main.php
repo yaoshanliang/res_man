@@ -23,6 +23,12 @@
 
       $("#refresh_list").click();
 
+      $("#selectMode").children().eq($("#currentMode").text()).attr("selected","selected");
+      $("#selectMode").change(function()
+      {
+        $("#modeControl").submit();
+      });
+
       $("#remove_record").click(function()
       {
         $("#show_msg_div").hide();
@@ -106,6 +112,17 @@
     <div class="container">
       <div class="row">
         <h3 class="text-center">项目信息维护</h3>
+        <p hidden id="currentMode"><?php echo $this->session->userdata('mode')?></p>
+        <div class="col-md-1 col-md-offset-10 text-right">
+          <form action="<?=site_url('modecontroller/changemode')?>" method="post" id="modeControl">
+            <select class="form-control" name="mode" id="selectMode">
+              <option value="0">查询</option>
+              <option value="1">维护</option>
+              <option value="2">管理</option>
+            </select>
+            <input type="text" name="from" value="<?=site_url('projectmanage/index')?>" hidden>
+          </form>
+        </div>
       </div>
       <hr/>
     <div>
