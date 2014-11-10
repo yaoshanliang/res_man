@@ -16,6 +16,12 @@
 
 		public function add()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$institute = $this->input->post('institute');
 			$content = $this->input->post('content');
 			$start = $this->input->post('start');
@@ -34,6 +40,12 @@
 
 		public function modify()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 1)
+			{
+				echo "权限错误";
+				return;
+			}
 			$institute = $this->input->post('institute');
 			$content = $this->input->post('content');
 			$start = $this->input->post('start');
@@ -54,6 +66,12 @@
 		}
 		public function delete()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$number = $this->input->post('number');
 			$this->load->model('learn');
 			$bool = $this->learn->deleteLearn($number);

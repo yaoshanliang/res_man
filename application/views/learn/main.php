@@ -34,32 +34,24 @@
         $("#remove").slideToggle();
       });
 
-      $(":submit").click(function()
+      $("#addRecord").click(function()
       {
-        $("#remove").hide();
-        if($(event.target).text() == "删除")
+        if($("#currentMode").text()!=2)
         {
-          var data = {
-            number: $("#reinputID").val()
-          };
-          $.post("<?=site_url('learnmanage/delete')?>",data,function(res,status)
-            {
-              alert(res);
-            }); 
-        }else
-        {
-          var data = {
-            institute: $("#inputInstitute").val(),
-            content: $("#inputContent").val(),
-            start: $("#inputStart").val(),
-            end: $("#inputEnd").val(),
-            person: $("#inputPerson").val()
-          };
-          $.post("<?=site_url('learnmanage/add')?>",data,function(res,status)
-            {
-              alert(res);
-            });
+          alert("权限错误");
+          return;
         }
+        var data = {
+          institute: $("#inputInstitute").val(),
+          content: $("#inputContent").val(),
+          start: $("#inputStart").val(),
+          end: $("#inputEnd").val(),
+          person: $("#inputPerson").val()
+        };
+        $.post("<?=site_url('learnmanage/add')?>",data,function(res,status)
+          {
+            alert(res);
+          });
         // 刷新一次数据
         $("#refresh_list").click(); 
         return true;
@@ -89,7 +81,6 @@
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
-        <a class="btn btn-default" id="remove_record">删除记录</a>
 
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -132,7 +123,7 @@
                           </div>
                           <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-2">
-                              <button type="submit" class="btn btn-default">添加</button>
+                              <button type="submit" id="addRecord" class="btn btn-default">添加</button>
                             </div>
                           </div>
                       </form>
@@ -140,18 +131,6 @@
               </div>
             </div>
           </div>
-    </div>
-
-    <br/>
-    <div id="remove" hidden>
-         <form class="form-inline" role="form">
-            <div class="form-group">
-              <label for="reinputID" class="sr-only">编号</label>
-              <input type="text" class="form-control" id="reinputID" placeholder="Number">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-default">删除</button>
-        </div>
     </div>
     <br/>
     <div id="detail">

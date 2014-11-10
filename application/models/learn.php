@@ -16,7 +16,7 @@
 				'content'=>$content,
 				'start'=>$start,
 				'end'=>$end,
-				'person'=>$list
+				'person'=>$person
 				);
 			return $this->db->insert('learn',$data);
 		}
