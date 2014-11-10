@@ -34,7 +34,7 @@
 			return $bool;
 		}
 
-		public function updatePart($number,$name,$duty,$start,$end,$which)
+		public function updatePart($number,$name,$duty,$start,$end,$id,$which)
 		{
 			$data = array(
 				$which => $$which

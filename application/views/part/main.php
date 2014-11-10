@@ -29,37 +29,24 @@
         $("#modeControl").submit();
       });
 
-      $("#remove_record").click(function()
+      $("#addRecord").click(function()
       {
-        $("#remove").slideToggle();
-      });
-
-      $(":submit").click(function()
-      {
-        $("#remove").hide();
-        if($(event.target).text() == "删除")
+        if($("#currentMode").text()!=2)
         {
-          var data = {
-            number: $("#reinputNumber").val()
-          };
-          $.post("<?=site_url('partmanage/delete')?>",data,function(res,status)
-            {
-              alert(res);
-            }); 
-        }else
-        {
-          var data = {
-            name: $("#inputName").val(),
-            duty: $("#inputDuty").val(),
-            start: $("#inputStart").val(),
-            end: $("#inputEnd").val(),
-            id: $("#inputPerson").val()
-          };
-          $.post("<?=site_url('partmanage/add')?>",data,function(res,status)
-            {
-              alert(res);
-            });
+          alert("权限错误");
+          return;
         }
+        var data = {
+          name: $("#inputName").val(),
+          duty: $("#inputDuty").val(),
+          start: $("#inputStart").val(),
+          end: $("#inputEnd").val(),
+          person: $("#inputPerson").val()
+        };
+        $.post("<?=site_url('partmanage/add')?>",data,function(res,status)
+          {
+            alert(res);
+          });
         // 刷新一次数据
         $("#refresh_list").click(); 
         return true;
@@ -73,7 +60,7 @@
 
     <div class="container">
       <div class="row">
-        <h3 class="text-center">成员进修学习信息维护</h3>
+        <h3 class="text-center">学术兼职情况信息维护</h3>
         <p hidden id="currentMode"><?php echo $this->session->userdata('mode')?></p>
         <div class="col-md-1 col-md-offset-10 text-right">
           <form action="<?=site_url('modecontroller/changemode')?>" method="post" id="modeControl">
@@ -90,7 +77,6 @@
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
-        <a class="btn btn-default" id="remove_record">删除记录</a>
 
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -122,18 +108,18 @@
                            <div class="form-group">
                             <label for="inputEnd" class="col-sm-3 control-label">结束时间</label>
                             <div class="col-sm-6">
-                              <input type="text" class="form-control" id="inputEnd" placeholder="News reported">
+                              <input type="text" class="form-control" id="inputEnd" placeholder="End Time">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputPerson" class="col-sm-3 control-label" name="news">兼职人员</label>
+                            <label for="inputPerson" class="col-sm-3 control-label">兼职人员</label>
                             <div class="col-sm-6">
-                              <input type="text" class="form-control" id="inputPerson" placeholder="Person ID">
+                              <input type="text" class="form-control" id="inputPerson" placeholder="Person Name">
                             </div>
                           </div>
                           <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-2">
-                              <button type="submit" class="btn btn-default">添加</button>
+                              <button type="submit" id="addRecord" class="btn btn-default">添加</button>
                             </div>
                           </div>
                       </form>
@@ -143,18 +129,6 @@
           </div>
     </div>
 
-    <br/>
-    <div id="remove" hidden>
-        <form class="form-inline">
-          <div class="form-group">
-            <label for="reinputNumber" class="sr-only">人数</label>
-            <input type="text" class="form-control" id="reinputNumber" placeholder="Number">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-default">删除</button>
-          </div>
-        </form>
-    </div>
     <br/>
     <div id="detail">
     </div> 

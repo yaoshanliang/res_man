@@ -29,11 +29,6 @@
         $("#modeControl").submit();
       });
 
-      $("#remove_record").click(function()
-      {
-        $("#remove").slideToggle();
-      });
-
       $("#addRecord").click(function()
       {
         if($("#currentMode").text()!=2)
