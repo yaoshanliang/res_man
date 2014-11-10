@@ -6,9 +6,10 @@
 	// );
 	class person extends CI_Model
 	{
-		public function insertPerson($name,$duties)
+		public function insertPerson($name,$duties,$phonenumber,$position,$email)
 		{
-			$bool = $this->db->insert('person',array('id'=>null,'name'=>$name,'duties'=>$duties));
+			$bool = $this->db->insert('person',
+				array('id'=>null,'name'=>$name,'duties'=>$duties,'phonenumber'=>$phonenumber,'position'=>$position,'email'=>'email'));
 			return $bool;
 		}
 

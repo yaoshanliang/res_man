@@ -21,16 +21,31 @@
 		}
 		public function add()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$name = $this->input->post('name');
 			$duties = $this->input->post('duties');
+			$position = $this->input->post('position');
+			$phonenumber = $this->input->post('phonenumber');
+			$email = $this->input->post('email');
 			$this->load->model('person');
-			if($this->person->insertPerson($name,$duties))
+			if($this->person->insertPerson($name,$duties,$phonenumber,$position,$email))
 			{
 				echo "Success";
 			}
 		}
 		public function modify()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 1)
+			{
+				echo "权限错误";
+				return;
+			}
 			$name = $this->input->post('name');
 			$id = $this->input->post('id');
 			$duties = $this->input->post('duties');
@@ -49,6 +64,12 @@
 		}
 		public function delete()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$id = $this->input->post("id");
 			$this->load->model('person');
 			if($this->person->deletePerson($id))
