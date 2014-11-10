@@ -5,7 +5,8 @@
 ###1.管理员
 create table Admin(
 	name text not null,
-	password text not null
+	password text not null,
+	mode int not null
 	);
 
 ###2.验证码

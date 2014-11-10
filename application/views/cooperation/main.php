@@ -53,8 +53,7 @@
             report: $("#inputReport").val(),
             url: $("#inputURL").val(),
             news: $("#inputNews").val(),
-            picture: $("#inputPicture").val(),
-            year: $("#inputYear").val()
+            picture: $("#inputPicture").val()
           };
           $.post("<?=site_url('cooperationmanage/add')?>",data,function(res,status)
             {

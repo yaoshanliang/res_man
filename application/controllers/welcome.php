@@ -41,6 +41,10 @@ class Welcome extends CI_Controller {
 		{
 			$this->session->set_userdata('username',$user);
 			$this->session->set_userdata('token','in');
+			/*
+			* 0 (default) : 查询模式  1 : 维护模式  2 : 管理模式
+			*/
+			$this->session->set_userdata('mode',0);
 			/*验证成功*/
 			redirect(site_url('welcome/home'),'refresh');
 		}else
@@ -95,10 +99,6 @@ class Welcome extends CI_Controller {
 		$data['learn'] = $res->result();
 		// 输出到home_page
 		$this->load->view("home_page",$data);
-	}
-	public function test()
-	{
-		$this->load->view('bootstrap-template');
 	}
 }
 ?>

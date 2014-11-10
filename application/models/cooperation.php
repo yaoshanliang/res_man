@@ -41,7 +41,7 @@
 			return $bool;
 		}
 
-		public function updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$start,$start,$end,$which)
+		public function updateCooperation($id,$category,$list,$number,$place,$purpose,$url,$news,$picture,$report,$start,$end,$which)
 		{
 			$data = array(
 				$which => $$which

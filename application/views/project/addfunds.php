@@ -44,7 +44,7 @@
 		  </div>
 
 		  <div class="form-group">
-		    <label for="inputPayoff" class="col-sm-2 control-label">支入</label>
+		    <label for="inputPayoff" class="col-sm-2 control-label">获得经费</label>
 		    <div class="col-sm-10">
 		      <input type="text" class="form-control" id="inputPayoff" placeholder="Payoff">
 		    </div>

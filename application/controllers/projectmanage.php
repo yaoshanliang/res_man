@@ -29,7 +29,16 @@
 			// 存编号
 			$source = $this->source->getSourceByName($source)->number;
 
+			// 对于负责人处理，存编号
 			$principal = $this->input->post('principal');
+			$this->load->model('person');
+			if($this->person->getPersonByName($principal)==null)
+			{
+				echo "添加姓名不存在";
+				return;
+			}
+			$principal = $this->person->getPersonByName($principal)->id;
+
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
 			$money = $this->input->post('money');

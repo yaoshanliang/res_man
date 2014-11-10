@@ -54,9 +54,6 @@
           }else if(index == 11)
           {
             var data={ id: opid, picture: result, which: 'picture' };
-          }else if(index == 12)
-          {
-            var data={ id: opid, year: result, which: 'year'}
           }
 
           $.post("<?=site_url('cooperationmanage/modify')?>",data,function(res,status)
@@ -98,7 +95,6 @@
           <td><?=$item->url?></td>
           <td><?=$item->news?></td>
           <td><?=$item->picture?></td>
-          <td><?=$item->year?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
