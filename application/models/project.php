@@ -15,13 +15,12 @@
 	// );
 	class Project extends CI_Model
 	{
-		public function insertProject($name,$source,$level = null,$principal,$start,$end,$money,$currency,$contract,$credit,$type)
+		public function insertProject($name,$source,$principal,$start,$end,$money,$currency,$contract,$credit,$type)
 		{
 			$data = array(
 				'projectid'=>null,
 				'name'=>$name,
 				'source'=>$source,
-				'level'=>$level,
 				'principal'=>$principal,
 				'start'=>$start,
 				'end'=>$end,
@@ -40,7 +39,7 @@
 			return $res->result();
 		}
 
-		public function updateProject($projectid,$name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which)
+		public function updateProject($projectid,$name,$source,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which)
 		{
 			$data = array(
 				$which => $$which
@@ -53,8 +52,6 @@
 		public function deleteProject($projectid)
 		{
 			$bool = $this->db->delete('project',array('projectid'=>$projectid));
-			$bool = $bool && $this->db->delete('award',array('projectid'=>$projectid));
-			$bool = $bool && $this->db->delete('validation',array('projectid'=>$projectid));
 			$bool = $bool && $this->db->delete('funds',array('projectid'=>$projectid));
 			return $bool;
 		}

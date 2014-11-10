@@ -14,7 +14,7 @@
 			$usr = $_GET['source'];
 			//判断是否已经加入
 			$this->load->model('source');
-			$res = $this -> source ->getAllSource();
+			$res = $this -> source ->getSource();
 			foreach($res as $item)
 			{
 				// 已加入
@@ -28,7 +28,7 @@
 		{
 			//获取所有数据
 			$this->load->model("source");
-			$res = $this->source->getAllSource();
+			$res = $this->source->getSource();
 			foreach($res as $item)
 			{
 				echo $item->name."<br/>";

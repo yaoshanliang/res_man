@@ -4,7 +4,9 @@
 		
 		public function index()
 		{
-			$this->load->view('project/main');
+			$res = $this->db->get('source');
+			$data['project_source'] = $res->result();
+			$this->load->view('project/main',$data);
 		}
 		public function show()
 		{
@@ -16,8 +18,17 @@
 		public function add()
 		{
 			$name = $this->input->post('name');
+			// 对于项目来源的处理
 			$source = $this->input->post('source');
-			$level = $this->input->post('level');
+			$this->load->model('source');
+			if($this->source->getSourceByName($source)==null)
+			{
+				// 来源不存在，则加入
+				$this->source->addSource($source);
+			}
+			// 存编号
+			$source = $this->source->getSourceByName($source)->number;
+
 			$principal = $this->input->post('principal');
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
@@ -27,7 +38,7 @@
 			$credit = $this->input->post('credit');
 			$type = $this->input->post('type');
 			$this->load->model('project');
-			if($this->project->insertProject($name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type))
+			if($this->project->insertProject($name,$source,$principal,$start,$end,$money,$currency,$contract,$credit,$type))
 			{
 				echo "添加成功";
 			}else

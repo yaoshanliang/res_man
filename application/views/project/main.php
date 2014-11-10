@@ -72,11 +72,10 @@
           var data = {
             name: $("#inputName").val(),
             source: $("#inputSource").val(),
-            level: $("#inputLevel").val(),
             principal: $("#inputPrincipal").val(),
             start: $("#inputStart").val(),
             end: $("#inputEnd").val(),
-            money: $("#d").val(),
+            money: $("#inputMoney").val(),
             currency: $("#inputCurrency").val(),
             contract: $("#inputContract").val(),
             credit: $("#inputCredit").val(),
@@ -93,6 +92,11 @@
         return true;
       });
     });
+    function select_source(e)
+    {
+      // alert($(e).children().eq($(e).val()-1).html());
+      $("#inputSource").val($(e).children().eq($(e).val()-1).html());
+    }
     </script>
   </head>
   <body>
@@ -159,12 +163,17 @@
                             <label for="inputSource" class="col-sm-2 control-label">项目来源</label>
                             <div class="col-sm-4">
                               <input type="text" class="form-control" id="inputSource" placeholder="Source">
+                              <select onchange="select_source(this);">  
+                                <?php foreach($project_source as $item): ?>
+                                <option value ="<?=$item->number?>"><?=$item->name?></option> 
+                                <?php endforeach; ?> 
+                              </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputLevel" class="col-sm-2 control-label">项目等级</label>
+                            <label for="inputType" class="col-sm-2 control-label">项目类型</label>
                             <div class="col-sm-4">
-                              <input type="text" class="form-control" id="inputLevel" placeholder="Level">
+                              <input type="text" class="form-control" id="inputType" placeholder="Type">
                             </div>
                             <label for="inputPrincipal" class="col-sm-2 control-label">项目负责人</label>
                             <div class="col-sm-4">
@@ -194,17 +203,11 @@
                           <div class="form-group">
                             <label for="inputContract" class="col-sm-2 control-label">合同号</label>
                             <div class="col-sm-4">
-                              <input type="text" class="form-control" id="inputContract" placeholder="合同号">
+                              <input type="text" class="form-control" id="inputContract" placeholder="Contract">
                             </div>
                             <label for="inputCredit" class="col-sm-2 control-label">经费卡号</label>
                             <div class="col-sm-4">
                               <input type="text" class="form-control" id="inputCredit" placeholder="Credit">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputType" class="col-sm-2 control-label">项目类型</label>
-                            <div class="col-sm-4">
-                              <input type="text" class="form-control" id="inputType" placeholder="Type">
                             </div>
                           </div>
                           <div class="form-group">

@@ -82,9 +82,14 @@
         <tr>
           <td><?=$item->projectid?></td>
           <td><?=$item->name?></td>
-          <td><?=$item->source?></td>
+          <td><?php
+          $res = $this->db->where('number',$item->source)->get('source')->row()->name;
+          echo $res;
+          ?></td>
           <td><?=$item->type?></td>
-          <td><?=$item->principal?></td>
+          <td><?php
+          echo $this->db->where('id',$item->principal)->get('person')->row()->name;
+          ?></td>
           <td><?=$item->start?></td>
           <td><?=$item->end?></td>
           <td><?=$item->money?></td>

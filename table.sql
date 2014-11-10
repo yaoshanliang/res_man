@@ -35,13 +35,14 @@ create table person(
 
 ###4.项目来源 source
 create table source(
-	name text not null
+	name text not null,
+	`number` int not null primary key auto_increment
 	);
 
 ###5.科研项目 project
 create table project(
 	`projectid` int primary key not null auto_increment,
-	name text not null,`source` text not null,
+	name text not null,`source` int not null,
 	`type` text not null,
 	`principal` int not null,
 	`start` text not null,
@@ -50,7 +51,8 @@ create table project(
 	`currency` varchar(10) not null default "RMB",
 	`contract` text not null,
 	credit text not null,
-	foreign key(principal) references person(id)
+	foreign key(principal) references person(id),
+	foreign key(source) references source(`number`)
 	);
 
 ###6.获奖情况 award
