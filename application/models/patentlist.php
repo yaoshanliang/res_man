@@ -22,5 +22,16 @@
 			$res = $this->db->where('identifier',$identifier)->get('patentlist');
 			return $res->result();
 		}
+
+		public function deleteAll($number)
+		{
+			$this->db->delete('patentlist',array('identifier'=>$number));
+		}
+
+		public function reOrder($number,$id,$order)
+		{
+			$this->db->update('patentlist',array('order'=>$order),array('identifier'=>$number,'id'=>$id));
+			// echo $this->db->last_query();
+		}
 	}
 ?>
