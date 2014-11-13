@@ -22,5 +22,16 @@
 			$res = $this->db->where('identifier',$identifier)->get('copyrightlist');
 			return $res->result();
 		}
+
+		public function deleteAll($number)
+		{
+			$this->db->delete('copyrightlist',array('identifier'=>$number));
+		}
+
+		public function reOrder($number,$id,$order)
+		{
+			$this->db->update('copyrightlist',array('order'=>$order),array('identifier'=>$number,'id'=>$id));
+			// echo $this->db->last_query();
+		}
 	}
 ?>

@@ -17,6 +17,12 @@
 		}
 		public function add()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$name = $this->input->post('name');
 			$register = $this->input->post('register');
 			$person = $this->input->post('person');
@@ -33,6 +39,12 @@
 		}
 		public function modify()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 1)
+			{
+				echo "权限错误";
+				return;
+			}
 			$number = $this->input->post('number');
 			$name = $this->input->post('name');
 			$register = $this->input->post('register');
@@ -40,6 +52,7 @@
 			$institute = $this->input->post('institute');
 			$time = $this->input->post('time');
 			$which = $this->input->post('which');
+
 			$this->load->model('copyright');
 			if($this->copyright->updateCopyright($number,$name,$register,$person,$institute,$time,$which))
 			{
@@ -52,6 +65,12 @@
 
 		public function delete()
 		{
+			$mode = $this->session->userdata('mode');
+			if($mode != 2)
+			{
+				echo "权限错误";
+				return;
+			}
 			$number = $this->input->post('number');
 			$this->load->model('copyright');
 			if($this->copyright->deleteCopyright($number))
@@ -63,24 +82,49 @@
 			}
 		}
 
-		public function copyrightlist()
+		public function fileandlist()
 		{
-			$this->load->view("copyright/addlist");
+			$data['number'] = $_GET['number'];
+			$this->load->model('copyright');
+			$this->load->model('person');
+			$this->load->model('copyrightlist');
+			$data['copyrightlist'] = $this->copyrightlist->getCopyrightlist($data['number']);
+			$data['person'] = $this->person->getPerson();
+			$data['copyrightname'] = $this->copyright->getCopyrightByNumber($data['number']);
+			$this->load->view('copyright/fileandlist',$data);
 		}
 
 		public function cr_add()
 		{
-			$id = $this->input->post('id');
-			$identifier = $this->input->post('identifier');
-			$order = $this->input->post('order');
+			$select_person = $this->input->post('select_person');
+			$number = $this->input->post('number');
 			$this->load->model('copyrightlist');
-			if($this->copyrightlist->insertCopyrightlist($id,$identifier,$order))
+			$order = 0;
+			if($select_person == null)
 			{
-				echo "添加成功";
-			}else
-			{
-				echo "添加失败";
+				echo "<h1>未选择！</h1>";
+				return;
 			}
+			$this->copyrightlist->deleteAll($number);
+			foreach($select_person as $item)
+			{
+				$order = $order + 1;
+				$this->copyrightlist->insertCopyrightlist($item,$number,$order);
+			}
+			redirect("copyrightmanage/index",'refresh');
+		}
+
+		public function cr_arrange()
+		{
+			$number = $this->input->post('number');
+			$this->load->model('copyrightlist');
+			$res = $this->copyrightlist->getPatentlist($number);
+			foreach($res as $item)
+			{
+				$this->copyrightlist->reOrder($number,$item->id,$this->input->post($item->id));
+				// echo $this->input->post($item->id)."<br/>";
+			}
+			redirect(site_url('copyrightmanage/index'),'refresh');
 		}
 	}
 ?>

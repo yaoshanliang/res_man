@@ -42,7 +42,7 @@
 			return $this->db->update('patent',$data,array('number'=>$number));
 		}
 
-		public function deletePatent()
+		public function deletePatent($number)
 		{
 			$res = $this->db->delete('patent',array('number'=>$number));
 			$res &= $this->db->delete('patentlist',array('identifier'=>$number));

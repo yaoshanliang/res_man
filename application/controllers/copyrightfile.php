@@ -26,13 +26,13 @@
 		  	if ( ! $this->upload->do_upload())
 		  	{
 		   		$error = array('error' => $this->upload->display_errors());
-		   		// $this->load->view('upload_form', $error);
+		   		echo "<h1>".$error['error']."</h1>";
 		  	} 
 		  	else
 		  	{
 		   		$data = $this->upload->data();
-		   		// $this->load->view('upload_success', $data);
 		   		$this->copyright->addFile($number,$data['file_name']);
+		   		redirect(site_url('patentmanage/index'),'refresh');
 		  	}
 		}
 	}

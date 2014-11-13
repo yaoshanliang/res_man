@@ -28,45 +28,25 @@
       {
         $("#modeControl").submit();
       });
-      
-      $("#remove_record").click(function()
-      {
-        $("#upload").hide();
-        $("#remove").slideToggle();
-      });
 
-      $("#upload_file").click(function()
+      $("#addRecord").click(function()
       {
-        $("#remove").hide();
-        $("#upload").slideToggle();
-      });
-
-      $(":submit").click(function()
-      {
-        if($(event.target).text() == "删除")
+        if($("#currentMode").text()!=2)
         {
-          $("#remove").hide();
-          var data = {
-            number: $("#reinputNumber").val()
-          };
-          $.post("<?=site_url('copyrightmanage/delete')?>",data,function(res,status)
-            {
-              alert(res);
-            }); 
-        }else if($(event.target).text() == "添加")
-        {
-          var data = {
-            name: $("#inputName").val(),
-            register: $("#inputRegister").val(),
-            person: $("#inputPerson").val(),
-            institute: $("#inputInstitute").val(),
-            time: $("#inputTime").val()
-          };
-          $.post("<?=site_url('copyrightmanage/add')?>",data,function(res,status)
-            {
-              alert(res);
-            });
+          alert("权限错误");
+          return;
         }
+        var data = {
+          name: $("#inputName").val(),
+          register: $("#inputRegister").val(),
+          person: $("#inputPerson").val(),
+          institute: $("#inputInstitute").val(),
+          time: $("#inputTime").val()
+        };
+        $.post("<?=site_url('copyrightmanage/add')?>",data,function(res,status)
+          {
+            alert(res);
+          });
         // 刷新一次数据
         $("#refresh_list").click(); 
         return true;
@@ -79,7 +59,7 @@
 
     <div class="container">
       <div class="row">
-        <h3 class="text-center">软件著作权信息维护</h3>
+        <h3 class="text-center">专利信息维护</h3>
         <p hidden id="currentMode"><?php echo $this->session->userdata('mode')?></p>
         <div class="col-md-1 col-md-offset-10 text-right">
           <form action="<?=site_url('modecontroller/changemode')?>" method="post" id="modeControl">
@@ -96,18 +76,6 @@
     <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
         <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
-        <a class="btn btn-default" id="remove_record">删除记录</a>
-        <a class="btn btn-default" id="upload_file">上传证明文件</a>
-        <a class="btn btn-default" hidden id="addListBtn" data-toggle="modal" data-target="#addList" href="<?=site_url('copyrightmanage/copyrightlist')?>">
-          添加人员名单
-        </a>
-
-          <div class="modal fade" id="addList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-              </div>
-            </div>
-          </div>
           
          <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -119,19 +87,19 @@
                 <div class="modal-body">
                       <form class="form-horizontal">
                           <div class="form-group">
-                            <label for="inputName" class="col-sm-3 control-label">软件著作权名</label>
+                            <label for="inputName" class="col-sm-3 control-label">专利权名</label>
                             <div class="col-sm-8">
                               <input type="text" class="form-control" id="inputName" placeholder="List">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputRegister" class="col-sm-3 control-label">著作权编号</label>
+                            <label for="inputRegister" class="col-sm-3 control-label">专利权编号</label>
                             <div class="col-sm-8">
                               <input type="text" class="form-control" id="inputRegister" placeholder="Register">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputPerson" class="col-sm-3 control-label">著作权人</label>
+                            <label for="inputPerson" class="col-sm-3 control-label">专利权人</label>
                             <div class="col-sm-8">
                               <input type="text" class="form-control" id="inputPerson" placeholder="Person">
                             </div>
@@ -150,7 +118,7 @@
                           </div>
                           <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-2">
-                              <button type="submit" class="btn btn-default">添加</button>
+                              <button type="submit" id="addRecord" class="btn btn-default">添加</button>
                             </div>
                           </div>
                       </form>
@@ -160,34 +128,11 @@
           </div>
     </div>
     <br/>
-    <div id="remove" hidden>
-         <form class="form-inline">
-          <div class="form-group">
-            <label class="sr-only" for="reinputNumber">编号</label>
-            <input type="text" name="number" class="form-control" id="reinputNumber" placeholder="编号">
-          </div>
-          <button type="submit" class="btn btn-default">删除</button>
-        </form>
-    </div>
     
-    <div class="row" id="upload" hidden>
-    <form role="form" class="form-inline" action="<?=site_url('copyrightfile/file_upload')?>" method="post" enctype="multipart/form-data">
-      <div class="form-group col-sm-2">
-        <label for="inputFileNumber" class="sr-only">编号</label>
-        <input type="text" class="form-control" id="inputFileNumber" placeholder="编号">
-      </div>
-      <div class="form-group col-sm-2">
-        <label for="inputFile" class="sr-only">证明文件</label>
-        <input type="file" id="inputFile" name="file">
-        <p class="help-block">只支持jpg,png,gif文件</p>
-      </div>
-      <button type="submit" class="btn btn-default">上传</button>
-    </form>
-    </div>
-    <br/>
     <div id="detail">
     </div> 
 
+    
 <?php $this->load->view('template/footer') ?>
   </body>
 </html>

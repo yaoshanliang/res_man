@@ -17,7 +17,7 @@
 		public function add()
 		{
 			$mode = $this->session->userdata('mode');
-			if($mode != 1)
+			if($mode != 2)
 			{
 				echo "权限错误";
 				return;

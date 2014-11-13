@@ -28,6 +28,12 @@
 			return $res->result();
 		}
 
+		public function getCopyrightByNumber($number)
+		{
+			$res = $this->db->where('number',$number)->get('copyright')->row()->name;
+			return $res;
+		}
+
 		public function updateCopyright($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(
