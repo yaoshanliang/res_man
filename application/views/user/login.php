@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>登录</title>
+    <link href="<?=base_url()?>assets/logo.ico" rel="shortcut icon">
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
