@@ -1,40 +1,52 @@
 <?php
 	// create table award(
-	// projectid int not null,
-	// id int not null,
-	// `order` int not null, 
-	// time text not null, 
-	// foreign key(id) REFERENCES person(id)
+	// `number` int not null primary key auto_increment,
+	// achievement text not null,
+	// time text not null,
+	// name text not null,
+	// level text not null
 	// );
-	class Award extends CI_Model
+	class award extends CI_Model
 	{
-		public function insertAward($projectid,$id,$order,$time)
+		public function insertAward($achievement,$time,$name,$level)
 		{
 			$data = array(
-				'projectid'=>$projectid,
-				'id'=>$id,
-				'order'=>$order,
-				'time'=>$time
+				 'number'=>null,
+				 'achievement'=>$achievement,
+				 'time'=>$time,
+				 'name'=>$name,
+				 'level'=>$level
 				);
 			$bool = $this->db->insert('award',$data);
 			return $bool;
 		}
 
-		public function getAwardByID($id)
+		public function getAward()
 		{
-			$res = $this->db->where('projectid',$id)->get('award');
+			$res = $this->db->get('award');
 			return $res->result();
 		}
 
-		public function updateAward($projectid,$id,$order,$time)
+		public function getAwardByNumber($number)
 		{
-			$bool = $this->db->update('award',array('id'=>$id,'order'=>$order,'time'=>$time),array('projectid'=>$projectid));
+			$res = $this->db->where('number',$number)->get('award')->row()->name;
+			return $res;
+		}
+
+		public function updateAward($number,$achievement,$time,$name,$level,$which)
+		{
+			$data = array(
+				$which => $$which,
+				);
+			$bool = $this->db->update('award',$data,array('number'=>$number));
 			return $bool;
 		}
 
-		public function deleteAward($projectid,$id)
+		public function deleteAward($number)
 		{
-			$bool = $this->db->delete('award',array('projectid'=>$projectid,'id'=>$id));
+			$bool = $this->db->delete('award',array('number'=>$number));
+			$bool &= $this->db->delete('awardlist',array('identifier'=>$number));
+			$bool &= $this->db->delete('awardprojectlist',array('identifier'=>$number));
 			return $bool;
 		}
 	}

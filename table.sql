@@ -58,20 +58,19 @@ create table project(
 
 ###6.获奖情况 award
 create table award(
-	projectid int not null,
-	id int not null,
-	`order` int not null, 
-	time text not null, 
-	foreign key(id) REFERENCES person(id)
+	`number` int not null primary key auto_increment,
+	achievement text not null,
+	time text not null,
+	name text not null,
+	level text not null
 	);
 
 ###7.鉴定验收 validation
 create table validation(
-	projectid int not null,
+	`number` int not null primary key auto_increment,
+	achievement text not null,
 	time text not null,
-	institute text not null,
-	others text,
-	foreign key(projectid) references project(projectid)
+	institute text not null
 	);
 
 ###8.经费到款 funds
@@ -189,3 +188,34 @@ create table projectlist(
 	`order` int not null,
 	foreign key(id) REFERENCES person(id)
 	);
+
+##名单或清单
+###19.获奖人员名单 awardlist
+create table awardlist(
+	id int not null,
+	identifier int not null,
+	`order` int not null,
+	foreign key (id) references person(id)
+);
+
+###20.验收人员名单 validationlist
+create table validationlist(
+	id int not null,
+	identifier int not null,
+	`order` int not null,
+	foreign key (id) references person(id)
+);
+
+###21.获奖项目清单
+create table awardprojectlist(
+	projectid int not null,
+	identifier int not null,
+	foreign key(projectid) references project(`projectid`)
+);
+
+###22.验收项目清单
+create table validationprojectlist(
+	projectid int not null,
+	identifier int not null,
+	foreign key(projectid) references project(`projectid`)
+);
