@@ -84,6 +84,17 @@ $(document).ready(function()
     
     ?></td>
     <td>
+     <?php 
+    // 获取人员名单 restrinct: <9
+    $res = $this->db->where('identifier',$item->number)->order_by('order')->get('awardlist')->result();
+    $str = "";
+    foreach($res as $item2)
+    {
+        $res = $this->db->where('id',$item2->id)->get('person');
+        $str .= $res->row()->name.",";
+    }
+    echo rtrim($str,',');
+    ?>
     </td>
   </tr>
 <?php endforeach; ?>

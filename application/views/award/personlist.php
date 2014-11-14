@@ -25,32 +25,19 @@
  	
     <div class="container">
       <div class="row">
-        <h3 class="text-center"><?=$patentname?>专利详细信息维护</h3>
+        <h3 class="text-center"><?=$awardname?>获奖情况详细信息维护</h3>
       </div>
       <hr/>
     <div>
     <a class="btn btn-success" id="refresh_list"><i class="fa fa-chevron-left"></i>&nbsp;后退</a>
     <hr/>
-    <h4 class="text text-success">您可以为专利传一份证明文件：</h4>
+    <h4 class="text text-success">您可以为名单制定新的顺序(1-9)：</h4>
     <div class="row col-sm-offset-2" id="upload" >
-        <form role="form" class="form" action="<?=site_url('patentfile/file_upload')?>" method="post" enctype="multipart/form-data">
-      	<div hidden>
-           <input type="text" class="form-control" name="number" value="<?=$number?>">
-        </div>
-        <div class="col-sm-3">
-            <input type="file" id="inputFile" name="userfile">
-        </div>
-          <button type="submit" class="btn btn-default">上传</button>
-        </form>
-    </div>
-    <hr/>
-    <h4 class="text text-success">您还可以为名单制定新的顺序(1-9)：</h4>
-    <div class="row col-sm-offset-2" id="upload" >
-        <form role="form" class="form-horizontal" action="<?=site_url('patentmanage/p_arrange')?>" method="post">
+        <form role="form" class="form-horizontal" action="<?=site_url('awardmanage/pe_arrange')?>" method="post">
 	        <div hidden>
 	           <input type="text" class="form-control" name="number" value="<?=$number?>">
 	        </div>
-	      	<?php foreach($patentlist as $item):?>
+	      	<?php foreach($awardlist as $item):?>
 	      	
 			  <div class="form-group">
 			    <label class="col-sm-2 control-label">
@@ -66,9 +53,9 @@
         </form>
     </div>
     <hr/>
-    <h4 class="text text-success">您甚至可以为专利重新选择名单：</h4>
+    <h4 class="text text-success">您还可以为专利重新选择名单：</h4>
     <div class="row col-sm-offset-2" id="upload" >
-        <form role="form" class="form" action="<?=site_url('patentmanage/p_add')?>" method="post">
+        <form role="form" class="form" action="<?=site_url('awardmanage/pe_add')?>" method="post">
 	        <div hidden>
 	           <input type="text" class="form-control" name="number" value="<?=$number?>">
 	        </div>

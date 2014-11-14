@@ -92,39 +92,51 @@
 			$data['awardlist'] = $this->awardlist->getAwardlist($data['number']);
 			$data['person'] = $this->person->getPerson();
 			$data['awardname'] = $this->award->getAwardByNumber($data['number']);
-			$this->load->view('copyright/fileandlist',$data);
+			$this->load->view('award/personlist',$data);
 		}
 
-		public function cr_add()
+		public function pe_add()
 		{
 			$select_person = $this->input->post('select_person');
 			$number = $this->input->post('number');
-			$this->load->model('copyrightlist');
+			$this->load->model('awardlist');
 			$order = 0;
 			if($select_person == null)
 			{
 				echo "<h1>未选择！</h1>";
 				return;
 			}
-			$this->copyrightlist->deleteAll($number);
+			$this->awardlist->deleteAll($number);
 			foreach($select_person as $item)
 			{
 				$order = $order + 1;
-				$this->copyrightlist->insertCopyrightlist($item,$number,$order);
+				$this->awardlist->insertAwardlist($item,$number,$order);
 			}
-			redirect("copyrightmanage/index",'refresh');
+			redirect("awardmanage/index",'refresh');
 		}
 
-		public function cr_arrange()
+		public function pe_arrange()
 		{
 			$number = $this->input->post('number');
-			$this->load->model('copyrightlist');
-			$res = $this->copyrightlist->getPatentlist($number);
+			$this->load->model('awardlist');
+			$res = $this->awardlist->getAwardlist($number);
 			foreach($res as $item)
 			{
-				$this->copyrightlist->reOrder($number,$item->id,$this->input->post($item->id));
+				$this->awardlist->reOrder($number,$item->id,$this->input->post($item->id));
 				// echo $this->input->post($item->id)."<br/>";
 			}
-			redirect(site_url('copyrightmanage/index'),'refresh');
+			redirect(site_url('awardmanage/index'),'refresh');
+		}
+
+		public function projectlist()
+		{
+			$data['number'] = $_GET['number'];
+			$this->load->model('award');
+			$this->load->model('person');
+			$this->load->model('awardlist');
+			$data['awardlist'] = $this->awardlist->getAwardlist($data['number']);
+			$data['person'] = $this->person->getPerson();
+			$data['awardname'] = $this->award->getAwardByNumber($data['number']);
+			$this->load->view('award/projectlist',$data);
 		}
 	}
