@@ -10,7 +10,7 @@
           return;
         }else if(current_mode == 2)
         {
-          var data = { projectid: $(event.target).text() };
+          var data = { projectid: $(event.target).parent().children().first().html() };
           $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
           {
             $("#refresh_list").click();
@@ -20,6 +20,12 @@
         }else if(current_mode == 1)
         {
           if(index == 11) 
+          {
+            // 处理人员列表
+            window.location="<?=site_url('projectmanage/fundslist')?>?number="+$(event.target).parent().children().first().html();
+            return;
+          }
+          if(index == 12) 
           {
             // 处理人员列表
             window.location="<?=site_url('projectmanage/personlist')?>?number="+$(event.target).parent().children().first().html();
@@ -76,7 +82,7 @@
 
       <table class="table table-striped table-hover">
          <tr>
-          <td>项目编号</td>
+          <td hidden>项目编号</td>
           <td>项目名称</td>
           <td>项目来源</td>
           <td>项目等级</td>
@@ -87,11 +93,12 @@
           <td>货币种类</td>
           <td>合同号</td>
           <td>经费卡号</td>
+          <td>经费到款</td>
           <td>人员名单</td>
         </tr>
       <?php foreach($project as $item): ?>
         <tr>
-          <td><?=$item->projectid?></td>
+          <td hidden><?=$item->projectid?></td>
           <td><?=$item->name?></td>
           <td><?php
           $res = $this->db->where('number',$item->source)->get('source')->row()->name;
@@ -107,6 +114,18 @@
           <td><?=$item->currency?></td>
           <td><?=$item->contract?></td>
           <td><?=$item->credit?></td>
+          <td>
+            <?php 
+            // 获取人员名单 restrinct: <9
+            $res = $this->db->where('projectid',$item->projectid)->get('funds')->result();
+            $str = "";
+            foreach($res as $item2)
+            {
+                $str .= $item2->payoff.",";
+            }
+            echo rtrim($str,',');
+            ?>
+          </td>
           <td>
             <?php 
             // 获取人员名单 restrinct: <9

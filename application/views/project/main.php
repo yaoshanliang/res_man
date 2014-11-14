@@ -29,18 +29,6 @@
         $("#modeControl").submit();
       });
 
-      $("#remove_record").click(function()
-      {
-        $("#show_msg_div").hide();
-        $("#remove").slideToggle();
-      });
-
-      $("#show_msg").click(function()
-      {
-        $("#remove").hide();
-        $("#show_msg_div").slideToggle();
-      });
-
       $("#addRecord").click(function()
       {
         if($("#currentMode").text()!=2)
@@ -167,7 +155,7 @@
                           </div>
                           <div class="form-group">
                             <div class="col-sm-offset-8 col-sm-2">
-                              <button type="submit" class="btn btn-default">确认添加</button>
+                              <button type="submit" id="addRecord" class="btn btn-default">确认添加</button>
                             </div>
                           </div>
                       </form>

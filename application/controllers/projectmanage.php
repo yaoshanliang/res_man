@@ -55,6 +55,7 @@
 				echo "添加失败";
 			}
 		}
+
 		public function delete()
 		{
 			$this->load->model('project');
@@ -67,6 +68,7 @@
 				echo "删除失败";
 			}
 		}
+
 		public function modify()
 		{
 			$projectid = $this->input->post('projectid');
@@ -152,6 +154,38 @@
 				$this->projectlist->reOrder($number,$item->id,$this->input->post($item->id));
 				// echo $this->input->post($item->id)."<br/>";
 			}
+			redirect(site_url('projectmanage/index'),'refresh');
+		}
+
+		public function fundslist()
+		{
+			$projectid = $_GET['number'];
+			$this->load->model('funds');
+			$this->load->model('project');
+
+			$project = $this->project->getProjectByID($projectid);
+
+			$data['project'] = $project;
+			$data['number'] = $projectid;
+			$data['fundslist'] = $this->funds->getFundsByID($projectid);
+			$this->load->view('project/fundslist',$data);
+		}
+
+		public function new_funds()
+		{
+			$projectid = $this->input->post("number");
+			$this->load->model('funds');
+			$this->load->model('project');
+			$this->funds->deleteAll($projectid);
+			$project = $this->project->getProjectByID($projectid);
+
+			$start_int = intval($project->start);
+			$end_int = intval($project->end);
+			for($i=$start_int;$i < $end_int + 1; $i++)
+			{
+				$others = $this->input->post($i."_others");
+				$this->funds->insertFunds($projectid,$this->input->post($i),$i,$others);
+			}	
 			redirect(site_url('projectmanage/index'),'refresh');
 		}
 	}

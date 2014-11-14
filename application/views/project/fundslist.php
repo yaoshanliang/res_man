@@ -25,7 +25,7 @@
  	
     <div class="container">
       <div class="row">
-        <h3 class="text-center">项目<?=$projectname?>详细信息维护</h3>
+        <h3 class="text-center">项目<?=$project->name?>详细信息维护</h3>
       </div>
       <hr/>
     <div>
@@ -33,41 +33,29 @@
     <hr/>
     <h4 class="text text-success">您可以为名单制定新的顺序(1-9)：</h4>
     <div class="row col-sm-offset-2" id="upload" >
-        <form role="form" class="form-horizontal" action="<?=site_url('projectmanage/pe_arrange')?>" method="post">
+        <form role="form" class="form-horizontal" action="<?=site_url('projectmanage/new_funds')?>" method="post">
 	        <div hidden>
 	           <input type="text" class="form-control" name="number" value="<?=$number?>">
 	        </div>
-	      	<?php foreach($projectlist as $item):?>
+	      	<?php 
+                $a = intval($project->start);
+                $b = intval($project->end);
+                for($i = $a;$i<$b+1;$i++):
+            ?>
 	      	
 			  <div class="form-group">
-			    <label class="col-sm-2 control-label">
-				<?php echo $this->db->where('id',$item->id)->get('person')->row()->name;?>
-			    ：</label>
+			    <label class="col-sm-2 control-label"><?=$i?>
+				</label>
 			    <div class="col-sm-2">
-			      <input type="text" name="<?=$item->id?>" class="form-control" value="<?=$item->order?>">
+			      <input type="text" name="<?=$i?>" class="form-control" placeholder="金额">
 			    </div>
+                <div class="col-sm-2">
+                  <input type="text" name="<?=$i?>_others" class="form-control" placeholder="备注">
+                </div>
 			  </div>
 			 
-			<?php endforeach; ?>
+			<?php endfor; ?>
 	         <button type="submit" class="col-sm-offset-2 btn btn-default">确定</button>
-        </form>
-    </div>
-    <hr/>
-    <h4 class="text text-success">您还可以重新选择名单：</h4>
-    <div class="row col-sm-offset-2" id="upload" >
-        <form role="form" class="form" action="<?=site_url('projectmanage/pe_add')?>" method="post">
-	        <div hidden>
-	           <input type="text" class="form-control" name="number" value="<?=$number?>">
-	        </div>
-	      	<?php foreach($person as $item):?>
-	      	<div class="checkbox">
-			  <label>
-			    <input name="select_person[]" type="checkbox" value="<?=$item->id?>">
-			    <?=$item->name?>
-			  </label>
-			</div>
-			<?php endforeach; ?>
-	         <button type="submit" class="btn btn-default">确定</button>
         </form>
     </div>
    

@@ -45,6 +45,12 @@
 			return $res->row()->name;
 		}
 
+		public function getProjectByID($projectid)
+		{
+			$res = $this->db->where('projectid',$projectid)->get('project');
+			return $res->row();
+		}
+
 		public function updateProject($projectid,$name,$source,$principal,$start,$end,$money,$currency,$contract,$credit,$type,$which)
 		{
 			$data = array(

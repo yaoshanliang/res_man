@@ -23,5 +23,11 @@
 			$res = $this->db->where('projectid',$id)->get('funds');
 			return $res->result();
 		}
+
+		public function deleteAll($projectid)
+		{
+			$bool = $this->db->where('projectid',$projectid)->delete('funds');
+			return $bool;
+		}
 	}
 ?>
