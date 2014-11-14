@@ -4,8 +4,11 @@
       $("table tr:gt(0)").click(function()
       {
         var index = $(event.target).index(); //列索引
-        if(index>=11) return;
-        if(index==0)
+       var current_mode = $("#currentMode").text();
+        if(current_mode == 0)
+        {
+          return;
+        }else if(current_mode == 2)
         {
           var data = { projectid: $(event.target).text() };
           $.post("<?=site_url('projectmanage/delete')?>",data,function(res,status)
@@ -14,49 +17,57 @@
             alert(res);
           });
           return;
+        }else if(current_mode == 1)
+        {
+          if(index == 11) 
+          {
+            // 处理人员列表
+            window.location="<?=site_url('projectmanage/personlist')?>?number="+$(event.target).parent().children().first().html();
+            return;
+          }
+          var colname = $(event.target).parent().parent().children().first().children().eq(index).html();//列名
+          var value = $(event.target).text();
+          var result = prompt("请输入新的"+colname+":",value);
+          if(result == "" || result== null) //取消 输入为空 则不修改
+            return;
+          var opid = $(event.target).parent().children().first().html();
+          if(index == 1)
+          {
+            var data={ projectid: opid, name: result, which: 'name'};
+          }else if(index == 2)
+          {
+            var data={ projectid: opid, source: result, which: 'source' };
+          }else if(index == 3)
+          {
+            var data={ projectid: opid, type: result, which: 'type'};
+          }else if(index == 4)
+          {
+            var data={ projectid: opid, principal: result, which: 'principal'};
+          }else if(index == 5)
+          {
+            var data={ projectid: opid, start: result, which: 'start'};
+          }else if(index == 6)
+          {
+            var data={ projectid: opid, end: result, which: 'end'};
+          }else if(index == 7)
+          {
+            var data={ projectid: opid, money: result, which: 'money'};
+          }else if(index == 8)
+          {
+            var data={ projectid: opid, currency: result, which: 'currency'};
+          }else if(index == 9)
+          {
+            var data={ projectid: opid, contract: result, which: 'contract'};
+          }else if(index == 10)
+          {
+            var data={ projectid: opid, credit: result, which: 'credit'};
+          }
+          $.post("<?=site_url('projectmanage/modify')?>",data,function(res,status)
+          {
+            $("#refresh_list").click();
+            alert(res);
+          });
         }
-        var colname = $(event.target).parent().parent().children().first().children().eq(index).html();//列名
-        var value = $(event.target).text();
-        var result = prompt("请输入新的"+colname+":",value);
-        if(result == "" || result== null) //取消 输入为空 则不修改
-          return;
-        var opid = $(event.target).parent().children().first().html();
-        if(index == 1)
-        {
-          var data={ projectid: opid, name: result, which: 'name'};
-        }else if(index == 2)
-        {
-          var data={ projectid: opid, source: result, which: 'source' };
-        }else if(index == 3)
-        {
-          var data={ projectid: opid, type: result, which: 'type'};
-        }else if(index == 4)
-        {
-          var data={ projectid: opid, principal: result, which: 'principal'};
-        }else if(index == 5)
-        {
-          var data={ projectid: opid, start: result, which: 'start'};
-        }else if(index == 6)
-        {
-          var data={ projectid: opid, end: result, which: 'end'};
-        }else if(index == 7)
-        {
-          var data={ projectid: opid, money: result, which: 'money'};
-        }else if(index == 8)
-        {
-          var data={ projectid: opid, currency: result, which: 'currency'};
-        }else if(index == 9)
-        {
-          var data={ projectid: opid, contract: result, which: 'contract'};
-        }else if(index == 10)
-        {
-          var data={ projectid: opid, credit: result, which: 'credit'};
-        }
-        $.post("<?=site_url('projectmanage/modify')?>",data,function(res,status)
-        {
-          $("#refresh_list").click();
-          alert(res);
-        });
       });
 
     });
@@ -99,18 +110,12 @@
           <td>
             <?php 
             // 获取人员名单 restrinct: <9
-            $res = $this->db->where('projectid',$item->projectid)->get('projectlist')->result();
+            $res = $this->db->where('projectid',$item->projectid)->order_by('order')->get('projectlist')->result();
             $str = "";
             foreach($res as $item2)
             {
-              for($i=0;$i<10;$i++)
-              {
-                if($i == $item2->order)
-                {
-                  $res = $this->db->where('id',$item2->id)->get('person');
-                  $str .= $res->row()->name.",";
-                }
-              }
+                $res = $this->db->where('id',$item2->id)->get('person');
+                $str .= $res->row()->name.",";
             }
             echo rtrim($str,',');
             ?>

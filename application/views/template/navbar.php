@@ -36,6 +36,9 @@
                 <li><a href="<?=site_url('patentmanage/index')?>">专利权信息</a></li>
                 <li><a href="<?=site_url('copyrightmanage/index')?>">软件著作权信息</a></li>
                 <li><a href="<?=site_url('workmanage/index')?>">出版著作信息</a></li>
+                <li class="divider"></li>
+                <li><a href="<?=site_url('validationmanage/index')?>">鉴定验收信息</a></li>
+                <li><a href="<?=site_url('awardmanage/index')?>">获奖情况信息</a></li>
               </ul>
             </li>
           </ul>

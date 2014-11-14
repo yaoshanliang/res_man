@@ -110,95 +110,49 @@
 			}
 		}
 
-		public function awards()
+		public function personlist()
 		{
-			$this->load->view('project/addaward');
+			$data['number'] = $_GET['number'];
+			$this->load->model('project');
+			$this->load->model('person');
+			$this->load->model('projectlist');
+			$data['projectlist'] = $this->projectlist->getProjectlist($data['number']);
+			$data['person'] = $this->person->getPerson();
+			$data['projectname'] = $this->project->getProjectByName($data['number']);
+			$this->load->view('project/personlist',$data);
 		}
 
-		public function aw_add()
+		public function pe_add()
 		{
-			$projectid = $this->input->post('projectid');
-			$id = $this->input->post('id');
-			$order = $this->input->post('order');
-			$time = $this->input->post('time');
-			$this->load->model('award');
-			$bool = $this->award->insertAward($projectid,$id,$order,$time);
-			if($bool)
+			$select_person = $this->input->post('select_person');
+			$number = $this->input->post('number');
+			$this->load->model('projectlist');
+			$order = 0;
+			if($select_person == null)
 			{
-				echo "添加成功";
-			}else
-			{
-				echo "添加失败";
+				echo "<h1>未选择！</h1>";
+				return;
 			}
-		}
-
-		public function get_award()
-		{
-			$projectid = $this->input->post('projectid');
-			$this->load->model('award');
-			$data['award'] = $this->award->getAwardByID($projectid);
-			$this->load->view('project/award',$data);
-		}
-
-		public function validation()
-		{
-			$this->load->view('project/addvalidation');
-		}
-
-		public function va_add()
-		{
-			$projectid = $this->input->post('projectid');
-			$time = $this->input->post('time');
-			$institute = $this->input->post('institute');
-			$others = $this->input->post('others');
-			$this->load->model('validation');
-			$bool = $this->validation->insertValidation($projectid,$time,$institute,$others);
-			if($bool)
+			$this->projectlist->deleteAll($number);
+			foreach($select_person as $item)
 			{
-				echo "添加成功";
-			}else
-			{
-				echo "添加失败";
+				$order = $order + 1;
+				$this->projectlist->insertProjectlist($item,$number,$order);
 			}
+			redirect("projectmanage/index",'refresh');
 		}
 
-		public function get_validation()
+		public function pe_arrange()
 		{
-			$projectid = $this->input->post('projectid');
-			$this->load->model('validation');
-			$data['validation'] = $this->validation->getValidationByID($projectid);
-			$this->load->view('project/validation',$data);
-		}
-
-		public function funds()
-		{
-			$this->load->view('project/addfunds');
-		}
-		public function fu_add()
-		{
-			$projectid = $this->input->post('projectid');
-			$payoff = $this->input->post('payoff');
-			$year = $this->input->post('year');
-			$others = $this->input->post('others');
-			// echo $projectid,$payoff,$year,$remain,$others;
-			$this->load->model('funds');
-			$bool = $this->funds->insertFunds($projectid,$payoff,$year,$others);
-			if($bool)
+			$number = $this->input->post('number');
+			$this->load->model('projectlist');
+			$res = $this->projectlist->getProjectlist($number);
+			foreach($res as $item)
 			{
-				echo "添加成功";
-			}else
-			{
-				echo "添加失败";
+				$this->projectlist->reOrder($number,$item->id,$this->input->post($item->id));
+				// echo $this->input->post($item->id)."<br/>";
 			}
+			redirect(site_url('projectmanage/index'),'refresh');
 		}
-
-		public function get_funds()
-		{
-			$projectid = $this->input->post('projectid');
-			$this->load->model('funds');
-			$data['funds'] = $this->funds->getFundsByID($projectid);
-			$this->load->view('project/funds',$data);
-		}
-
 	}
 ?>
