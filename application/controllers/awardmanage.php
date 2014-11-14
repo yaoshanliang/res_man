@@ -132,11 +132,28 @@
 		{
 			$data['number'] = $_GET['number'];
 			$this->load->model('award');
-			$this->load->model('person');
-			$this->load->model('awardlist');
-			$data['awardlist'] = $this->awardlist->getAwardlist($data['number']);
-			$data['person'] = $this->person->getPerson();
+			$this->load->model('project');
+			$this->load->model('awardprojectlist');
+			$data['project'] = $this->project->getProject();
 			$data['awardname'] = $this->award->getAwardByNumber($data['number']);
 			$this->load->view('award/projectlist',$data);
+		}
+
+		public function pr_add()
+		{
+			$select_project = $this->input->post('select_project');
+			$number = $this->input->post('number');
+			$this->load->model('awardprojectlist');
+			if($select_project == null)
+			{
+				echo "<h1>未选择！</h1>";
+				return;
+			}
+			$this->awardprojectlist->deleteAll($number);
+			foreach($select_project as $item)
+			{
+				$this->awardprojectlist->insertAwardprojectlist($item,$number);
+			}
+			redirect("awardmanage/index",'refresh');
 		}
 	}

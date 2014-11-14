@@ -9,16 +9,10 @@
 		public function insertAwardprojectlist($id,$identifier)
 		{
 			$data = array(
-				'id'=>$id,
+				'projectid'=>$id,
 				'identifier'=>$identifier
 				);
 			return $this->db->insert('awardprojectlist',$data);
-		}
-
-		public function getAwardprojectlist($identifier)
-		{
-			$res = $this->db->where('identifier',$identifier)->get('awardprojectlist');
-			return $res->result();
 		}
 
 		public function deleteAll($number)

@@ -81,7 +81,14 @@ $(document).ready(function()
     <td><?=$item->time?></td>
     <td><?=$item->level?></td>
     <td><?php
-    
+    $res = $this->db->where('identifier',$item->number)->get('awardprojectlist')->result();
+    $str = "";
+    foreach($res as $item2)
+    {
+        $res = $this->db->where('projectid',$item2->projectid)->get('project');
+        $str .= $res->row()->name.",";
+    }
+    echo rtrim($str,',');
     ?></td>
     <td>
      <?php 
