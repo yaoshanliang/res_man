@@ -117,6 +117,7 @@
 			$objPHPExcel->getActiveSheet()->setCellValue('L2', '备注');
 
 			$this->load->model('project');
+			$this->load->model("funds");
 			$i = 3;
 			$res = $this->project->getProject();
 			foreach($res as $item)
@@ -130,8 +131,18 @@
 				$objPHPExcel->getActiveSheet()->setCellValue('E'.$i, $item->start);
 				$objPHPExcel->getActiveSheet()->setCellValue('F'.$i, $item->end);
 				$objPHPExcel->getActiveSheet()->setCellValue('G'.$i, $item->money);
-				// $objPHPExcel->getActiveSheet()->setCellValue('H'.$i, $currency);
-				// $objPHPExcel->getActiveSheet()->setCellValue('I2', );
+
+				// $cur = $this->funds->getFundsByYear($item->projectid,"2013");
+				
+				// var_dump($cur);
+				// $objPHPExcel->getActiveSheet()->setCellValue('H'.$i, $cur);
+				// $res2 = $this->funds->getFundsByID($item->projectid);
+				// $sum = 0;
+				// foreach($res2 as $item2)
+				// {
+				// 	$sum += $item2->payoff;
+				// }
+				// $objPHPExcel->getActiveSheet()->setCellValue('I'.$i, intval($item->money) - intval($sum));
 				$objPHPExcel->getActiveSheet()->setCellValue('J'.$i, $item->contract);
 				$objPHPExcel->getActiveSheet()->setCellValue('K'.$i, $item->credit);
 				// $objPHPExcel->getActiveSheet()->setCellValue('L2', '备注');

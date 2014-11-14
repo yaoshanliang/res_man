@@ -11,6 +11,16 @@
     <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $("#back").click(function()
+      {
+        history.back();
+      });
+    });
+    
+    </script>
   </head>
   <body>
 
@@ -19,6 +29,9 @@
     <div class="container">
       <div class="row">
         <h3 class="text-center">导出文件</h3>
+        <div class="col-md-1">
+        <a class="btn btn-success" id="back"><i class="fa fa-chevron-left"></i>&nbsp;后退</a>
+        </div>
       </div>
       <hr/>
     <div>

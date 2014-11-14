@@ -50,6 +50,11 @@
         $("#refresh_list").click(); 
         return true;
       });
+
+      $("#back").click(function()
+      {
+        history.back();
+      });
     });
     </script>
   </head>
@@ -60,6 +65,9 @@
       <div class="row">
         <h3 class="text-center">获奖情况信息维护</h3>
         <p hidden id="currentMode"><?php echo $this->session->userdata('mode')?></p>
+        <div class="col-md-1">
+        <a class="btn btn-success" id="back"><i class="fa fa-chevron-left"></i>&nbsp;后退</a>
+        </div>
         <div class="col-md-1 col-md-offset-10 text-right">
           <form action="<?=site_url('modecontroller/changemode')?>" method="post" id="modeControl">
             <select class="form-control" name="mode" id="selectMode">

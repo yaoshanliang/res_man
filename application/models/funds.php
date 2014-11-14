@@ -24,6 +24,16 @@
 			return $res->result();
 		}
 
+		// public function getFundsByYear($projectid,$year)
+		// {
+		// 	$res = $this->db->where(array('projectid'=>$projectid,'year'=>$year))->get('funds');
+		// 	if($res == null)
+		// 	{
+		// 		return 0;
+		// 	}
+		// 	return $res->result()->payoff;
+		// }
+
 		public function deleteAll($projectid)
 		{
 			$bool = $this->db->where('projectid',$projectid)->delete('funds');
