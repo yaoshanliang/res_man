@@ -1,28 +1,51 @@
-<?php 
+<?php
 	// create table validation(
-	// projectid int not null,
+	// `number` int not null primary key auto_increment,
+	// achievement text not null,
 	// time text not null,
-	// institute text not null,
-	// others text,
-	// foreign key(projectid) references project(projectid)
+	// institute text not null
 	// );
-	class Validation extends CI_Model
+	class validation extends CI_Model
 	{
-		public function insertValidation($projectid,$time,$institute,$others = null)
+		public function insertValidation($achievement,$time,$institute)
 		{
 			$data = array(
-				'projectid'=>$projectid,
-				'time'=>$time,
-				'institute'=>$institute,
-				'others'=>$others
+				 'number'=>null,
+				 'achievement'=>$achievement,
+				 'time'=>$time,
+				 'institute'=>$institute
 				);
-			return $this->db->insert('validation',$data);
+			$bool = $this->db->insert('validation',$data);
+			return $bool;
 		}
 
-		public function getValidationByID($id)
+		public function getValidation()
 		{
-			$res = $this->db->where('projectid',$id)->get('validation');
+			$res = $this->db->get('validation');
 			return $res->result();
+		}
+
+		public function getValidationByNumber($number)
+		{
+			$res = $this->db->where('number',$number)->get('validation')->row()->achievement;
+			return $res;
+		}
+
+		public function updateValidation($number,$achievement,$time,$institute,$which)
+		{
+			$data = array(
+				$which => $$which,
+				);
+			$bool = $this->db->update('validation',$data,array('number'=>$number));
+			return $bool;
+		}
+
+		public function deleteValidation($number)
+		{
+			$bool = $this->db->delete('validation',array('number'=>$number));
+			$bool &= $this->db->delete('validationlist',array('identifier'=>$number));
+			$bool &= $this->db->delete('validationprojectlist',array('identifier'=>$number));
+			return $bool;
 		}
 	}
 ?>
