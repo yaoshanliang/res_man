@@ -14,16 +14,14 @@
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
   </head>
-  <body>
-    <div class="container-fluid tour-warp">
+  <body class="tour-warp">
+    <div class="container">
       <br/>
       <br/>
-      <div class="row col-sm-offset-7">
-          <img src="<?=base_url()?>assets/icon.png" alt="log" class="img-circle" />
-      </div>
+      <h1 class="page-header">科研成果管理平台</h1>
       <br/>
       <br/>
-      <div class="col-sm-6 col-sm-offset-6">
+      <div class="col-sm-6 col-sm-offset-7">
         <form class="form-horizontal" role="form" action="<?=base_url()?>index.php/welcome/login" method="post">
           <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
@@ -55,10 +53,8 @@
             </div>
           </div>
         </form>
-        <br/>
-        <br/>
         </div>
     </div>
-
+    <?php $this->load->view("template/footer") ?>
   </body>
 </html>

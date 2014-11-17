@@ -4,11 +4,12 @@
 }
 
 .tour-warp {
-  background: url("/assets/tour_bg.jpg") center top no-repeat;
+  background: url("/assets/tour_bg.jpg") center top no-repeat fixed;
 }
-.tour-warp .tour-banner {
+
+/*.tour-warp .tour-banner {
   width: 980px;
   height: 450px;
   margin: 0 auto;
   position: relative;
-}
+}*/
