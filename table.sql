@@ -81,18 +81,9 @@ create table funds(
 	others text
 	);
 
-###9.年份到款表 detail
-create table detail(
-	projectid int not null,
-	year int not null,
-	currency varchar(10) not null default "RMB",
-	figure float not null
-	);
-
-
 ##专利／著作权相关
 
-###10.软件著作权 copyright 
+###9.软件著作权 copyright 
 create table copyright(
 	number int not null primary key auto_increment,
 	name text not null,
@@ -103,7 +94,7 @@ create table copyright(
 	file text
 );
 
-###11.专利情况 patent
+###10.专利情况 patent
 create table patent(
 	number int not null primary key auto_increment,
 	name text not null,
@@ -114,7 +105,7 @@ create table patent(
 	file text
 );
 
-###12.专利人员名单 patentlist
+###11.专利人员名单 patentlist
 create table patentlist(
 	id int not null,
 	identifier int not null,
@@ -122,7 +113,7 @@ create table patentlist(
 	foreign key (id) references person(id)
 );
 
-###13.著作权人员名单 copyrightlist
+###12.著作权人员名单 copyrightlist
 create table copyrightlist(
 	id int not null,
 	identifier int not null,
@@ -133,7 +124,7 @@ create table copyrightlist(
 
 ##个人情况
 
-###14.出版专著 work
+###13.出版专著 work
 create table work(
 	number int not null primary key auto_increment,
 	name text not null,
@@ -142,7 +133,7 @@ create table work(
 	personlist text not null
 );
 
-###15.学术团体（组织）兼职情况 part
+###14.学术团体（组织）兼职情况 part
 create table part(
 	number int not null primary key auto_increment,
 	name text not null,
@@ -153,7 +144,7 @@ create table part(
 	foreign key(id) references person(id)
 );
 
-###16.国内外进修及学习情况 learn
+###15.国内外进修及学习情况 learn
 create table learn(
 	number int not null primary key auto_increment,
 	institute text not null,
@@ -167,7 +158,7 @@ create table learn(
 
 ##机构情况
 
-###17.国际合作情况 cooperation
+###16.国际合作情况 cooperation
 create table cooperation(
 	id int not null primary key auto_increment,
 	category text not null,
@@ -181,7 +172,7 @@ create table cooperation(
 	year text not null
 );
 
-###18.项目成员名单 projectlist
+###17.项目成员名单 projectlist
 create table projectlist(
 	projectid int not null,
 	id int not null,
@@ -190,7 +181,7 @@ create table projectlist(
 	);
 
 ##名单或清单
-###19.获奖人员名单 awardlist
+###18.获奖人员名单 awardlist
 create table awardlist(
 	id int not null,
 	identifier int not null,
@@ -198,7 +189,7 @@ create table awardlist(
 	foreign key (id) references person(id)
 );
 
-###20.验收人员名单 validationlist
+###19.验收人员名单 validationlist
 create table validationlist(
 	id int not null,
 	identifier int not null,
@@ -206,14 +197,14 @@ create table validationlist(
 	foreign key (id) references person(id)
 );
 
-###21.获奖项目清单
+###20.获奖项目清单
 create table awardprojectlist(
 	projectid int not null,
 	identifier int not null,
 	foreign key(projectid) references project(`projectid`)
 );
 
-###22.验收项目清单
+###21.验收项目清单
 create table validationprojectlist(
 	projectid int not null,
 	identifier int not null,

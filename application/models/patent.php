@@ -40,6 +40,18 @@
 			return $res;
 		}
 
+		public function getPatentByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('patent')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->time) == $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function updatePatent($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(

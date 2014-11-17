@@ -37,6 +37,18 @@
 			return $res;
 		}
 
+		public function getValidationByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('validation')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->time) == $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function updateValidation($number,$achievement,$time,$institute,$which)
 		{
 			$data = array(

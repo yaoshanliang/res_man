@@ -151,9 +151,35 @@
 			$this->load->view('search/project',$data);
 		}
 
+		public function year()
+		{
+			$this->load->view('search/yearsearch');
+		}
+
 		public function aboutYear()
 		{
+			$year = $this->input->post('year');
 
+			$this->load->model('award');
+			$this->load->model('validation');
+			$this->load->model('cooperation');
+			$this->load->model('learn');
+			$this->load->model('part');
+			$this->load->model('copyright');
+			$this->load->model('patent');
+			$this->load->model('project');
+
+			$data['year'] = $year;
+			$data['project'] = $this->project->getProjectByYear($year);
+			$data['validation'] = $this->validation->getValidationByYear($year);
+			$data['cooperation'] = $this->cooperation->getCooperationByYear($year);
+			$data['learn'] = $this->learn->getLearnByYear($year);
+			$data['part'] = $this->part->getPartByYear($year);
+			$data['copyright'] = $this->copyright->getCopyrightByYear($year);
+			$data['patent'] = $this->patent->getPatentByYear($year);
+			$data['award'] = $this->award->getAwardByYear($year);
+
+			$this->load->view('search/year',$data);
 		}
 	}
 ?>

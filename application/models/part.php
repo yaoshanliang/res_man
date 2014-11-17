@@ -36,6 +36,18 @@
 			return $res->result();
 		}
 
+		public function getPartByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('part')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->start) <= $year && intval($item->end) >= $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function deletePart($number)
 		{
 			$bool = $this->db->delete('part',array('number'=>$number));

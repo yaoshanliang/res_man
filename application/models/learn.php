@@ -35,6 +35,19 @@
 				return null;
 			return $res->result();
 		}
+
+		public function getLearnByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('learn')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->start) <= $year && intval($item->end) >= $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function updateLearn($number,$institute,$content,$start,$end,$person,$which)
 		{
 			$data = array(

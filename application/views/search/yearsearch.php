@@ -38,16 +38,16 @@
 
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation"><a href="<?=site_url('search/index')?>">人员综合信息查询</a></li>
-        <li role="presentation" class="active"><a href="<?=site_url('search/project')?>">项目信息查询</a></li>
-        <li role="presentation"><a href="<?=site_url('search/year')?>">按年度查询</a></li>
+        <li role="presentation"><a href="<?=site_url('search/project')?>">项目信息查询</a></li>
+        <li role="presentation" class="active"><a href="<?=site_url('search/year')?>">按年度查询</a></li>
         <li role="presentation"><a href="<?=site_url('search/work')?>">计算工作量</a></li>
       </ul>
       <br/>
-      <form role="form" class="form-horizontal" action="<?=site_url('search/aboutProject')?>" method="post">
+      <form role="form" class="form-horizontal" action="<?=site_url('search/aboutYear')?>" method="post">
          <div class="form-group">
-          <label for="inputProject" class="col-sm-2 control-label">项目名称</label>
+          <label for="inputYear" class="col-sm-2 control-label">年份</label>
           <div class="col-sm-8">
-            <input type="text" name="project" class="form-control" id="inputProject">
+            <input type="text" name="year" class="form-control" id="inputYear">
           </div>
         </div>
         <div class="form-group">

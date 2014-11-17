@@ -36,6 +36,18 @@
 			return $res->result();
 		}
 
+		public function getCooperationByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('cooperation')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->start) <= $year && intval($item->end) >= $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function deleteCooperation($id)
 		{
 			$bool= $this->db->delete('cooperation',array('id'=>$id));

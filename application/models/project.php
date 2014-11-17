@@ -51,6 +51,18 @@
 			return $res->row()->name;
 		}
 
+		public function getProjectByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('project')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->start) <= $year && intval($item->end) >= $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function getProjectByID($projectid)
 		{
 			$res = $this->db->where('projectid',$projectid)->get('project');

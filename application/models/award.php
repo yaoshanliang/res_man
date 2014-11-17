@@ -39,6 +39,18 @@
 			return $res;
 		}
 
+		public function getAwardByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('award')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->time) == $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function updateAward($number,$achievement,$time,$name,$level,$which)
 		{
 			$data = array(

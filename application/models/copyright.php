@@ -40,6 +40,18 @@
 			return $res->row();
 		}
 
+		public function getCopyrightByYear($year)
+		{
+			$data = array();
+			$res = $this->db->get('copyright')->result();
+			foreach($res as $item)
+			{
+				if(intval($item->time) == $year)
+					$data[] = $item;
+			}
+			return $data;
+		}
+
 		public function updateCopyright($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(
