@@ -21,6 +21,7 @@
               <a href="" class="dropdown-toggle" data-toggle="dropdown">功能 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<?=site_url('export/index')?>">导出文件</a></li>
+                <li><a href="<?=site_url('search/index')?>">系统查询</a></li>
               </ul>
             </li>
             <li class="dropdown">
