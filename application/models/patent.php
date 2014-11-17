@@ -34,6 +34,12 @@
 			return $res;
 		}
 
+		public function getPatentByIdentifier($number)
+		{
+			$res = $this->db->where('number',$number)->get('patent')->row();
+			return $res;
+		}
+
 		public function updatePatent($number,$name,$register,$person,$institute,$time,$which)
 		{
 			$data = array(

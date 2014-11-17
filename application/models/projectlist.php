@@ -33,5 +33,11 @@
 			$this->db->update('projectlist',array('order'=>$order),array('projectid'=>$number,'id'=>$id));
 			// echo $this->db->last_query();
 		}
+
+		public function getProjectID($id)
+		{
+			$res = $this->db->where('id',$id)->get('projectlist');
+			return $res->result();
+		}
 	}
 ?>

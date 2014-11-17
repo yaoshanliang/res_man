@@ -23,6 +23,12 @@
 			return $res->result();
 		}
 
+		public function getValidationlistByID($id)
+		{
+			$res = $this->db->where('id',$id)->get('validationlist');
+			return $res->result();
+		}
+
 		public function deleteAll($number)
 		{
 			$this->db->delete('validationlist',array('identifier'=>$number));

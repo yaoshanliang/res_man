@@ -39,6 +39,12 @@
 			return $res->result();
 		}
 
+		public function getProjectViaName($name)
+		{
+			$res = $this->db->where('name',$name)->get('project');
+			return $res->row();
+		}
+
 		public function getProjectByName($projectid)
 		{
 			$res = $this->db->where('projectid',$projectid)->get('project');

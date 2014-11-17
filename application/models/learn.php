@@ -4,7 +4,8 @@
 // 	content text not null,
 // 	start text not null,
 // 	end text not null,
-// 	list text not null
+// 	number int not null primary key auto_incerement,
+//  person int
 // );
 	class Learn extends CI_Model
 	{
@@ -27,6 +28,13 @@
 			return $res->result();
 		}
 
+		public function getLearnByID($id)
+		{
+			$res = $this->db->where('person',$id)->get('learn');
+			if($res == null)
+				return null;
+			return $res->result();
+		}
 		public function updateLearn($number,$institute,$content,$start,$end,$person,$which)
 		{
 			$data = array(

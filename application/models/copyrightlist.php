@@ -23,6 +23,12 @@
 			return $res->result();
 		}
 
+		public function getCopyrightByID($id)
+		{
+			$res = $this->db->where('id',$id)->get('copyrightlist');
+			return $res->result();
+		}
+
 		public function deleteAll($number)
 		{
 			$this->db->delete('copyrightlist',array('identifier'=>$number));

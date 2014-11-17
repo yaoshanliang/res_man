@@ -23,6 +23,12 @@
 			return $res->result();
 		}
 
+		public function getAwardlistByID($id)
+		{
+			$res = $this->db->where('id',$id)->get('awardlist');
+			return $res->result();
+		}
+
 		public function deleteAll($number)
 		{
 			$this->db->delete('awardlist',array('identifier'=>$number));

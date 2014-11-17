@@ -23,6 +23,16 @@
 			return $res->result();
 		}
 
+		public function getPatentID($id)
+		{
+			$res = $this->db->where('id',$id)->get('patentlist');
+			if($res == null)
+			{
+				return null;
+			}
+			return $res->result();
+		}
+
 		public function deleteAll($number)
 		{
 			$this->db->delete('patentlist',array('identifier'=>$number));

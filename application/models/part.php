@@ -28,6 +28,14 @@
 			return $res->result();
 		}
 
+		public function getPartByID($id)
+		{
+			$res = $this->db->where('id',$id)->get('part');
+			if($res == null)
+				return null;
+			return $res->result();
+		}
+
 		public function deletePart($number)
 		{
 			$bool = $this->db->delete('part',array('number'=>$number));
