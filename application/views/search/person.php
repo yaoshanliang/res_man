@@ -41,7 +41,7 @@
       <!-- Default panel contents -->
       <div class="panel-heading"><h4 class="text-center">基本信息</h4></div>
       <div class="panel-body">
-        <p>下面是<?=$person->name?>所参与的项目，您可以<a href="<?=site_url('personmanage/index')?>">管理和维护</a></p>
+        <p>下面是<?=$person->name?>的基本信息，您可以<a href="<?=site_url('personmanage/index')?>">管理和维护</a></p>
       </div>
 
       <table class="table table-striped table-hover">

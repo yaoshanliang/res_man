@@ -33,6 +33,12 @@
 			return $res;
 		}
 
+		public function getAwardByIdentifier($number)
+		{
+			$res = $this->db->where('number',$number)->get('award')->row();
+			return $res;
+		}
+
 		public function updateAward($number,$achievement,$time,$name,$level,$which)
 		{
 			$data = array(

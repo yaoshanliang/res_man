@@ -111,7 +111,6 @@
 
 		public function aboutProject()
 		{
-			$this->load->model('person');
 			$this->load->model('projectlist');
 			$this->load->model('project');
 			$this->load->model('award');
@@ -122,40 +121,34 @@
 			$this->load->model('validationprojectlist');
 
 			$projectname = $this->input->post("project");
-			$project = $this->person->getProjectViaName($projectname);
+			$project = $this->project->getProjectViaName($projectname);
 			if($project == null)
 			{
 				echo "项目不存在";
 				return ;
 			}
-			$projectid = $person->projectid;
+			$projectid = $project->projectid;
 			// 鉴定
-			$res = $this->validationlist->getValidationlistByID($id);
+			$res = $this->validationprojectlist->getIdentifierByProjectid($projectid);
 			$validation = array();
 			foreach($res as $item)
 			{
-				$validation[] = $this->validation->getValidationByNumber($item->identifier);
+				$validation[] = $this->validation->getValidationByIdetifier($item->identifier);
 			}
+			
 			// 获奖
-			$res = $this->awardlist->getAwardlistByID($id);
+			$res = $this->awardprojectlist->getIdentifierByProjectid($projectid);
 			$award = array();
 			foreach($res as $item)
 			{
-				$award[] = $this->award->getAwardByNumber($item->identifier);
+				$award[] = $this->award->getAwardByIdentifier($item->identifier);
 			}
 
-			$data['person'] = $person;
 			$data['project'] = $project;
-			$data['cooperation'] = $cooperation;
-			$data['part'] = $part;
-			$data['learn'] = $learn;
-			$data['patent'] = $patent;
-			$data['copyright'] = $copyright;
-			$data['work'] = $work;
 			$data['validation'] = $validation;
 			$data['award'] = $award;
 
-			$this->load->view('search/person',$data);
+			$this->load->view('search/project',$data);
 		}
 
 		public function aboutYear()

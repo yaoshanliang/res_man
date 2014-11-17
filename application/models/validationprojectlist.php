@@ -20,5 +20,10 @@
 			$this->db->delete('validationprojectlist',array('identifier'=>$number));
 		}
 
+		public function getIdentifierByProjectid($projectid)
+		{
+			$res = $this->db->where('projectid',$projectid)->get('validationprojectlist');
+			return $res->result();
+		}
 	}
 ?>

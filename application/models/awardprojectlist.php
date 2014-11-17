@@ -20,5 +20,10 @@
 			$this->db->delete('awardprojectlist',array('identifier'=>$number));
 		}
 
+		public function getIdentifierByProjectid($projectid)
+		{
+			$res = $this->db->where('projectid',$projectid)->get('awardprojectlist');
+			return $res->result();
+		}
 	}
 ?>

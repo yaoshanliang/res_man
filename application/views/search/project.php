@@ -28,46 +28,19 @@
 
     <div class="container">
       <div class="row">
-        <h3 class="text-center">有关于<?=$person->name?>的综合信息</h3>
+        <h3 class="text-center">有关于<?=$project->name?>的信息</h3>
       </div>
       <div class="col-md-1">
         <a class="btn btn-success" id="back"><i class="fa fa-chevron-left"></i>&nbsp;后退</a>
       </div>
       <br>
       <hr/>
-  
-    
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading"><h4 class="text-center">基本信息</h4></div>
-      <div class="panel-body">
-        <p>下面是<?=$person->name?>所参与的项目，您可以<a href="<?=site_url('personmanage/index')?>">管理和维护</a></p>
-      </div>
-
-      <table class="table table-striped table-hover">
-        <tr>
-          <td>姓名</td>
-          <td>职务</td>
-          <td>手机号码</td>
-          <td>邮箱</td>
-          <td>职称</td>
-        </tr>
-        <tr>
-          <td><?=$person->name?></td>
-          <td><?=$person->duties?></td>
-          <td><?=$person->phonenumber?></td>
-          <td><?=$person->email?></td>
-          <td><?=$person->position?></td>
-        </tr>
-      </table>
-    </div>
-
 
       <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h4 class="text-center">参与的项目</h4></div>
+        <div class="panel-heading"><h4 class="text-center">项目的基本信息</h4></div>
         <div class="panel-body">
-          <p>下面是<?=$person->name?>所参与的项目，您可以<a href="<?=site_url('projectmanage/index')?>">管理和维护</a></p>
+          <p>下面是<?=$project->name?>的基本信息，您可以<a href="<?=site_url('projectmanage/index')?>">管理和维护</a></p>
         </div>
         <table class="table table-striped table-hover">
              <tr>
@@ -84,27 +57,26 @@
               <td>经费到款</td>
               <td>人员名单</td>
             </tr>
-          <?php foreach($project as $item): ?>
             <tr>
-              <td><?=$item->name?></td>
+              <td><?=$project->name?></td>
               <td><?php
-              $res = $this->db->where('number',$item->source)->get('source')->row()->name;
+              $res = $this->db->where('number',$project->source)->get('source')->row()->name;
               echo $res;
               ?></td>
-              <td><?=$item->type?></td>
+              <td><?=$project->type?></td>
               <td><?php
-              echo $this->db->where('id',$item->principal)->get('person')->row()->name;
+              echo $this->db->where('id',$project->principal)->get('person')->row()->name;
               ?></td>
-              <td><?=$item->start?></td>
-              <td><?=$item->end?></td>
-              <td><?=$item->money?></td>
-              <td><?=$item->currency?></td>
-              <td><?=$item->contract?></td>
-              <td><?=$item->credit?></td>
+              <td><?=$project->start?></td>
+              <td><?=$project->end?></td>
+              <td><?=$project->money?></td>
+              <td><?=$project->currency?></td>
+              <td><?=$project->contract?></td>
+              <td><?=$project->credit?></td>
               <td>
                 <?php 
                 // 获取人员名单 restrinct: <9
-                $res = $this->db->where('projectid',$item->projectid)->get('funds')->result();
+                $res = $this->db->where('projectid',$project->projectid)->get('funds')->result();
                 $str = "";
                 foreach($res as $item2)
                 {
@@ -116,7 +88,7 @@
               <td>
                 <?php 
                 // 获取人员名单 restrinct: <9
-                $res = $this->db->where('projectid',$item->projectid)->order_by('order')->get('projectlist')->result();
+                $res = $this->db->where('projectid',$project->projectid)->order_by('order')->get('projectlist')->result();
                 $str = "";
                 foreach($res as $item2)
                 {
@@ -127,227 +99,13 @@
                 ?>
               </td>
             </tr>
-          <?php endforeach; ?>
           </table>
       </div>
   
-      <div class="panel panel-default">
-        <div class="panel-heading"><h4 class="text-center">参与的国际合作</h4></div>
-        <div class="panel-body">
-          <p>下面是<?=$person->name?>所参与的国际合作，您可以<a href="<?=site_url('cooperationmanage/index')?>">管理和维护</a></p>
-        </div>
-        <table class="table table-striped table-hover">
-          <tbody>
-            <tr>
-              <td hidden>编号</td>
-              <td>类别</td>
-              <td>人员清单</td>
-              <td>人数</td>
-              <td>开始时间</td>
-              <td>结束时间</td>
-              <td>来访／目的地</td>
-              <td>访问目的</td>
-              <td>报告名称</td>
-              <td>链接</td>
-              <td>新闻报道</td>
-              <td>照片保留</td>
-            </tr>
-          <?php foreach($cooperation as $item):?>
-            <tr>
-              <td hidden><?=$item->id?></td>
-              <td><?=$item->category?></td>
-              <td><?=$item->list?></td>
-              <td><?=$item->number?></td>
-              <td><?=$item->start?></td>
-              <td><?=$item->end?></td>
-              <td><?=$item->place?></td>
-              <td><?=$item->purpose?></td>
-              <td><?=$item->report?></td>
-              <td><?=$item->url?></td>
-              <td><?=$item->news?></td>
-              <td><?=$item->picture?></td>
-            </tr>
-          <?php endforeach; ?>
-          </tbody>
-        </table>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4 class="text-center">参与的进修学习</h4></div>
-          <div class="panel-body">
-            <p>下面是<?=$person->name?>所参与的进修学习，您可以<a href="<?=site_url('learnmanage/index')?>">管理和维护</a></p>
-          </div>
-          <table class="table table-striped table-hover">
-            <tr>
-              <td hidden>编号</td>
-              <td>机构</td>
-              <td>学习内容</td>
-              <td>开始时间</td>
-              <td>结束时间</td>
-              <td>人员</td>
-            </tr>
-          <?php foreach($learn as $item):?>
-            <tr>
-              <td hidden><?=$item->number?></td>
-              <td><?=$item->institute?></td>
-              <td><?=$item->content?></td>
-              <td><?=$item->start?></td>
-              <td><?=$item->end?></td>
-              <td><?php
-              $res = $this->db->where('id',$item->person)->get('person');
-              echo $res->row()->name;
-              ?></td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4 class="text-center">学术兼职</h4></div>
-          <div class="panel-body">
-            <p>下面是<?=$person->name?>的学术兼职，您可以<a href="<?=site_url('partmanage/index')?>">管理和维护</a></p>
-          </div>
-
-          <table class="table table-striped table-hover">
-           <tr>
-              <td hidden>编号</td>
-              <td>兼职学术组织</td>
-              <td>职责</td>
-              <td>开始时间</td>
-              <td>结束时间</td>
-              <td>兼职人员</td>
-            </tr>
-          <?php foreach($part as $item):?>
-            <tr>
-              <td hidden><?=$item->number?></td>
-              <td><?=$item->name?></td>
-              <td><?=$item->duty?></td>
-              <td><?=$item->start?></td>
-              <td><?=$item->end?></td>
-              <td><?php
-                $res = $this->db->where('id',$item->id)->get('person');
-                echo $res->row()->name;
-              ?>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4 class="text-center">获得的专利信息</h4></div>
-          <div class="panel-body">
-            <p>下面是<?=$person->name?>获得的专利信息，您可以<a href="<?=site_url('patentmanage/index')?>">管理和维护</a></p>
-          </div>
-          <table class="table table-striped table-hover">
-             <tr>
-              <td hidden>编号</td>
-              <td>名称</td>
-              <td>专利权号</td>
-              <td>专利权人</td>
-              <td>授予单位</td>
-              <td>授予时间</td>
-              <td>人员名单</td>
-            </tr>
-          <?php foreach($patent as $item): ?>
-            <tr>
-              <td hidden><?=$item->number?></td>
-              <td><?=$item->name?></td>
-              <td><?=$item->register?></td>
-              <td><?php
-                $res = $this->db->where('id',$item->person)->get('person');
-                echo $res->row()->name;
-              ?></td>
-              <td><?=$item->institute?></td>
-              <td><?=$item->time?></td>
-              <td>
-              <?php 
-              // 获取人员名单 restrinct: <9
-              $res = $this->db->where('identifier',$item->number)->order_by('order')->get('patentlist')->result();
-              $str = "";
-              foreach($res as $item2)
-              {
-                  $res = $this->db->where('id',$item2->id)->get('person');
-                  $str .= $res->row()->name.",";
-              }
-              echo rtrim($str,',');
-              ?>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4 class="text-center">获得的软件著作权</h4></div>
-          <div class="panel-body">
-            <p>下面是<?=$person->name?>获得的软件著作权，您可以<a href="<?=site_url('copyrightmanage/index')?>">管理和维护</a></p>
-          </div>
-          <table class="table table-striped table-hover">
-               <tr>
-                <td>名称</td>
-                <td>专利权号</td>
-                <td>专利权人</td>
-                <td>授予单位</td>
-                <td>授予时间</td>
-                <td>人员名单</td>
-              </tr>
-            <?php foreach($copyright as $item): ?>
-              <tr>
-                <td><?=$item->name?></td>
-                <td><?=$item->register?></td>
-                <td><?php
-                  $res = $this->db->where('id',$item->person)->get('person');
-                  echo $res->row()->name;
-                ?></td>
-                <td><?=$item->institute?></td>
-                <td><?=$item->time?></td>
-                <td>
-                <?php 
-                // 获取人员名单 restrinct: <9
-                $res = $this->db->where('identifier',$item->number)->order_by('order')->get('copyrightlist')->result();
-                $str = "";
-                foreach($res as $item2)
-                {
-                    $res = $this->db->where('id',$item2->id)->get('person');
-                    $str .= $res->row()->name.",";
-                }
-                echo rtrim($str,',');
-                ?>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-            </table>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4 class="text-center">出版的专著</h4></div>
-          <div class="panel-body">
-            <p>下面是<?=$person->name?>出版的专著，您可以<a href="<?=site_url('workmanage/index')?>">管理和维护</a></p>
-          </div>
-
-          <table class="table table-striped table-hover">
-            <tr>
-              <td>专著名称</td>
-              <td>出版商</td>
-              <td>出版时间</td>
-              <td>人员列表</td>
-            </tr>
-          <?php foreach($work as $item): ?>
-            <tr>
-              <td><?=$item->name?></td>
-              <td><?=$item->publisher?></td>
-              <td><?=$item->publishdate?></td>
-              <td><?=$item->personlist?></td>
-            </tr>
-          <?php endforeach; ?>
-          </table>
-        </div>
-
         <div class="panel panel-default">
           <div class="panel-heading"><h4 class="text-center">参与的鉴定验收</h4></div>
           <div class="panel-body">
-            <p>下面是<?=$person->name?>所参与的鉴定验收，您可以<a href="<?=site_url('validationmanage/index')?>">管理和维护</a></p>
+            <p>下面是<?=$project->name?>所参与的鉴定验收，您可以<a href="<?=site_url('validationmanage/index')?>">管理和维护</a></p>
           </div>
         <table class="table table-striped table-hover">
           <tr>
@@ -393,7 +151,7 @@
         <div class="panel panel-default">
           <div class="panel-heading"><h4 class="text-center">获奖情况</h4></div>
           <div class="panel-body">
-            <p>下面是<?=$person->name?>的获奖情况，您可以<a href="<?=site_url('awardmanage/index')?>">管理和维护</a></p>
+            <p>下面是<?=$project->name?>的获奖情况，您可以<a href="<?=site_url('awardmanage/index')?>">管理和维护</a></p>
           </div>
           <table class="table table-striped table-hover">
             <tr>

@@ -31,6 +31,12 @@
 			return $res;
 		}
 
+		public function getValidationByIdentifier($number)
+		{
+			$res = $this->db->where('number',$number)->get('validation')->row();
+			return $res;
+		}
+
 		public function updateValidation($number,$achievement,$time,$institute,$which)
 		{
 			$data = array(
