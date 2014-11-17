@@ -17,43 +17,44 @@
   <body class="tour-warp">
     <div class="container">
       <br/>
+      <!-- <img src="<?=base_url()?>assets/icon.png" alt="log" class="img-circle" /> -->
+      <h1 class="page-header text-center">科研成果管理平台</h1>
       <br/>
-      <h1 class="page-header">科研成果管理平台</h1>
-      <br/>
-      <br/>
-      <div class="col-sm-6 col-sm-offset-7">
+      <div class="col-sm-4 col-sm-offset-7 login">
+        <br>
+        <br>
         <form class="form-horizontal" role="form" action="<?=base_url()?>index.php/welcome/login" method="post">
           <div class="form-group">
-            <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
-            <div class="col-sm-5">
+            <label for="inputEmail" class="col-sm-3 control-label">邮箱</label>
+            <div class="col-sm-8">
               <input type="email" class="form-control" id="inputEmail" name="user" placeholder="Email">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword" class="col-sm-2 control-label">密码</label>
-            <div class="col-sm-5">
+            <label for="inputPassword" class="col-sm-3 control-label">密码</label>
+            <div class="col-sm-8">
               <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputCaptcha" class="col-sm-2 control-label">验证码</label>
-            <div class="col-sm-5">
+            <label for="inputCaptcha" class="col-sm-3 control-label">验证码</label>
+            <div class="col-sm-8">
               <input type="text" class="form-control" id="inputCaptcha" placeholder="Captcha" name="captcha">
             </div>
           </div>
           <div class="form-group">
-          <label class="col-sm-2 control-label"></label>
-          <div class="col-sm-5">
+          <label class="col-sm-3 control-label"></label>
+          <div class="col-sm-8">
              <?=$image?>
           </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-10">
               <button type="submit" class="btn btn-default">登录</button>
             </div>
           </div>
         </form>
-        </div>
+      </div>
     </div>
     <?php $this->load->view("template/footer") ?>
   </body>

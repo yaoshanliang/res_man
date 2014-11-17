@@ -1,6 +1,7 @@
 .login {
-	background-color : gray;
-	border-style : dashed;
+	background-color : white;
+	opacity:0.7; 
+	border-radius:15px; 
 }
 
 .tour-warp {
