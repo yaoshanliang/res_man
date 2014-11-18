@@ -14,19 +14,19 @@
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function()
+    function getCap()
     {
       $.get("<?=site_url('welcome/getCaptcha')?>",function(res,status)
       {
         $("#captcha").html(res);
       });
-
+    }
+    $(document).ready(function()
+    {
+      getCap();
       $("#captcha").click(function()
       {
-        $.get("<?=site_url('welcome/getCaptcha')?>",function(res,status)
-      {
-        $("#captcha").html(res);
-      });
+        getCap();
       });
     });
     </script>
