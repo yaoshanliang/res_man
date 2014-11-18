@@ -2,10 +2,8 @@
 
 class Welcome extends CI_Controller {
 		
-	//登录验证
-	public function login()
+	public function getCaptcha()
 	{
-		$this->load->library('session');
 		//生成验证码
 		$this->load->helper("captcha");
 		$vals = array(
@@ -23,6 +21,12 @@ class Welcome extends CI_Controller {
 	    //产生的验证码插入数据库
 		$query = $this->db->insert_string('captcha', $data);
 		$this->db->query($query);
+		echo $cap['image'];
+	}
+	//登录验证
+	public function login()
+	{
+		$this->load->library('session');
 		//获取输入的用户名及密码（MD5加密后的结果存储在数据库）
 		$user = $this->input->post("user");
 		$passwd = md5($this->input->post("password"));
@@ -50,8 +54,7 @@ class Welcome extends CI_Controller {
 		}else
 		{	
 			/*验证失败*/
-			$data['image'] = $cap['image'];
-			$this->load->view("user/login",$data);
+			$this->load->view("user/login");
 		}
 	}
 	

@@ -13,6 +13,23 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $.get("<?=site_url('welcome/getCaptcha')?>",function(res,status)
+      {
+        $("#captcha").html(res);
+      });
+
+      $("#captcha").click(function()
+      {
+        $.get("<?=site_url('welcome/getCaptcha')?>",function(res,status)
+      {
+        $("#captcha").html(res);
+      });
+      });
+    });
+    </script>
   </head>
   <body class="tour-warp">
     <div class="container">
@@ -57,8 +74,7 @@
           </div>
           <div class="form-group">
           <label class="col-sm-3 control-label"></label>
-          <div class="col-sm-8">
-             <?=$image?>
+          <div class="col-sm-4" id="captcha">
           </div>
           </div>
           <div class="form-group">
