@@ -16,11 +16,24 @@
   </head>
   <body class="tour-warp">
     <div class="container">
-      <br/>
       <!-- <img src="<?=base_url()?>assets/icon.png" alt="log" class="img-circle" /> -->
       <h1 class="page-header text-center">科研成果管理平台</h1>
       <br/>
-      <div class="col-sm-4 col-sm-offset-7 login">
+      <div class="col-sm-3">
+          <img src="<?=base_url()?>assets/tour_1.png" alt="项目管理"/>
+          <br/>
+          <h4>信息管理</h4>
+          管理科研成果包括项目相关信息<br>
+          让复杂混乱的信息变得简单清晰
+      </div>
+      <div class="col-sm-3">
+          <img src="<?=base_url()?>assets/tour_4.png" alt="极致体验"/>
+          <br/>
+          <h4>极致体验</h4>
+          三种操作模式，一切基于鼠标点击<br>
+          让查询，修改，删除变得轻而易举
+      </div>
+      <div class="col-sm-4 col-sm-offset-1 login">
         <br>
         <br>
         <form class="form-horizontal" role="form" action="<?=base_url()?>index.php/welcome/login" method="post">
@@ -56,6 +69,10 @@
         </form>
       </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <?php $this->load->view("template/footer") ?>
   </body>
 </html>

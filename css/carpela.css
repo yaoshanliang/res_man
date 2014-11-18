@@ -5,7 +5,7 @@
 }
 
 .tour-warp {
-  background: url("/assets/tour_bg.jpg") center top no-repeat fixed;
+  background: url("/assets/tour_bg.jpg") center top no-repeat;
 }
 
 /*.tour-warp .tour-banner {
