@@ -29,7 +29,8 @@
 			$person = $this->person->getPersonByName($personname);
 			if($person == null)
 			{
-				echo "人员不存在";
+				$data['errlog'] = "查询人员不存在";
+				$this->load->view('template/notfound',$data);
 				return ;
 			}
 			$id = $person->id;
@@ -124,7 +125,8 @@
 			$project = $this->project->getProjectViaName($projectname);
 			if($project == null)
 			{
-				echo "项目不存在";
+				$data['errlog'] = "查询项目不存在";
+				$this->load->view('template/notfound',$data);
 				return ;
 			}
 			$projectid = $project->projectid;
@@ -199,7 +201,8 @@
 			$person = $this->person->getPersonByName($personname);
 			if($person == null)
 			{
-				echo "人员不存在";
+				$data['errlog'] = "该人员不存在";
+				$this->load->view('template/notfound',$data);
 				return ;
 			}
 			$id = $person->id;
