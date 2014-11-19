@@ -83,7 +83,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-default">修改</button>
-              <a href="<?=site_url('welcome/index')?>" class="btn btn-default">返回首页</a>
+              <a href="<?=site_url('welcome/home')?>" class="btn btn-default">返回首页</a>
             </div>
           </div>
         </form>

@@ -53,6 +53,10 @@
           <span class="badge"><?=$project_score?></span>
           科研经费分值
         </li>
+        <li class="list-group-item list-group-item-info">
+          <span class="badge"><?=$patent_score?></span>
+          专利分值
+        </li>
       </ul>
       </div>
     </div>

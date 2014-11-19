@@ -195,6 +195,10 @@
 			$this->load->model('source');
 			$this->load->model('projectlist');
 			$this->load->model('project');
+			$this->load->model('patent');
+			$this->load->model('patentlist');
+			$this->load->model('copyright');
+			$this->load->model('copyrightlist');
 
 			$year = $this->input->post('year');
 			$personname = $this->input->post("person");
@@ -251,9 +255,54 @@
 					}
 				}
 			}
+			// 专利和软件著作权得分
+			$patent_score = 0.0;
+			$res = $this->patentlist->getPatentID($id);
+			foreach($res as $item)
+			{
+				$patent = $this->patent->getPatentByIdentifier($item->identifier);
+				if(intval($patent->time) == $year)
+				{
+					if($item->order == 1)
+					{
+						$patent_score += 15;
+					}else if($item->order == 2)
+					{
+						$patent_score += 9;
+					}else if($item->order == 3)
+					{
+						$patent_score += 4.5;
+					}else if($item->order == 4)
+					{
+						$patent_score += 1.5;
+					}
+				}
+			}
+			$res = $this->copyrightlist->getCopyrightByID($id);
+			foreach($res as $item)
+			{
+				$copyright = $this->copyright->getCopyrightByIdentifier($item->identifier);
+				if(intval($copyright->time) == $year)
+				{
+					if($item->order == 1)
+					{
+						$patent_score += 5;
+					}else if($item->order == 2)
+					{
+						$patent_score += 3;
+					}else if($item->order == 3)
+					{
+						$patent_score += 1.5;
+					}else if($item->order == 4)
+					{
+						$patent_score += 0.5;
+					}
+				}
+			}
 			$data['personname'] = $personname;
 			$data['year']  = $year;
 			$data['project_score'] = number_format($project_score, 2, '.', '');
+			$data['patent_score'] = number_format($patent_score, 2,'.', '');
 			$this->load->view('search/work',$data);
 
 		}
