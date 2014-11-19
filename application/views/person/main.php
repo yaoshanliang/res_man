@@ -52,6 +52,11 @@
         $("#refresh_list").click();
       });
 
+      if($("#currentMode").text() !=2)
+      {
+        $("#addForm").attr('disabled',true);
+      }
+
       $("#back").click(function()
       {
         history.back();
@@ -83,7 +88,7 @@
       <hr/>
       <div>
         <a class="btn btn-default" id="refresh_list">刷新列表</a>
-        <a class="btn btn-default" data-toggle="modal" data-target="#addModal">添加信息</a>
+        <a class="btn btn-default" data-toggle="modal" id="addForm" data-target="#addModal">添加信息</a>
 
           <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
