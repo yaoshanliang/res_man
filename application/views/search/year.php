@@ -9,6 +9,7 @@
     <link href="<?=base_url()?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="<?=base_url()?>css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?=base_url()?>css/carpela.css" rel="stylesheet">
     <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>js/bootstrap-switch.min.js"></script>
@@ -389,8 +390,10 @@
           <?php endforeach; ?>
           </table>
         </div>
-
+        </div>
+    <div id="back_top"><a href="#" title="回顶部"><span class="glyphicon glyphicon-collapse-up"></span><br></a></div>
+    
     <?php $this->load->view('template/footer') ?>
-    </div>
+    
   </body>
 </html>
