@@ -258,6 +258,7 @@
 			// 专利和软件著作权得分
 			$patent_score = 0.0;
 			$res = $this->patentlist->getPatentID($id);
+			if($res != null)
 			foreach($res as $item)
 			{
 				$patent = $this->patent->getPatentByIdentifier($item->identifier);
@@ -279,6 +280,7 @@
 				}
 			}
 			$res = $this->copyrightlist->getCopyrightByID($id);
+			if($res != null)
 			foreach($res as $item)
 			{
 				$copyright = $this->copyright->getCopyrightByIdentifier($item->identifier);

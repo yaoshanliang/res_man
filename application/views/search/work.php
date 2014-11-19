@@ -37,7 +37,7 @@
       <hr/>
 
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation"><a href="#">人员综合信息查询</a></li>
+        <li role="presentation"><a href="<?=site_url('search/index')?>">人员综合信息查询</a></li>
         <li role="presentation"><a href="<?=site_url('search/project')?>">项目信息查询</a></li>
         <li role="presentation"><a href="<?=site_url('search/year')?>">按年度查询</a></li>
         <li role="presentation"  class="active"><a href="<?=site_url('search/work')?>">计算工作量</a></li>

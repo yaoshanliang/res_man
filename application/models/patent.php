@@ -37,7 +37,7 @@
 		public function getPatentByIdentifier($number)
 		{
 			$res = $this->db->where('number',$number)->get('patent')->row();
-			return $res->row();
+			return $res;
 		}
 
 		public function getPatentByYear($year)
