@@ -9,10 +9,10 @@
 	// );
 	class Patent extends CI_Model
 	{
-		public function insertPatent($number,$name,$register,$person,$institute,$time)
+		public function insertPatent($name,$register,$person,$institute,$time)
 		{
 			$data = array(
-				'number'=>$number,
+				'number'=>null,
 				'name'=>$name,
 				'register'=>$register,
 				'person'=>$person,
@@ -37,7 +37,7 @@
 		public function getPatentByIdentifier($number)
 		{
 			$res = $this->db->where('number',$number)->get('patent')->row();
-			return $res;
+			return $res->row();
 		}
 
 		public function getPatentByYear($year)

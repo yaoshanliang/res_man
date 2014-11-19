@@ -22,16 +22,24 @@
 				echo "权限错误";
 				return;
 			}
-			$number = $this->input->post('number');
 			$name = $this->input->post('name');
 			$register = $this->input->post('register');
 			$person = $this->input->post('person');
+
+			$this->load->model('person');
+			if($this->person->getPersonByName($person)==null)
+			{
+				echo "添加姓名不存在";
+				return;
+			}
+			$person = $this->person->getPersonByName($person)->id;
+
 			$institute = $this->input->post('institute');
 			$time = $this->input->post('time');
 			$this->load->model('patent');
-			if($this->patent->insertPatent($number,$name,$register,$person,$institute,$time))
+			if($this->patent->insertPatent($name,$register,$person,$institute,$time))
 			{
-				echo "Success<br/>";
+				echo "添加成功";
 			}
 		}
 		public function modify()

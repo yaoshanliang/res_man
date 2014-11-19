@@ -103,7 +103,7 @@
                           <div class="form-group">
                             <label for="inputName" class="col-sm-3 control-label">专利权名</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="inputName" placeholder="List">
+                              <input type="text" class="form-control" id="inputName" placeholder="Name">
                             </div>
                           </div>
                           <div class="form-group">
