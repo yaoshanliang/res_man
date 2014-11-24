@@ -20,6 +20,12 @@
       {
         history.back();
       });
+
+      $("[type='checkbox']").click(function()
+      {
+        var obj = "#"+event.target.value;
+        $(obj).toggle();
+      });
     });
     </script>
   </head>
@@ -34,11 +40,43 @@
       <div class="col-md-1">
         <a class="btn btn-success" id="back"><i class="fa fa-chevron-left"></i>&nbsp;后退</a>
       </div>
-      <br>
+      <div class="checkbox col-sm-offset-1">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="person" checked> 基本信息
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="project" checked> 项目信息
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="cooperation" checked> 国际合作
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="learn" checked> 进修学习
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="part" checked> 学术兼职
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="patent" checked> 专利权
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="copyright" checked> 软件著作权
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="work" checked> 出版专著
+          </label>
+          
+          <label class="checkbox-inline">
+            <input type="checkbox" value="validation" checked> 参与的鉴定验收
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="award" checked> 获奖情况
+          </label>
+        </div>
       <hr/>
   
     
-    <div class="panel panel-default">
+    <div class="panel panel-default" id="person">
       <!-- Default panel contents -->
       <div class="panel-heading"><h4 class="text-center">基本信息</h4></div>
       <div class="panel-body">
@@ -64,7 +102,7 @@
     </div>
 
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="project">
         <!-- Default panel contents -->
         <div class="panel-heading"><h4 class="text-center">参与的项目</h4></div>
         <div class="panel-body">
@@ -132,7 +170,7 @@
           </table>
       </div>
   
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="cooperation">
         <div class="panel-heading"><h4 class="text-center">参与的国际合作</h4></div>
         <div class="panel-body">
           <p>下面是<?=$person->name?>所参与的国际合作，您可以<a href="<?=site_url('cooperationmanage/index')?>">管理和维护</a></p>
@@ -173,7 +211,7 @@
         </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="learn">
           <div class="panel-heading"><h4 class="text-center">参与的进修学习</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>所参与的进修学习，您可以<a href="<?=site_url('learnmanage/index')?>">管理和维护</a></p>
@@ -203,7 +241,7 @@
           </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="part">
           <div class="panel-heading"><h4 class="text-center">学术兼职</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>的学术兼职，您可以<a href="<?=site_url('partmanage/index')?>">管理和维护</a></p>
@@ -235,7 +273,7 @@
           </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="patent">
           <div class="panel-heading"><h4 class="text-center">获得的专利信息</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>获得的专利信息，您可以<a href="<?=site_url('patentmanage/index')?>">管理和维护</a></p>
@@ -279,7 +317,7 @@
           </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="copyright">
           <div class="panel-heading"><h4 class="text-center">获得的软件著作权</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>获得的软件著作权，您可以<a href="<?=site_url('copyrightmanage/index')?>">管理和维护</a></p>
@@ -321,7 +359,7 @@
             </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="work">
           <div class="panel-heading"><h4 class="text-center">出版的专著</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>出版的专著，您可以<a href="<?=site_url('workmanage/index')?>">管理和维护</a></p>
@@ -345,7 +383,7 @@
           </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="validation">
           <div class="panel-heading"><h4 class="text-center">参与的鉴定验收</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>所参与的鉴定验收，您可以<a href="<?=site_url('validationmanage/index')?>">管理和维护</a></p>
@@ -391,7 +429,7 @@
         </table>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="award">
           <div class="panel-heading"><h4 class="text-center">获奖情况</h4></div>
           <div class="panel-body">
             <p>下面是<?=$person->name?>的获奖情况，您可以<a href="<?=site_url('awardmanage/index')?>">管理和维护</a></p>
