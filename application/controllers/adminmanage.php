@@ -32,6 +32,10 @@
 			{
 				$this->session->set_userdata('token','out');
 			}
+			
+			$mode = $this->session->userdata('mode');
+			$this->db->update('Admin',array('mode'=>$mode));
+
 			redirect(site_url('welcome/login'),'refresh');
 		}
 	}

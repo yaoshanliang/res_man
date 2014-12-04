@@ -74,7 +74,7 @@
           </div>
           <div class="form-group">
           <label class="col-sm-3 control-label"></label>
-          <div class="col-sm-4" id="captcha">
+          <div class="col-sm-4" id="captcha" title="点击刷新验证码">
           </div>
           </div>
           <div class="form-group">

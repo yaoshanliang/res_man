@@ -13,7 +13,7 @@
 				$this->session->set_userdata('mode',$mode);
 			}
 
-			$this->db->update('Admin',array('mode'=>$mode));
+			// $this->db->update('Admin',array('mode'=>$mode));
 
 			redirect($from,'refresh');
 		}

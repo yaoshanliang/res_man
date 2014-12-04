@@ -29,7 +29,7 @@
 
   <div class="container">
       <div class="row">
-        <h3 class="text-center">简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">管理账户信息</a></small></h3>
+        <h3 class="text-center">简要信息总览 <small><a href="<?=site_url('adminmanage/modify')?>">修改管理员密码</a></small></h3>
       </div>
        <div class="checkbox col-sm-offset-1">
           <label class="checkbox-inline">
