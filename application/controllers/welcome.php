@@ -48,7 +48,7 @@ class Welcome extends CI_Controller {
 			/*
 			* 0 (default) : 查询模式  1 : 维护模式  2 : 管理模式
 			*/
-			$this->session->set_userdata('mode',0);
+			$this->session->set_userdata('mode',$this->Admin->getMode($user));
 			/*验证成功*/
 			redirect(site_url('welcome/home'),'refresh');
 		}else

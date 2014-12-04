@@ -27,5 +27,11 @@
 			$res = $this->db->update('Admin',array('Password'=>md5($passwd)));
 			return $res;
 		}
+		// 获得指定用户的权限
+		public function getMode($user)
+		{
+			$res = $this->db->where('Name',$user)->get("Admin");
+			return $res->row()->mode;
+		}
 	}
 ?>
