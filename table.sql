@@ -4,8 +4,8 @@
 
 ###1.管理员
 create table Admin(
-	name text not null,
-	password text not null,
+	Name text not null,
+	Password text not null,
 	mode int not null
 	);
 

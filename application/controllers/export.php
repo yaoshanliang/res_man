@@ -397,28 +397,22 @@
 			$objPHPExcel->getActiveSheet()->setCellValue('E2', '获奖时间');
 			$objPHPExcel->getActiveSheet()->setCellValue('F2', '获奖人员名单');
 
-			// $this->load->model('award');
-			// $i = 3;
-			// $res = $this->award->getAward();
-			// foreach($res as $item)
-			// {
-				// $name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type
-				// $objPHPExcel->getActiveSheet()->setCellValue('A'.$i, $i-2);
-				// $objPHPExcel->getActiveSheet()->setCellValue('B'.$i, $item->name);
-				// $objPHPExcel->getActiveSheet()->setCellValue('C'.$i, $item->source);
-				// $person_name = $this->db->where('id',$item->principal)->get('person')->row()->name;
-				// $objPHPExcel->getActiveSheet()->setCellValue('D'.$i, $person_name);
-				// $objPHPExcel->getActiveSheet()->setCellValue('E'.$i, $item->start);
-				// $objPHPExcel->getActiveSheet()->setCellValue('F'.$i, $item->end);
-				// $objPHPExcel->getActiveSheet()->setCellValue('G'.$i, $item->money);
-				// $objPHPExcel->getActiveSheet()->setCellValue('H'.$i, $currency);
-				// $objPHPExcel->getActiveSheet()->setCellValue('I2', );
-				// $objPHPExcel->getActiveSheet()->setCellValue('J'.$i, $item->contract);
-				// $objPHPExcel->getActiveSheet()->setCellValue('K'.$i, $item->credit);
-				// $objPHPExcel->getActiveSheet()->setCellValue('L2', '备注');
+			$this->load->model('award');
+			$i = 3;
+			$res = $this->award->getAward();
+			foreach($res as $item)
+			{
+			// 	$name,$source,$level,$principal,$start,$end,$money,$currency,$contract,$credit,$type
+				$objPHPExcel->getActiveSheet()->setCellValue('A'.$i, $i-2);
+				$objPHPExcel->getActiveSheet()->setCellValue('B'.$i, $item->name);
+				// $objPHPExcel->getActiveSheet()->setCellValue('C'.$i, $item->type);
+				$objPHPExcel->getActiveSheet()->setCellValue('D'.$i, $item->level);
+				$objPHPExcel->getActiveSheet()->setCellValue('E'.$i, $item->time);
+				
+				// $objPHPExcel->getActiveSheet()->setCellValue('F'.$i, $item->);
 
-				// $i++;
-			// }
+				$i++;
+			}
 		}
 
 		private function do_work($objPHPExcel)
