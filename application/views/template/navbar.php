@@ -1,6 +1,6 @@
 <header>
   <div class="container-fluid">
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -16,17 +16,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="<?=site_url('welcome/home')?>">首页</a></li>
+            <li><a href="<?=site_url('welcome/home')?>"><i class="fa fa-anchor"></i>&nbsp;首页</a></li>
+            <li><a href="<?=site_url('search/index')?>"><i class="fa fa-search"></i>&nbsp;系统查询</a></li>
             <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown">功能 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="<?=site_url('export/index')?>">导出文件</a></li>
-                <li><a href="<?=site_url('search/index')?>">系统查询</a></li>
-                <li><a href="<?=site_url('adminmanage/modify')?>">修改密码</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown">信息维护 <span class="caret"></span></a>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tags"></i>&nbsp;信息维护 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<?=site_url('personmanage/index')?>">人员信息</a></li>
                 <li><a href="<?=site_url('projectmanage/index')?>">项目信息</a></li>
@@ -43,9 +36,11 @@
                 <li><a href="<?=site_url('awardmanage/index')?>">获奖情况信息</a></li>
               </ul>
             </li>
+            <li><a href="<?=site_url('export/index')?>"><i class="fa fa-file"></i>&nbsp;导出文件</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?=site_url('adminmanage/logout')?>"><i class="fa fa-user"></i>&nbsp; 注销</a></li>
+            <li><a href="<?=site_url('adminmanage/modify')?>"><i class="fa fa-key"></i>&nbsp;修改密码</a></li>
+            <li><a href="<?=site_url('adminmanage/logout')?>"><i class="fa fa-user"></i>&nbsp;注销</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
