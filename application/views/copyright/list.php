@@ -28,6 +28,9 @@
             window.location="<?=site_url('copyrightmanage/fileandlist')?>?number="+$(event.target).parent().children().first().html();
             return;
           }
+
+          if(index==7)
+            return;
           var colname = $(event.target).parent().parent().children().first().children().eq(index).html();//列名
           var value = $(event.target).text();
           var result = prompt("请输入新的"+colname+":",value);
