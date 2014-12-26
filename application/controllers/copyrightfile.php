@@ -32,7 +32,7 @@
 		  	{
 		   		$data = $this->upload->data();
 		   		$this->copyright->addFile($number,$data['file_name']);
-		   		redirect(site_url('patentmanage/index'),'refresh');
+		   		redirect(site_url('copyrightmanage/index'),'refresh');
 		  	}
 		}
 	}
