@@ -27,6 +27,15 @@
 			$start = $this->input->post('start');
 			$end = $this->input->post('end');
 			$person = $this->input->post('person');
+			
+			$this->load->model('person');
+			if($this->person->getPersonByName($person)==null)
+			{
+				echo "添加姓名不存在";
+				return;
+			}
+			$person = $this->person->getPersonByName($person)->id;
+
 			$this->load->model('learn');
 			$bool = $this->learn->insertLearn($institute,$content,$start,$end,$person);
 			if($bool)
