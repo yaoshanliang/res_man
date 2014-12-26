@@ -24,7 +24,7 @@
 		// 更改密码
 		public function setPasswd($passwd)
 		{
-			$res = $this->db->update('Admin',array('Password'=>md5($passwd)));
+			$res = $this->db->update('Admin',array('Password'=>$passwd));
 			return $res;
 		}
 		// 获得指定用户的权限
