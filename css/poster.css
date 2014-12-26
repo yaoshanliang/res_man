@@ -1,0 +1,45 @@
+.poster-navbar {
+	opacity: 0.8;
+}
+
+.poster-head {
+	margin-top: 1.8em;
+	color: purple;
+	text-align: center;
+}
+
+.poster {
+	background-image: url("/assets/poster-background.jpg");
+}
+
+.poster-frame {
+	opacity: 0.7;
+}
+
+.line1 {
+}
+
+.line2 {
+	text-indent: 1em;
+}
+
+.line3 {
+}
+
+.line4 {
+	color: white;
+}
+
+.line5 {
+	text-align: center;
+	color: blue;
+}
+
+.line6 {
+	text-align: right;
+	color: white;
+}
+
+.notation {
+	margin-top: 150px;
+}
