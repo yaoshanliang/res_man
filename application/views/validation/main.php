@@ -57,6 +57,18 @@
         $("#addForm").attr('disabled',true);
       }
 
+      $(window).scroll(function() {
+        if($(window).scrollTop() > 100) {
+          $('div.back_top').show();
+        } else {
+          $('div.back_top').hide();
+        }
+      });
+
+      $('div.back_top').click(function() {
+        $('html, body').animate({scrollTop: 0}, 500);
+      });
+
       $("#back").click(function()
       {
         history.back();
@@ -131,7 +143,10 @@
     <br/>
     <div id="detail">
     </div> 
-    <div id="back_top"><a href="#" title="回顶部"><span class="glyphicon glyphicon-collapse-up"></span><br></a></div>
+    <div class="back_top">
+      <div class="back_top_arrow"></div>
+      <div class="back_top_stick"></div>
+    </div>
     <?php $this->load->view('template/footer') ?>
   </body>
 </html>

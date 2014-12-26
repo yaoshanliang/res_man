@@ -43,7 +43,6 @@ class Welcome extends CI_Controller {
 		$this->load->model("Admin");
 		if($user == $this->Admin->getUser() && $passwd == $this->Admin->getPasswd() && $row->count != 0)
 		{
-			$this->session->set_userdata('username',$user);
 			$this->session->set_userdata('token','in');
 			/*
 			* 0 (default) : 查询模式  1 : 维护模式  2 : 管理模式
@@ -57,7 +56,7 @@ class Welcome extends CI_Controller {
 			$this->load->view("user/login");
 		}
 	}
-	
+
 	// 主界面
 	public function home()
 	{

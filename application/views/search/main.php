@@ -15,6 +15,19 @@
     <script type="text/javascript">
     $(document).ready(function()
     {
+
+      $(window).scroll(function() {
+        if($(window).scrollTop() > 100) {
+          $('div.back_top').show();
+        } else {
+          $('div.back_top').hide();
+        }
+      });
+
+      $('div.back_top').click(function() {
+        $('html, body').animate({scrollTop: 0}, 500);
+      });
+
       $("#back").click(function()
       {
         history.back();
@@ -56,7 +69,10 @@
           </div>
         </div>
       </form>
-
+  <div class="back_top">
+    <div class="back_top_arrow"></div>
+    <div class="back_top_stick"></div>
+  </div>
     <?php $this->load->view('template/footer') ?>
     </div>
   </body>

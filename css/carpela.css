@@ -15,9 +15,40 @@
   position: relative;
 }*/
 
-#back_top {
-position: fixed;
-right: 5%;
-bottom: 5%;
-opacity: 1.0;
+
+div.back_top {
+  display: none;
+  opacity: 0.5;
+  z-index: 999999;
+  position: fixed;
+  bottom: 100px;
+  left: 92%;
+  margin-left: 50px;
+  border: 1px solid #0088cc;
+  width: 38px;
+  height: 38px;
+  background-color: #fafafa;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+div.back_top div.back_top_arrow {
+  position: absolute;
+  left: 10px;
+  top: -1px;
+  width: 0;
+  height: 0;
+  border: 9px solid transparent;
+  border-bottom-color: #0088cc;
+}
+
+div.back_top div.back_top_stick {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 8px;
+  height: 14px;
+  display: block;
+  border-radius: 1px;
+  background-color: #0088cc;
 }
