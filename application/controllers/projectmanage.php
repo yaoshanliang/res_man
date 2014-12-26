@@ -59,8 +59,11 @@
 		public function delete()
 		{
 			$this->load->model('project');
+			$this->load->model('funds');
+			$this->load->model('projectlist');
 			$projectid = $this->input->post('projectid');
-			if($this->project->deleteProject($projectid))
+			if($this->project->deleteProject($projectid) && $this->projectlist->deleteAll($projectid) 
+				&& $this->funds->deleteAll($projectid))
 			{
 				echo "删除成功";
 			}else

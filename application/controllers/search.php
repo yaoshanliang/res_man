@@ -39,7 +39,7 @@
 			$project = array();
 			foreach($res as $item)
 			{
-				$project[] = ($this->project->getProjectByID($item->projectid));
+				$project[] = $this->project->getProjectByID($item->projectid);
 			}
 			// 参与国际合作
 			$cooperation = array();

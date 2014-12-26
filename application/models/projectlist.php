@@ -25,7 +25,8 @@
 
 		public function deleteAll($number)
 		{
-			$this->db->delete('projectlist',array('projectid'=>$number));
+			$bool = $this->db->delete('projectlist',array('projectid'=>$number));
+			return $bool;
 		}
 
 		public function reOrder($number,$id,$order)
