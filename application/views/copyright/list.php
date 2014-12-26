@@ -1,10 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-      $("table tr:gt(0)").click(function()
+      $("table tr:gt(0) td").click(function(event)
       {
         var index = $(event.target).index(); //列索引
-        if(index == 7 || index==8) return;
         var current_mode = $("#currentMode").text();
         if(current_mode == 0)
         {
@@ -21,14 +20,12 @@
           return;
         }else if(current_mode == 1)
         {
+          if(event.target != this)
+            return;
           if(index == 6) 
           {
             // 处理人员名单
             window.location="<?=site_url('copyrightmanage/fileandlist')?>?number="+$(event.target).parent().children().first().html();
-            return;
-          }
-          if(index == 7) 
-          {
             return;
           }
           var colname = $(event.target).parent().parent().children().first().children().eq(index).html();//列名

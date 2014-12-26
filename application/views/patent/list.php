@@ -1,10 +1,9 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-      $("table tr:gt(0)").click(function()
+      $("table tr:gt(0) td").click(function(event)
       {
         var index = $(event.target).index(); //列索引
-        if(index == 7 || index==8) return;
         var current_mode = $("#currentMode").text();
         if(current_mode == 0)
         {
@@ -21,6 +20,8 @@
           return;
         }else if(current_mode == 1)
         {
+          if(event.target != this) 
+            return;
           if(index == 6) 
           {
             // 处理人员名单
